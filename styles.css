@@ -237,14 +237,16 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   transform: translateY(-50%);
   z-index: 3;
   margin: 0;
-  padding: 0 0 0 4px;
+  padding: 2px 8px;
   background: transparent;
   color: #e21878;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 560;
   letter-spacing: 0;
   line-height: 1.3;
   white-space: nowrap;
+  border: 1px solid #e21878;
+  border-radius: 8px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
