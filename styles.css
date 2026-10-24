@@ -411,7 +411,7 @@ body[data-page="person"] .note { color: #8d8d8d; }
   .work, .detail, .person { padding-left: 16px; padding-right: 16px; }
   .person { display: flex; flex-direction: column; gap: 28px; padding-top: 20px; padding-bottom: 40px; }
   .intro { grid-column: auto; }
-  .statement { font-size: clamp(1.55rem, 6.6vw, 2rem); max-width: 16em; }
+  .statement { font-size: min(3.3rem, 5.7cqi); max-width: none; }
   .statement-ko { max-width: 28em; }
   .cols { gap: 22px; }
   .site-foot { padding-left: 16px; padding-right: 16px; }
