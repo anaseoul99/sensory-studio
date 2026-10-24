@@ -177,7 +177,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .card { grid-column: span 2; display: block; }
 .card:nth-child(4),
 .card:nth-child(5) { grid-column: span 3; }
-.card figure { margin: 0; background: #fff; border: 1px solid var(--line); }
+.card figure { margin: 0; background: #fff; }
 .card img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .card-meta { padding-top: 10px; }
 .card-meta .scent { color: var(--accent); font-weight: 600; letter-spacing: -0.03em; }
@@ -220,19 +220,22 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .steps li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; font-size: 14px; }
 .steps b { font-weight: 560; }
 
-.stage { display: grid; gap: 10px; }
-.frame { background: #fff; border: 1px solid var(--line); }
-.frame figcaption {
-  padding: 8px 10px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.stage { display: grid; gap: 28px; }
+.plate { margin: 0; }
+.plate img { display: block; width: 100%; height: auto; }
+.plate iframe { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; border: 0; background: #111; }
+.plate figcaption {
+  margin: 10px 0 0;
+  max-width: 36em;
+  font-size: 14px;
+  line-height: 1.45;
   color: var(--muted);
-  border-bottom: 1px solid var(--line);
 }
-.frame img { display: block; width: 100%; height: auto; object-fit: contain; background: #fff; }
-.frame iframe { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; border: 0; background: #111; }
-.hint { margin: 6px 10px 8px; color: var(--muted); font-size: 13px; }
+.plate figcaption span {
+  margin-right: 8px;
+  color: var(--ink);
+  font-weight: 560;
+}
 .process { position: relative; margin-top: 18px; }
 .tech-grid { display: flex; flex-wrap: wrap; gap: 6px; max-width: 360px; }
 .tech-item {

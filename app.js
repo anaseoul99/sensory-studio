@@ -180,14 +180,13 @@ function renderDetail(id) {
         </div>
       </div>
       <div class="stage">
-        <figure class="frame">
-          <figcaption>원본 그림</figcaption>
+        <figure class="plate">
           <img src="${work.image}" alt="${esc(work.title)} 원본" />
+          <figcaption><span>원본</span> 아이가 그린 그림. 색, 형태, 반복을 여기서 읽는다.</figcaption>
         </figure>
-        <figure class="frame">
-          <figcaption>번역 · p5.js</figcaption>
+        <figure class="plate">
           <iframe title="${work.title} 인터랙션" src="${work.sketch}"></iframe>
-          <p class="hint">공개된 스케치다. 소리가 있게 만들려면 프레임 안을 클릭한다.</p>
+          <figcaption><span>p5.js</span> 그 그림을 움직임으로 옮긴 스케치. 소리를 들으려면 화면을 클릭한다.</figcaption>
         </figure>
       </div>
     </article>
