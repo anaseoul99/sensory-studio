@@ -288,7 +288,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   padding: 88px 28px 48px;
   width: 100%;
 }
-.intro { grid-column: 2 / -1; min-width: 0; }
+.intro { grid-column: 2 / -1; min-width: 0; container-type: inline-size; }
 .person .cols { grid-column: 1 / -1; }
 .self { display: grid; gap: 8px; }
 .turn {
@@ -370,7 +370,7 @@ body[data-page="person"] .site-foot { color: #fff; }
 .statement {
   margin: 0;
   max-width: none;
-  font-size: clamp(2rem, 4.4vw, 3.3rem);
+  font-size: min(2.4rem, 3.4cqi);
   line-height: 1.12;
   letter-spacing: -0.04em;
   font-weight: 500;
