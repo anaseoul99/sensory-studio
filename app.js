@@ -9,6 +9,7 @@ const works = [
     track: "Through the Storm",
     artist: "Yeo Doll",
     soundTags: "Warm, Dreamlike, Bright, Playful",
+    read: "노란 온기",
     copy: "따뜻한 밤 공간에 작은 동물들이 흩어져 있다. 밝은 노란 빛에서 키워드를 뽑고, 그 분위기의 곡과 p5.js 움직임을 만든 뒤 유자 블렌드를 붙였다.",
     note: [
       "따뜻하고(Warm) 꿈같은(Dreamlike) 공간 속 작은 동물들이 즐겁게(Playful) 흩어져 떠다닌다. 그림 곳곳에 퍼지는 밝은 빛(Bright)과 선명한 노란색은 상상 속의 샛노랑(Imaginary Yellow)을 연상시킨다.",
@@ -27,6 +28,7 @@ const works = [
     track: "Waves",
     artist: "Paige",
     soundTags: "Calm, Wind",
+    read: "서늘한 푸른빛",
     copy: "푸른 하늘 위로 가지와 꽃이 겹친다. 차분함과 바람, 서늘한 색을 소리와 미네랄 향으로 옮긴다.",
     note: [
       "맑고 푸른(Blue) 공간 위로 나뭇가지가 교차하고, 분홍색과 흰색의 꽃과 초록색 잎이 화면을 가득 채운다. 반복되는 꽃의 형태와 겹쳐지는 색은 차분함(Calm)과 슬픔(Sad)이 공존하는 분위기를 만들고, 바람(Wind)이 스쳐 지나가는 듯한 움직임과 서늘한 계절감(Cool)을 연상시킨다.",
@@ -45,6 +47,7 @@ const works = [
     track: "Talking 'bout me",
     artist: "tillandtill",
     soundTags: "Vivid, Simple, Wine",
+    read: "물방울 속 색",
     copy: "물방울 형태 안에 서로 다른 꽃이 들어 있다. 반복과 와인빛 색의 차이를 토피 향과 연결한다.",
     note: [
       "일곱 개의 물방울(Drop) 형태 안에 서로 다른 색과 모양의 꽃이 담겨 있다. 반복되는 구조 속에서 꽃잎의 형태와 수, 색의 조합이 조금씩 달라지며 선명하고(Vivid) 다채로운(Colorful) 시각적 리듬을 만든다. 물방울처럼 단순한(Simple) 형태 안에 담긴 꽃들은 부드러운 분위기와 함께 와인빛(Wine)을 연상시키는 깊은 색감을 드러낸다.",
@@ -63,6 +66,7 @@ const works = [
     track: "Flowering",
     artist: "tillandtill",
     soundTags: "Flower, Safe, Cream",
+    read: "익숙한 형태",
     copy: "집, 구름, 무지개, 풀이 넓은 여백 위에 반복된다. 익숙한 형태가 주는 안온함을 시더우드로 옮긴다.",
     note: [
       "검은 선으로 그린 집과 작은 무지개, 구름, 초록색 풀들이(Flower) 넓고 하얀 공간 위에 반복되어 나타난다. 익숙한 집의 형태는 안정감과 안전함(Safe)을 연상시키고, 구름처럼 부드럽고 포근한 이미지(Cloud, Cream)와 무지개의 밝은 색채(Rainbow)가 어우러져 편안하고 따뜻한 분위기를 만든다. 반복되는 요소들은 서로 다른 방향과 간격으로 배치되어 단순한 이미지 안에 가볍고 불규칙한 리듬을 형성한다.",
@@ -81,6 +85,7 @@ const works = [
     track: "In my dream",
     artist: "Yeo Doll",
     soundTags: "Fantasy, Lovely",
+    read: "어둠과 무지개",
     copy: "어두운 하늘과 무지개 갈기의 유니콘. 명암의 대비와 환상적인 형태를 클라리 세이지로 옮긴다.",
     note: [
       "어두운(Dark) 밤하늘 속 노란 달과 별들 사이로 무지개빛(Rainbow) 갈기와 꼬리를 가진 흰 유니콘이(Animal) 떠다닌다. 깊고 어두운 배경은 환상적인 분위기를 강조하고, 강렬한 색의 대비와 반복되는 별, 흐르는 듯한 무지개빛 형태가 현실과 상상이 겹쳐지는 꿈같은 장면을 만든다. 신비로운 동물의 형상은 사랑스럽고(Lovely), 환상적인(Fantasy) 분위기를 자아내며, 어둠 속에서 더욱 선명하게 드러난다.",
@@ -99,6 +104,19 @@ function esc(value) {
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;");
+}
+
+function logicMap(work, scent) {
+  const rows = [
+    ["소리", work.track],
+    ["움직임", "p5.js"],
+    ["향", scent]
+  ];
+  return `
+    <div class="logic">
+      <p class="logic-from">${esc(work.read)}</p>
+      ${rows.map(([name, value]) => `<p><i>${esc(name)}</i><b>${esc(value)}</b></p>`).join("")}
+    </div>`;
 }
 
 function lookup(id) {
@@ -196,7 +214,7 @@ function renderDetail(id) {
         <p class="scent-name">${esc(first ? first.nameEN : work.scent)}<span class="scent-note">향 Olfactory</span></p>
         <h1>${esc(work.title)}</h1>
         <p class="tags">${esc(found.tags.join(" · "))}<span class="tag-note">감각 키워드</span></p>
-        <p class="copy">${esc(work.copy)}</p>
+        ${logicMap(work, first ? first.nameEN : work.scent)}
         <div class="process">
           <div class="tech-grid">
             <button class="tech-item" type="button" data-step="js">${iconJs()}<span>JavaScript</span></button>

@@ -296,6 +296,19 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 }
 .tags { margin: 0 0 34px; color: #8a5a12; font-size: 14px; }
 .detail .copy { margin: 0 0 12px; }
+.logic { margin: 0 0 14px; }
+.logic-from { margin: 0 0 8px; font-size: 15px; font-weight: 560; }
+.logic p:not(.logic-from) {
+  display: grid;
+  grid-template-columns: 16px 46px minmax(0, 1fr);
+  gap: 6px;
+  align-items: baseline;
+  margin: 0 0 5px;
+  font-size: 13px;
+}
+.logic p:not(.logic-from)::before { content: "→"; color: var(--muted); }
+.logic i { font-style: normal; color: var(--muted); }
+.logic b { font-weight: 560; }
 .track {
   margin: 16px 0 0;
   padding-top: 12px;
