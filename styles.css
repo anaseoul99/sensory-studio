@@ -88,10 +88,10 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 }
 .display {
   margin: 0;
-  font-size: min(30cqi, 29cqh);
-  line-height: 0.86;
-  letter-spacing: -0.065em;
-  font-weight: 560;
+  font-size: min(22cqi, 21cqh);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  font-weight: 470;
   color: #2b2b2b;
 }
 .marquee {
@@ -337,7 +337,7 @@ body[data-page="person"] .note { color: #8d8d8d; }
   .project, .detail, .cols, .person-top { grid-template-columns: 1fr; }
   .project { height: auto; align-items: start; min-height: 0; padding: 12px 16px 0; overflow: hidden; }
   .project-title { height: auto; }
-  .display { font-size: clamp(4.6rem, 22vw, 7.2rem); }
+  .display { font-size: clamp(3.4rem, 16vw, 5.2rem); }
   .marquee { font-size: clamp(3.2rem, 16vw, 5.4rem); }
   .project-side { margin-left: 0; max-width: 28em; }
   .modes { gap: 16px; }
