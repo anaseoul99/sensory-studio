@@ -205,7 +205,7 @@ function popupBody(work, step, scent) {
     return `<img src="images/process/${id}-p5.png" alt="p5.js로 그린 인터랙션" /><p>p5.js</p>`;
   }
   if (step === "airtable") {
-    return `<img src="images/process/${id}-airtable.jpg" alt="키워드로 향 기록을 찾은 화면" /><p>DB</p>`;
+    return `<img src="images/process/${id}-airtable.jpg" alt="키워드로 향 기록을 찾은 화면" /><p>DB - Airtable</p>`;
   }
   if (step === "audio") {
     return `
