@@ -46,6 +46,18 @@ body[data-page="person"] .brand { color: #f4f1ea; }
 .nav { display: flex; gap: 18px; font-size: 15px; }
 .nav a[aria-current="page"] { color: var(--accent); }
 
+body[data-page="work"],
+body[data-page="person"] {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+body[data-page="work"] #app,
+body[data-page="person"] #app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 body[data-page="person"] { background: var(--night); color: #f4f1ea; }
 body[data-page="person"] .top {
   background: var(--night);
@@ -261,17 +273,30 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .person { padding: 42px 32px 72px; max-width: 1100px; }
 .person-top {
   display: grid;
-  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+  grid-template-columns: 260px minmax(0, 1fr);
   gap: 28px;
   align-items: start;
   margin-bottom: 28px;
 }
 .heart {
-  width: 100%;
-  height: 286px;
+  width: 260px;
+  height: 200px;
   border: 0;
+  display: block;
   background: #fff;
+  overflow: hidden;
 }
+.site-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 20px 32px 22px;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+}
+.foot-mark { width: 16px; height: 15px; display: block; }
+body[data-page="person"] .site-foot { color: #fff; }
 .statement {
   margin: 0;
   max-width: 16em;
@@ -313,5 +338,7 @@ body[data-page="person"] .note { color: #8d8d8d; }
   .card, .card:nth-child(4), .card:nth-child(5) { grid-column: auto; }
   .top { padding: 0 16px; }
   .work, .detail, .person { padding-left: 16px; padding-right: 16px; }
+  .site-foot { padding-left: 16px; padding-right: 16px; }
+  .person-top { grid-template-columns: 260px; }
   .note { margin-left: 16px; margin-right: 16px; }
 }

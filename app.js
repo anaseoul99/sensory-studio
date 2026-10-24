@@ -147,6 +147,7 @@ function renderWork() {
         }).join("")}
       </div>
     </section>
+    ${siteFoot()}
   `;
 }
 
@@ -190,6 +191,7 @@ function renderDetail(id) {
         </figure>
       </div>
     </article>
+    ${siteFoot()}
   `;
   bindProcess(work, first);
 }
@@ -249,6 +251,10 @@ function bindProcess(work, scent) {
   document.addEventListener("click", window.__closeProcess);
 }
 
+function siteFoot() {
+  return `<footer class="site-foot"><span>© 2026</span><span>Sensory Studio</span><svg class="foot-mark" viewBox="0 0 80 72" aria-hidden="true"><path d="M40 5 L75 67 H5 Z" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"></path><circle cx="40" cy="44" r="7" fill="#e21878"></circle></svg></footer>`;
+}
+
 function iconJs() {
   return `<svg viewBox="0 0 24 24" aria-hidden="true"><rect fill="#e21878" height="24" rx="4" width="24"></rect><text fill="#fff" font-size="11" font-weight="700" x="4.5" y="16.5">JS</text></svg>`;
 }
@@ -270,7 +276,7 @@ function renderPerson() {
   app.innerHTML = `
     <section class="person">
       <div class="person-top">
-        <iframe class="heart" title="Heart" src="https://anaseoul99.github.io/heart-profile/"></iframe>
+        <iframe class="heart" title="Heart" scrolling="no" src="https://anaseoul99.github.io/heart-profile/"></iframe>
         <div>
           <p class="statement">I am a <em>developer</em> expanding my practice into media art, exploring how visual information can be <em>translated across senses.</em></p>
           <p class="statement-ko">서울에서 웹을 만들어 온 개발자입니다. 멀티미디어와 디지털 콘텐츠를 공부하고, 밴쿠버에서 사운드 디자인과 컬처 테크놀로지를 이었습니다. 화면을 만들던 일을 소리와 향이 있는 미디어 아트로 넓히고 있습니다.</p>
@@ -306,6 +312,7 @@ function renderPerson() {
         </div>
       </div>
     </section>
+    ${siteFoot()}
     <audio id="site-bgm" preload="auto">
       <source src="audio/person.mp3" type="audio/mpeg" />
     </audio>
