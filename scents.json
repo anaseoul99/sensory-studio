@@ -1,0 +1,233 @@
+{
+  "animal": {
+    "tags": [
+      "Warm",
+      "Dreamlike",
+      "Imagenary yellow",
+      "Bright",
+      "Playful"
+    ],
+    "matches": [
+      {
+        "nameEN": "Yuzu Blend",
+        "nameKR": "유자 Test Blend 501",
+        "category": "Citrus",
+        "frDesc": "Warm, Dreamlike, Imagenary yellow, Bright, Playful, Rum-like, Terpenic",
+        "summary": "유자 블렌드(Yuzu Blend) 향수는 싱그럽고 청량한 시트러스 향을 중심으로, 자연의 포근함이 조화를 이루는 매력적인 향입니다.\n탑 노트 (첫향): 입안에 침이 고이듯 쌉싸름하면서도 달콤한 생유자와 상큼한 감귤류의 향이 터져 나오며 단숨에 기분을 맑고 상쾌하게 환기해 줍니다.\n미들 노트 (잔향으로 이어지는 향): 유자의 톡 쏘는 상큼함이 진정되면서, 은은하고 부드러운 화이트 플로럴이나 싱그러운 그린 노트가 어우러져 한결 자연스럽고 편안한 분위기를 자아냅니다.\n베이스 노트 (잔향): 가벼운 시트러스에 머물지 않고, 따뜻한 우디(wood) 계열이나 잔잔한 머스크가 받쳐주어 갓 씻은 듯 깨끗하면서도 포근한 여운을 남깁니다.\n전체적으로 과하게 달지 않고 맑고 깨끗한 시트러스라 남녀호불호 없이 누구나 산뜻하게 즐기기 좋은 향입니다.",
+        "image": "images/scent-animal.jpg"
+      },
+      {
+        "nameEN": "Cedarwood",
+        "nameKR": "시더우드",
+        "category": "Woody",
+        "frDesc": "Woody, Dry-woody, Warm, Earthy, Creamy-woody, Orange-floral, Chocolate-like",
+        "summary": "시더우드(Cedarwood) 향은 깊은 숲속에 들어온 듯한 차분하고 고요한 나무 결을 담아낸, 따뜻하고 무게감 있는 우디 계열의 대표적인 향입니다.\n 탑 노트 (첫향): 갓 베어낸 삼나무나 연필깎이에서 퍼지는 서늘하면서도 쌉싸름한 나무 향이 스치며, 정신을 맑게 환기해 주는 드라이하고 깨끗한 느낌을 줍니다.\n 미들 노트 (잔향으로 이어지는 향): 날카로운 첫향이 가라앉고, 묵직하고 따스한 대지의 기운과 함께 은은한 발사믹(수지) 계열의 깊은 우디 풍미가 더해져 편안하고 안정적인 분위기를 자아냅니다.\n 베이스 노트 (잔향): 오랜 시간 피부 위에 남아 은은한 앰버와 머스크, 그리고 진한 나무의 온기를 더해주어 마치 오랜 세월을 품은 거대한 숲처럼 차분하고 포근한 여운을 남깁니다.\n전체적으로 세련되면서도 군더더기 없는 클래식함이 돋보이며, 마음이 차분해지는 안정감을 원할 때나 중성적인 매력을 연출하고 싶을 때 잘 어울리는 향입니다.",
+        "image": null
+      },
+      {
+        "nameEN": "Amber",
+        "nameKR": "앰버",
+        "category": "Amber",
+        "frDesc": "Rich, Deep, Warm, Amber, Sparkling, Sunny, Green-fruity, Cold",
+        "summary": "",
+        "image": null
+      },
+      {
+        "nameEN": "Peony",
+        "nameKR": "피오니",
+        "category": "Floral",
+        "frDesc": "Soft, Dreamlike, Airy, Floral, Delicate, Powdery, Tobacco-like, Leathery, Earthy",
+        "summary": "",
+        "image": null
+      },
+      {
+        "nameEN": "Amber",
+        "nameKR": "앰버",
+        "category": "Amber",
+        "frDesc": "Rich, Warm, Resinous-amber, Mysterious, Mineral, Airy, Tropical, Juicy",
+        "summary": "",
+        "image": null
+      }
+    ]
+  },
+  "season": {
+    "tags": [
+      "Calm",
+      "Sad",
+      "Wind",
+      "Cool",
+      "Blue"
+    ],
+    "matches": [
+      {
+        "nameEN": "Mineral",
+        "nameKR": "미네랄",
+        "category": "Aquatic",
+        "frDesc": "Clean, Fresh, Mineral-fresh, Rainy, Oceanic, Bright, Balsamic, Caramel-like, Calm, Wind",
+        "summary": "미네랄(Mineral) 향은 자연 속의 광물, 젖은 돌, 바위, 그리고 시원한 공기에서 느껴지는 차분하고 청량한 감성을 담은 독특한 향조입니다.  \n 탑 노트 (첫향): 비 온 뒤의 촉촉한 갯바위나 젖은 모래사장을 스치는 바람처럼, 서늘하고 깨끗한 물의 기운과 짭조름한 오션 노트가 어우러져 투명하고 차가운 느낌을 줍니다.  \n 미들 노트 (잔향으로 이어지는 향): 인위적인 향수 느낌보다는 대지의 속살을 닮은 드라이한 자갈, 차가운 크리스탈, 그리고 은은한 오존(Ozone) 계열의 향이 결합되어 도회적이면서도 신비로운 분위기를 자아냅니다.  \n 베이스 노트 (잔향): 무겁지 않은 시더우드나 깔끔한 머스크가 옅게 받쳐주어, 피부 위에 닿았을 때 마치 갓 씻은 듯 서늘하고 정제된 체취처럼 자연스럽고 현대적인 여운을 남깁니다.  \n전체적으로 달콤하거나 화려한 꽃향기 대신, 도시적이고 모던하며 중성적인 매력이 돋보이는 차분한 향입니다.",
+        "image": "images/scent-season.jpg"
+      },
+      {
+        "nameEN": "Mineral",
+        "nameKR": "미네랄",
+        "category": "Aquatic",
+        "frDesc": "Rainy, Aquatic, Clean, Bright, Fresh, Mineral-fresh, Amber, Mossy-woody, Fruity-floral, Minty, Blue",
+        "summary": "미네랄(Mineral) 향은 자연 속의 광물, 젖은 돌, 바위, 그리고 시원한 공기에서 느껴지는 차분하고 청량한 감성을 담은 독특한 향조입니다.  \n 탑 노트 (첫향): 비 온 뒤의 촉촉한 갯바위나 젖은 모래사장을 스치는 바람처럼, 서늘하고 깨끗한 물의 기운과 짭조름한 오션 노트가 어우러져 투명하고 차가운 느낌을 줍니다.  \n 미들 노트 (잔향으로 이어지는 향): 인위적인 향수 느낌보다는 대지의 속살을 닮은 드라이한 자갈, 차가운 크리스탈, 그리고 은은한 오존(Ozone) 계열의 향이 결합되어 도회적이면서도 신비로운 분위기를 자아냅니다.  \n 베이스 노트 (잔향): 무겁지 않은 시더우드나 깔끔한 머스크가 옅게 받쳐주어, 피부 위에 닿았을 때 마치 갓 씻은 듯 서늘하고 정제된 체취처럼 자연스럽고 현대적인 여운을 남깁니다.  \n전체적으로 달콤하거나 화려한 꽃향기 대신, 도시적이고 모던하며 중성적인 매력이 돋보이는 차분한 향입니다.",
+        "image": null
+      }
+    ]
+  },
+  "flower": {
+    "tags": [
+      "Vivid",
+      "Simple",
+      "Drop",
+      "Colorful",
+      "Wine"
+    ],
+    "matches": [
+      {
+        "nameEN": "Toffee",
+        "nameKR": "토피",
+        "category": "Gourmand",
+        "frDesc": "Sweet, Vanillic, Rich, Gourmand, Caramellic, Balsamic, Wine-like",
+        "summary": "토피(Toffee) 향은 달콤하고 녹아내리는 캐러멜의 풍미와 고소한 버터, 그리고 따뜻한 바닐라 노트가 어우러져 포근하고 아늑한 감성을 주는 구르망(Gourmand) 계열의 향입니다.\n 탑 노트 (첫향): 갓 녹인 설탕과 따뜻한 버터의 진하고 달콤한 향이 부드럽게 퍼지며, 마치 고급 수제 캐러멜 사탕을 입에 넣은 듯 포근하고 달콤한 첫인상을 줍니다.\n 미들 노트 (잔향으로 이어지는 향): 달콤함이 진정되면서 구운 견과류의 고소함이나 짭조름한 솔티 캐러멜(Salted Caramel)의 매력이 더해져, 단순한 단내를 넘어 깊이 있고 중독성 있는 풍미를 자아냅니다.\n 베이스 노트 (잔향): 따스한 바닐라와 통카빈, 부드러운 우디 노트가 은은하게 감싸 안아주어 피부 위에 포근하고 달콤한 온기가 오래도록 맴도는 듯한 여운을 남깁니다.\n전체적으로 마음을 녹이는 달콤함과 포근함이 특징이며, 추운 계절이나 포근하고 안아주고 싶은 분위기를 연출하고 싶을 때 잘 어울리는 매력적인 향입니다.",
+        "image": "images/scent-flower.jpg"
+      },
+      {
+        "nameEN": "Myrrh",
+        "nameKR": "미르",
+        "category": "Resinous",
+        "frDesc": "Resinous, Incense-like, Smoky, Balsamic, Rich, Salty, Wine-like, Warm-spicy",
+        "summary": "",
+        "image": null
+      },
+      {
+        "nameEN": "Apple",
+        "nameKR": "사과",
+        "category": "Fruity",
+        "frDesc": "Fruity, Sweet-fruity, Tangy, Bright, Juicy, Rum-like, Wine-like, Coconut-like, Almond-like",
+        "summary": "",
+        "image": null
+      },
+      {
+        "nameEN": "Green Tea",
+        "nameKR": "그린티",
+        "category": "Green",
+        "frDesc": "Fresh, Leafy, Fresh-green, Crisp, Herbal, Natural, Wine-like, Sparkly, Tobacco-like",
+        "summary": "",
+        "image": null
+      },
+      {
+        "nameEN": "Bergamot",
+        "nameKR": "베르가못",
+        "category": "Citrus",
+        "frDesc": "Tangy, Bright, Crisp, Citrusy-green, Earthy, Wine-like, Basilic, Velvety",
+        "summary": "",
+        "image": null
+      }
+    ]
+  },
+  "home": {
+    "tags": [
+      "Flower",
+      "Safe",
+      "Cloud",
+      "Cream",
+      "Rainbow"
+    ],
+    "matches": [
+      {
+        "nameEN": "Cedarwood",
+        "nameKR": "시더우드",
+        "category": "Woody",
+        "frDesc": "Woody, Dry-woody, Warm, Earthy, Creamy-woody, Orange-floral, Chocolate-like",
+        "summary": "시더우드(Cedarwood) 향은 깊은 숲속에 들어온 듯한 차분하고 고요한 나무 결을 담아낸, 따뜻하고 무게감 있는 우디 계열의 대표적인 향입니다.\n 탑 노트 (첫향): 갓 베어낸 삼나무나 연필깎이에서 퍼지는 서늘하면서도 쌉싸름한 나무 향이 스치며, 정신을 맑게 환기해 주는 드라이하고 깨끗한 느낌을 줍니다.\n 미들 노트 (잔향으로 이어지는 향): 날카로운 첫향이 가라앉고, 묵직하고 따스한 대지의 기운과 함께 은은한 발사믹(수지) 계열의 깊은 우디 풍미가 더해져 편안하고 안정적인 분위기를 자아냅니다.\n 베이스 노트 (잔향): 오랜 시간 피부 위에 남아 은은한 앰버와 머스크, 그리고 진한 나무의 온기를 더해주어 마치 오랜 세월을 품은 거대한 숲처럼 차분하고 포근한 여운을 남깁니다.\n전체적으로 세련되면서도 군더더기 없는 클래식함이 돋보이며, 마음이 차분해지는 안정감을 원할 때나 중성적인 매력을 연출하고 싶을 때 잘 어울리는 향입니다.",
+        "image": "images/scent-home.jpg"
+      },
+      {
+        "nameEN": "Vanilla",
+        "nameKR": "바닐라",
+        "category": "Gourmand",
+        "frDesc": "Cozy, Rich, Caramellic, Creamy, Vanillic, Warm, Bright-citrus, Peppery, Sweet",
+        "summary": "",
+        "image": null
+      },
+      {
+        "nameEN": "Oakmoss",
+        "nameKR": "오크모스",
+        "category": "Woody",
+        "frDesc": "Deep, Earthy, Creamy-woody, Warm, Dry-woody, Mysterious, Raspberry-like, Cocoa",
+        "summary": "",
+        "image": null
+      },
+      {
+        "nameEN": "Coffee",
+        "nameKR": "커피",
+        "category": "Gourmand",
+        "frDesc": "Creamy, Rich, Caramellic, Gourmand, Cozy, Transparent, Jasmine-like",
+        "summary": "",
+        "image": null
+      },
+      {
+        "nameEN": "Marshmallow",
+        "nameKR": "마시멜로",
+        "category": "Gourmand",
+        "frDesc": "Warm, Creamy, Sweet, Caramellic, Rainy, Fresh, Amber, Green-fruity",
+        "summary": "",
+        "image": null
+      }
+    ]
+  },
+  "dream": {
+    "tags": [
+      "Dark",
+      "Fantasy",
+      "Animal",
+      "Rainbow",
+      "Lovely"
+    ],
+    "matches": [
+      {
+        "nameEN": "Clary Sage",
+        "nameKR": "클라리세이지",
+        "category": "Herbal",
+        "frDesc": "Minty, Natural, Aromatic, Green, Aquatic, Animalic",
+        "summary": "클라리 세이지(Clary Sage) 향은 허브티를 마신 듯 마음이 차분해지고, 은은하게 감도는 풀내음과 따뜻한 앰버빛 뉘앙스가 어우러져 깊은 안정감을 주는 독특한 허베이셔스(Herbaceous) 계열의 향입니다.\n 탑 노트 (첫향): 갓 꺾은 허브 잎에서 느껴지는 쌉싸름하면서도 맑고 투명한 풀내음과 함께, 은은한 라벤더를 닮은 맑고 청량한 향이 퍼지며 머리를 맑게 환기해 줍니다.\n 미들 노트 (잔향으로 이어지는 향): 쌉싸름한 허브의 기운이 진정되면서 건조된 찻잎, 혹은 부드러운 우디 뉘앙스가 스며들어 한결 차분하고 포근한 분위기를 자아냅니다.\n 베이스 노트 (잔향): 피부 위에 닿을 때 마일드한 앰버와 은은한 머스크 잔향이 남아서 마치 자연 속에 릴랙스해 있는 듯한 따스하고 편안한 여운을 줍니다.\n전체적으로 인위적인 달콤함 없이 깨끗하고 차분한 풀내음과 허브의 온기가 돋보여, 지친 마음을 위로받고 싶거나 편안한 휴식을 원할 때 잘 어울리는 매력적인 향입니다.",
+        "image": "images/scent-dream.jpg"
+      },
+      {
+        "nameEN": "Golden Amber",
+        "nameKR": "골든 앰버",
+        "category": "Amber",
+        "frDesc": "Resinous-amber, Dark-amber, Mysterious, Amber, Animalic, Warm-spicy",
+        "summary": "",
+        "image": null
+      },
+      {
+        "nameEN": "Almond",
+        "nameKR": "아몬드",
+        "category": "Gourmand",
+        "frDesc": "Cozy, Gourmand, Rich, Sweet, Vanillic, Green-fruity, Natural, Clean, Dark-amber",
+        "summary": "",
+        "image": null
+      },
+      {
+        "nameEN": "Sage",
+        "nameKR": "세이지",
+        "category": "Herbal",
+        "frDesc": "Natural, Herbal, Camphoraceous, Green, Saffron-like, Leafy, Dark, Playful",
+        "summary": "",
+        "image": null
+      },
+      {
+        "nameEN": "Black Pepper",
+        "nameKR": "블랙페퍼",
+        "category": "Spicy",
+        "frDesc": "Dark, Warm, Peppery, Dry, Rainy, Eucalyptus-like, Fresh",
+        "summary": "",
+        "image": null
+      }
+    ]
+  }
+}

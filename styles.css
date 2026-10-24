@@ -164,6 +164,9 @@ body[data-page="person"] .top {
 .frame img { display: block; width: 100%; max-height: 52vh; object-fit: contain; background: #fff; }
 .frame iframe { display: block; width: 100%; height: min(52vh, 560px); border: 0; background: #111; }
 .hint { margin: 8px 10px 10px; color: var(--muted); font-size: 13px; }
+.lookup { margin-top: 8px; }
+.fr { margin: 8px 0; font-size: 14px; color: var(--muted); }
+.summary { margin: 12px 0 0; white-space: pre-line; font-size: 15px; }
 
 .person { padding: 42px 32px 72px; max-width: 1100px; }
 .statement {

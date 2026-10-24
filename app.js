@@ -52,6 +52,23 @@ const works = [
 ];
 
 const app = document.querySelector("#app");
+let scents = {};
+
+function esc(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+
+function lookup(id) {
+  return scents[id] || { tags: [], matches: [] };
+}
+
+function hits(tags, frDesc) {
+  const hay = String(frDesc || "").toLowerCase();
+  return tags.filter((tag) => hay.includes(tag.toLowerCase()));
+}
 
 function route() {
   const parts = (location.hash.replace(/^#/, "") || "/").split("/").filter(Boolean);
@@ -94,19 +111,23 @@ function renderWork() {
     <section class="work">
       <div class="work-head">
         <h1>Work</h1>
-        <p>다섯 작품이다. 향 이름이 제목과 함께 보이고, 카드를 열면 원본 그림과 p5.js 번역이 한 화면에 있다.</p>
+        <p>그림의 키워드로 향 기록의 FrDesc를 찾고, 원본 사이트와 같이 첫 번째 결과를 올린다.</p>
       </div>
       <div class="grid">
-        ${works.map((work) => `
+        ${works.map((work) => {
+          const found = lookup(work.id);
+          const first = found.matches[0];
+          const name = first ? first.nameEN : work.scent;
+          return `
           <a class="card" href="#/work/${work.id}">
-            <figure><img src="${work.image}" alt="${work.title} 원본 그림" /></figure>
+            <figure><img src="${work.image}" alt="${esc(work.title)} 원본 그림" /></figure>
             <div class="card-meta">
-              <div class="scent">${work.scent}</div>
-              <h2>${work.title}</h2>
-              <p>${work.tags}</p>
+              <div class="scent">${esc(name)}</div>
+              <h2>${esc(work.title)}</h2>
+              <p>${esc(found.tags.join(" · "))}</p>
             </div>
-          </a>
-        `).join("")}
+          </a>`;
+        }).join("")}
       </div>
     </section>
     <p class="note">가상으로 다시 짠 화면. 원본은 sensory-studio.work</p>
@@ -119,27 +140,33 @@ function renderDetail(id) {
     renderWork();
     return;
   }
+  const found = lookup(work.id);
+  const first = found.matches[0];
+  const matched = first ? hits(found.tags, first.frDesc) : [];
+  const others = found.matches.slice(1);
   document.title = `${work.title} — Sensory Studio`;
   app.innerHTML = `
     <article class="detail">
       <div>
         <a class="back" href="#/work">← Work</a>
-        <p class="scent-name">${work.scent}</p>
-        <h1>${work.title}</h1>
-        <p class="tags">${work.tags}</p>
-        <p class="copy">${work.copy}</p>
-        <p class="track"><span>선정한 곡</span>${work.track}</p>
-        <ol class="steps">
-          <li><b>1</b><span>그림에서 색과 형태를 읽는다</span></li>
-          <li><b>2</b><span>감각 태그 다섯 개로 줄인다</span></li>
-          <li><b>3</b><span>곡과 p5.js 움직임으로 확장한다</span></li>
-          <li><b>4</b><span>같은 태그에 향 하나를 붙인다</span></li>
-        </ol>
+        <p class="scent-name">${esc(first ? first.nameEN : work.scent)}</p>
+        <h1>${esc(work.title)}</h1>
+        <p class="tags">${esc(found.tags.join(" · "))}</p>
+        <p class="copy">${esc(work.copy)}</p>
+        <p class="track"><span>선정한 곡</span>${esc(work.track)}</p>
+        <div class="lookup">
+          <p class="track"><span>키워드로 조회한 첫 기록</span>${esc(first ? `${first.nameKR || ""} · ${first.category || ""}` : "없음")}</p>
+          <p class="fr">FrDesc ${esc(first ? first.frDesc : "")}</p>
+          <p class="fr">걸린 키워드 ${esc(matched.join(", ") || "없음")}</p>
+          <p class="summary">${esc(first ? first.summary : "")}</p>
+          ${others.length ? `<p class="track"><span>같은 조건에 더 걸린 향</span>${esc(others.map((item) => item.nameEN).join(" · "))}</p>` : ""}
+        </div>
       </div>
       <div class="stage">
+        ${first && first.image ? `<figure class="frame"><figcaption>조회된 향</figcaption><img src="${esc(first.image)}" alt="${esc(first.nameEN)}" /></figure>` : ""}
         <figure class="frame">
           <figcaption>원본 그림</figcaption>
-          <img src="${work.image}" alt="${work.title} 원본" />
+          <img src="${work.image}" alt="${esc(work.title)} 원본" />
         </figure>
         <figure class="frame">
           <figcaption>번역 · p5.js</figcaption>
@@ -191,4 +218,10 @@ function renderPerson() {
 }
 
 window.addEventListener("hashchange", route);
-route();
+fetch("scents.json")
+  .then((response) => response.json())
+  .then((data) => {
+    scents = data;
+    route();
+  })
+  .catch(() => route());
