@@ -296,19 +296,144 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 }
 .tags { margin: 0 0 34px; color: #8a5a12; font-size: 14px; }
 .detail .copy { margin: 0 0 12px; }
-.logic { margin: 0 0 14px; }
-.logic-from { margin: 0 0 8px; font-size: 15px; font-weight: 560; }
-.logic p:not(.logic-from) {
-  display: grid;
-  grid-template-columns: 16px 46px minmax(0, 1fr);
-  gap: 6px;
-  align-items: baseline;
-  margin: 0 0 5px;
-  font-size: 13px;
+.logic { margin: 0 0 16px; }
+.logic-node {
+  min-width: 0;
+  padding: 7px 8px 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
 }
-.logic p:not(.logic-from)::before { content: "→"; color: var(--muted); }
-.logic i { font-style: normal; color: var(--muted); }
-.logic b { font-weight: 560; }
+.logic-node > span {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 560;
+  letter-spacing: 0.08em;
+}
+.logic-node strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  font-weight: 560;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+.logic-read strong { font-size: 15px; }
+.logic-scent > em, .logic-also em {
+  display: block;
+  margin-top: 1px;
+  color: var(--muted);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 450;
+}
+.logic-tool {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 560;
+  letter-spacing: 0.04em;
+}
+.logic-hows { display: grid; gap: 6px; margin-top: 8px; }
+.logic-hows p {
+  margin: 0;
+  padding: 7px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.logic-hows b {
+  display: block;
+  margin-bottom: 1px;
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 560;
+  letter-spacing: 0.06em;
+}
+.logic-hows code {
+  display: block;
+  margin: 10px 0 4px;
+  padding: 12px 12px 13px;
+  background: #f3efe8;
+  border-radius: 8px;
+  color: var(--ink);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.logic-use {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+.logic-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.logic-chips i {
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 11px;
+  font-style: normal;
+  line-height: 1.35;
+}
+.logic-stem {
+  width: 1px;
+  height: 12px;
+  margin: 0 auto;
+  background: #c8bfb4;
+}
+.logic-rail {
+  position: relative;
+  height: 12px;
+  margin-right: calc((100% - 16px) / 6);
+  margin-left: calc((100% - 16px) / 6);
+  border-top: 1px solid #c8bfb4;
+  border-right: 1px solid #c8bfb4;
+  border-left: 1px solid #c8bfb4;
+}
+.logic-rail::before,
+.logic-rail::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  background: #c8bfb4;
+}
+.logic-rail::before { left: 50%; top: 0; bottom: 0; }
+.logic-rail::after { left: 50%; bottom: 100%; height: 12px; }
+.logic-outs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  align-items: stretch;
+}
+.logic-join {
+  height: 14px;
+  margin-left: calc(100% - (100% - 16px) / 6);
+  border-left: 1px solid #c8bfb4;
+}
+.logic-also { border: 2px solid #e21878; }
+.logic-also ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.logic-also li {
+  min-width: 0;
+  padding: 4px 8px 5px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.logic-also b { display: block; font-size: 12px; font-weight: 560; letter-spacing: -0.02em; line-height: 1.25; }
 .track {
   margin: 16px 0 0;
   padding-top: 12px;

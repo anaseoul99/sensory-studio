@@ -106,16 +106,72 @@ function esc(value) {
     .replaceAll(">", "&gt;");
 }
 
-function logicMap(work, scent) {
-  const rows = [
-    ["소리", work.track],
-    ["움직임", "p5.js"],
-    ["향", scent]
-  ];
+function logicMap(work, found) {
+  const matches = found.matches || [];
+  const first = matches[0];
+  const scentName = first ? first.nameEN : work.scent;
+  const category = first && first.category ? first.category : "";
+  const tags = found.tags && found.tags.length ? found.tags : String(work.tags || "").split(" · ").filter(Boolean);
+  const seen = new Set();
+  const also = [];
+  matches.slice(1).forEach((match) => {
+    if (!match || !match.nameEN || match.nameEN === scentName || seen.has(match.nameEN)) return;
+    seen.add(match.nameEN);
+    also.push(match);
+  });
+  const formula = `OR(\n${tags.map((tag) => `  REGEX_MATCH(LOWER({FrDesc}), "${String(tag).toLowerCase()}")`).join(",\n")}\n)`;
+  const alsoBlock = also.length ? `
+    <div class="logic-join" aria-hidden="true"></div>
+    <div class="logic-node logic-also">
+      <span>Data Result</span>
+      <p class="logic-use">같은 검색에서 같이 걸린 향</p>
+      <ul>
+        ${also.map((match) => `<li><b>${esc(match.nameEN)}</b><em>${esc(match.category || "")}</em></li>`).join("")}
+      </ul>
+    </div>` : "";
   return `
-    <div class="logic">
-      <p class="logic-from">${esc(work.read)}</p>
-      ${rows.map(([name, value]) => `<p><i>${esc(name)}</i><b>${esc(value)}</b></p>`).join("")}
+    <div class="logic" aria-label="감각 변환">
+      <div class="logic-node logic-read">
+        <span>Impression</span>
+        <strong>${esc(work.read)}</strong>
+      </div>
+      <div class="logic-stem" aria-hidden="true"></div>
+      <div class="logic-node">
+        <span>Keyword</span>
+        <div class="logic-chips">${tags.map((tag) => `<i>${esc(tag)}</i>`).join("")}</div>
+        <p class="logic-use">Airtable 필터에서 FrDesc contains로 찾는다.</p>
+      </div>
+      <div class="logic-rail" aria-hidden="true"></div>
+      <div class="logic-outs">
+        <div class="logic-node logic-sound">
+          <span>Sound</span>
+          <strong>${esc(work.track)}</strong>
+        </div>
+        <div class="logic-node logic-motion">
+          <span>Interaction</span>
+          <strong>p5.js</strong>
+        </div>
+        <div class="logic-node logic-scent">
+          <span>Olfactory</span>
+          <strong>${esc(scentName)}</strong>
+          ${category ? `<em>${esc(category)}</em>` : ""}
+          <b class="logic-tool">DB</b>
+        </div>
+      </div>
+      <div class="logic-hows">
+        <p class="is-sound"><b>Sound</b>곡은 그림과 어울리는 느낌으로 골랐다. p5.js에서는 소리 크기를 움직임에 이렇게 붙인다.<code>bass = fft.getEnergy("bass");
+mid = fft.getEnergy("mid");
+treble = fft.getEnergy("treble");
+
+scale(map(bass, 0, 255, 1, 1.15));
+rotate(
+  angle + sin(frameCount * 0.04 * speed)
+  * map(mid, 0, 255, 0, 0.15)
+);
+tint(255, map(treble, 0, 255, 180, 255));</code></p>
+        <p class="is-db"><b>DB</b>Airtable 필터에서는 FrDesc contains로 찾는다. JavaScript로 가져올 때는 이 쿼리를 쓴다.<code>${esc(formula)}</code>하나라도 맞으면 그 향 기록을 가져온다. 같이 나온 향 중에서 키워드가 더 많이 겹치거나, 그림 느낌에서 비중이 커 보이는 단어를 고른다. 다 비슷하면 쿼리에서 무작위로 고른다.</p>
+      </div>
+      ${alsoBlock}
     </div>`;
 }
 
@@ -214,10 +270,9 @@ function renderDetail(id) {
         <p class="scent-name">${esc(first ? first.nameEN : work.scent)}<span class="scent-note">향 Olfactory</span></p>
         <h1>${esc(work.title)}</h1>
         <p class="tags">${esc(found.tags.join(" · "))}<span class="tag-note">감각 키워드</span></p>
-        ${logicMap(work, first ? first.nameEN : work.scent)}
+        ${logicMap(work, found)}
         <div class="process">
           <div class="tech-grid">
-            <button class="tech-item" type="button" data-step="js">${iconJs()}<span>JavaScript</span></button>
             <button class="tech-item" type="button" data-step="p5">${iconP5()}<span>p5.js</span></button>
             <button class="tech-item" type="button" data-step="airtable">${iconAirtable()}<span>DB</span></button>
             <button class="tech-item" type="button" data-step="audio">${iconAudio()}<span>Sound</span></button>
@@ -290,9 +345,6 @@ function bindHoverNotes() {
 
 function popupBody(work, step, scent) {
   const id = work.id;
-  if (step === "js") {
-    return `<img src="images/process/js.png" alt="데이터베이스 조회 코드" /><p>Javascript</p>`;
-  }
   if (step === "p5") {
     return `<img src="images/process/${id}-p5.png" alt="p5.js로 그린 인터랙션" /><p>p5.js</p>`;
   }
@@ -347,9 +399,6 @@ function siteFoot() {
   return `<footer class="site-foot"><span>© 2026</span><span>Sensory Studio</span><svg class="foot-mark" viewBox="0 0 80 72" aria-hidden="true"><path d="M40 5 L75 67 H5 Z" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"></path><circle cx="40" cy="44" r="7" fill="#e21878"></circle></svg></footer>`;
 }
 
-function iconJs() {
-  return `<svg viewBox="0 0 24 24" aria-hidden="true"><rect fill="#e21878" height="24" rx="4" width="24"></rect><text fill="#fff" font-size="11" font-weight="700" x="4.5" y="16.5">JS</text></svg>`;
-}
 function iconP5() {
   return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="#e21878"><polygon points="12,2 17.5,10.5 6.5,10.5"></polygon><circle cx="7" cy="16.5" r="4.2"></circle><rect height="8" rx="1.5" width="8" x="12.5" y="12.2"></rect></svg>`;
 }
