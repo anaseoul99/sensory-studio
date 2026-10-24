@@ -276,10 +276,12 @@ function renderPerson() {
   app.innerHTML = `
     <section class="person">
       <div class="person-top">
-        <iframe class="heart" title="Heart" scrolling="no" src="https://anaseoul99.github.io/heart-profile/"></iframe>
+        <div class="heart-crop">
+          <iframe class="heart" title="Heart" scrolling="no" src="https://anaseoul99.github.io/heart-profile/"></iframe>
+        </div>
         <div>
           <p class="statement">I am a <em>developer</em> expanding my practice into media art, exploring how visual information can be <em>translated across senses.</em></p>
-          <p class="statement-ko">서울에서 웹을 만들어 온 개발자입니다. 멀티미디어와 디지털 콘텐츠를 공부하고, 밴쿠버에서 사운드 디자인과 컬처 테크놀로지를 이었습니다. 화면을 만들던 일을 소리와 향이 있는 미디어 아트로 넓히고 있습니다.</p>
+          <p class="statement-ko">웹을 만들어 온 개발자이고, 지금은 미디어 아트로 넓히고 있습니다.</p>
         </div>
       </div>
       <div class="cols">
