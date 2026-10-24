@@ -355,7 +355,12 @@ body[data-page="person"] .note { color: #8d8d8d; }
   .card, .card:nth-child(4), .card:nth-child(5) { grid-column: auto; }
   .top { padding: 0 16px; }
   .work, .detail, .person { padding-left: 16px; padding-right: 16px; }
+  .person { padding-top: 20px; padding-bottom: 40px; }
+  .person-top { grid-template-columns: 1fr; gap: 18px; margin-bottom: 28px; }
+  .statement { font-size: clamp(1.55rem, 6.6vw, 2rem); max-width: 16em; }
+  .statement-ko { max-width: 28em; }
+  .cols { gap: 22px; }
   .site-foot { padding-left: 16px; padding-right: 16px; }
-  .person-top { grid-template-columns: 280px; }
+  .nav { gap: 12px; font-size: 14px; }
   .note { margin-left: 16px; margin-right: 16px; }
 }
