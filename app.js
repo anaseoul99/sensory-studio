@@ -139,7 +139,6 @@ function logicMap(work, found) {
       <div class="logic-node">
         <span>Keyword</span>
         <div class="logic-chips">${tags.map((tag) => `<i>${esc(tag)}</i>`).join("")}</div>
-        <p class="logic-use">Airtable 필터에서 FrDesc contains로 찾는다.</p>
       </div>
       <div class="logic-rail" aria-hidden="true"></div>
       <div class="logic-outs">
@@ -159,7 +158,7 @@ function logicMap(work, found) {
         </div>
       </div>
       <div class="logic-hows">
-        <p class="is-sound"><b>Sound</b>곡은 그림과 어울리는 느낌으로 골랐다. p5.js에서는 소리 크기를 움직임에 이렇게 붙인다.<code>bass = fft.getEnergy("bass");
+        <p class="is-sound"><b>Sound</b>어울리는 느낌으로 골랐다.<code>bass = fft.getEnergy("bass");
 mid = fft.getEnergy("mid");
 treble = fft.getEnergy("treble");
 
@@ -169,7 +168,7 @@ rotate(
   * map(mid, 0, 255, 0, 0.15)
 );
 tint(255, map(treble, 0, 255, 180, 255));</code></p>
-        <p class="is-db"><b>DB</b>Airtable 필터에서는 FrDesc contains로 찾는다. JavaScript로 가져올 때는 이 쿼리를 쓴다.<code>${esc(formula)}</code>하나라도 맞으면 그 향 기록을 가져온다. 같이 나온 향 중에서 키워드가 더 많이 겹치거나, 그림 느낌에서 비중이 커 보이는 단어를 고른다. 다 비슷하면 쿼리에서 무작위로 고른다.</p>
+        <p class="is-db"><b>DB</b>FrDesc contains로 찾고, 이 쿼리로 가져온다.<code>${esc(formula)}</code>겹치는 키워드가 많거나 그림에서 비중이 큰 단어를 고른다. 비슷하면 무작위로 고른다.</p>
       </div>
       ${alsoBlock}
     </div>`;
