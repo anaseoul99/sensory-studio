@@ -195,7 +195,7 @@ function renderDetail(id) {
         <a class="back" href="#/work">← Work</a>
         <p class="scent-name">${esc(first ? first.nameEN : work.scent)}<span class="scent-note">향 Olfactory</span></p>
         <h1>${esc(work.title)}</h1>
-        <p class="tags">${esc(found.tags.join(" · "))}</p>
+        <p class="tags">${esc(found.tags.join(" · "))}<span class="tag-note">감각 키워드</span></p>
         <p class="copy">${esc(work.copy)}</p>
         <div class="process">
           <div class="tech-grid">
@@ -237,6 +237,7 @@ function renderDetail(id) {
     ${siteFoot()}
   `;
   bindProcess(work, first);
+  bindHoverNotes();
   const flip = document.querySelector(".flip");
   if (flip) {
     flip.addEventListener("click", () => {
@@ -245,6 +246,26 @@ function renderDetail(id) {
       flip.setAttribute("aria-label", open ? `${work.title} 원본 그림으로 돌아가기` : `${work.title} 원본 그림 설명 보기`);
     });
   }
+}
+
+function bindHoverNotes() {
+  const coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+  document.querySelectorAll(".detail .scent-name, .detail .tags").forEach((el) => {
+    let timer;
+    const show = () => {
+      el.classList.add("is-shown");
+      clearTimeout(timer);
+      if (coarse) timer = setTimeout(() => el.classList.remove("is-shown"), 2500);
+    };
+    const hide = () => {
+      if (!coarse) {
+        clearTimeout(timer);
+        el.classList.remove("is-shown");
+      }
+    };
+    el.addEventListener("pointerenter", show);
+    el.addEventListener("pointerleave", hide);
+  });
 }
 
 function popupBody(work, step, scent) {
