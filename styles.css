@@ -278,17 +278,26 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 }
 .flip-back {
   transform: rotateY(180deg);
-  display: grid;
-  place-items: center;
-  padding: 28px;
-  background: #171717;
-  color: #f4f1ea;
-  text-align: left;
+  background: #fff;
 }
-.flip-card { display: grid; gap: 12px; max-width: 28em; }
-.flip-card span { color: #e21878; font-size: 13px; font-weight: 560; letter-spacing: 0.08em; }
-.flip-card p { margin: 0; font-size: 1.15rem; line-height: 1.45; }
-.flip-keys { color: #c8c8c8; font-size: 14px; }
+.flip-ghost {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.flip-card {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  padding: 22px 26px;
+  overflow: auto;
+  color: #171717;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.78);
+}
+.flip-card p { margin: 0 0 10px; min-width: 0; font-size: 15px; line-height: 1.5; }
+.flip-card p:last-child { margin-bottom: 0; }
+.flip-en { font-style: italic; color: #4a4a4a; }
 @media (prefers-reduced-motion: reduce) {
   .flip-spin { transition: none; }
 }
