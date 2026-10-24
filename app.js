@@ -264,6 +264,7 @@ function bindHoverNotes() {
       }
     };
     el.addEventListener("pointerenter", show);
+    el.addEventListener("pointerdown", show);
     el.addEventListener("pointerleave", hide);
   });
 }
