@@ -312,9 +312,8 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .sketch-clip { position: relative; overflow: hidden; aspect-ratio: 4 / 3; line-height: 0; }
 .sketch-hint {
   position: absolute;
-  left: 50%;
-  bottom: 18px;
-  transform: translateX(-50%);
+  top: 14px;
+  left: 14px;
   margin: 0;
   padding: 8px 14px;
   background: rgba(17, 17, 17, 0.72);
