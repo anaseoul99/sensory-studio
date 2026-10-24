@@ -172,7 +172,7 @@ function renderDetail(id) {
             <button class="tech-item" type="button" data-step="js">${iconJs()}<span>JavaScript</span></button>
             <button class="tech-item" type="button" data-step="p5">${iconP5()}<span>p5.js</span></button>
             <button class="tech-item" type="button" data-step="airtable">${iconAirtable()}<span>Airtable</span></button>
-            <button class="tech-item" type="button" data-step="audio">${iconAudio()}<span>Audio Signal Mapping</span></button>
+            <button class="tech-item" type="button" data-step="audio">${iconAudio()}<span>Sound</span></button>
             <button class="tech-item" type="button" data-step="olfactory">${iconScent()}<span>Olfactory</span></button>
           </div>
           <div class="process-pop" hidden></div>
