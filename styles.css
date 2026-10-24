@@ -309,7 +309,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 @media (prefers-reduced-motion: reduce) {
   .flip-spin { transition: none; }
 }
-.sketch-clip { position: relative; overflow: hidden; aspect-ratio: 4 / 3; line-height: 0; }
+.sketch-clip { position: relative; overflow: hidden; aspect-ratio: 4 / 3; line-height: 0; touch-action: none; }
 .sketch-hint {
   position: absolute;
   top: 14px;
@@ -330,7 +330,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 @media (prefers-reduced-motion: reduce) {
   .sketch-hint { transition: none; }
 }
-.plate iframe { display: block; width: 100%; height: calc(100% + 8px); border: 0; background: transparent; }
+.plate iframe { display: block; width: 100%; height: calc(100% + 8px); border: 0; background: transparent; touch-action: none; }
 .plate figcaption {
   margin: 10px 0 0;
   max-width: 36em;
@@ -516,4 +516,6 @@ body[data-page="person"] .note { color: #8d8d8d; }
   .site-foot { padding-left: 16px; padding-right: 16px; }
   .nav { gap: 12px; font-size: 14px; }
   .note { margin-left: 16px; margin-right: 16px; }
+  .sketch-clip { overflow: clip; }
+  .plate iframe { height: 100%; }
 }
