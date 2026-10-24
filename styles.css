@@ -288,27 +288,46 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   margin-bottom: 28px;
 }
 .self { display: grid; gap: 8px; }
-.portrait {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  margin: 0;
-  overflow: hidden;
+.turn {
+  width: 260px;
+  height: 200px;
+  perspective: 900px;
 }
+.turn-spin {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: turn-over 9s ease-in-out infinite;
+}
+.turn-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+.turn-heart { transform: rotateY(180deg); }
+.portrait { margin: 0; background: #1a1a1a; }
 .portrait img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 38%;
+  object-position: 50% 46%;
 }
 .portrait-blur {
-  filter: blur(9px);
-  transform: scale(1.14);
+  filter: blur(8px);
+  transform: scale(1.12);
 }
-.portrait-lips {
-  clip-path: ellipse(13% 6% at 56% 77%);
+.portrait-lips { clip-path: ellipse(15% 7% at 53% 84%); }
+@keyframes turn-over {
+  0%, 32% { transform: rotateY(0deg); }
+  46%, 78% { transform: rotateY(180deg); }
+  100% { transform: rotateY(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .turn-spin { animation: none; }
 }
 .person .scent-name { margin: 12px 0 0; font-size: 1.7rem; }
 .person-keys {
@@ -317,21 +336,12 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   font-size: 14px;
   letter-spacing: 0.01em;
 }
-.heart-crop {
-  width: 280px;
-  height: 220px;
-  overflow: hidden;
-  background: transparent;
-  -webkit-mask-image: radial-gradient(ellipse 92% 90% at 50% 54%, #000 30%, transparent 74%);
-  mask-image: radial-gradient(ellipse 92% 90% at 50% 54%, #000 30%, transparent 74%);
-}
 .heart {
   width: 260px;
   height: 200px;
-  margin: 10px 0 0 10px;
   border: 0;
   display: block;
-  background: transparent;
+  background: #fff;
 }
 .site-foot {
   display: flex;

@@ -276,12 +276,16 @@ function renderPerson() {
     <section class="person">
       <div class="person-top">
         <div class="self">
-          <figure class="portrait">
-            <img class="portrait-blur" src="images/person.jpg" alt="" />
-            <img class="portrait-lips" src="images/person.jpg" alt="얼굴은 흐리고 입술만 남긴 사진" />
-          </figure>
-          <div class="heart-crop">
-            <iframe class="heart" title="Heart" scrolling="no" src="https://anaseoul99.github.io/heart-profile/"></iframe>
+          <div class="turn">
+            <div class="turn-spin">
+              <figure class="turn-face portrait">
+                <img class="portrait-blur" src="images/person.jpg" alt="" />
+                <img class="portrait-lips" src="images/person.jpg" alt="얼굴은 흐리고 입술만 남긴 사진" />
+              </figure>
+              <div class="turn-face turn-heart">
+                <iframe class="heart" title="Heart" scrolling="no" src="https://anaseoul99.github.io/heart-profile/"></iframe>
+              </div>
+            </div>
           </div>
           <p class="scent-name">Developer</p>
           <p class="person-keys">Multimedia · Engineer · Woman · Olfactory · Sound · Web</p>
