@@ -279,6 +279,8 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 @media (hover: none) {
   .detail .scent-name:hover .scent-note,
   .detail .tags:hover .tag-note { opacity: 0; }
+  .detail .scent-name:active .scent-note,
+  .detail .tags:active .tag-note,
   .detail .scent-name.is-shown .scent-note,
   .detail .tags.is-shown .tag-note { opacity: 1; }
 }
@@ -574,5 +576,16 @@ body[data-page="person"] .note { color: #8d8d8d; }
   .nav { gap: 12px; font-size: 14px; }
   .note { margin-left: 16px; margin-right: 16px; }
   .sketch-clip { overflow: clip; }
+  .detail .scent-name { margin-bottom: 22px; }
+  .scent-note {
+    left: 0;
+    top: calc(100% + 3px);
+    transform: none;
+    font-size: 8px;
+    padding: 0 5px;
+    border-radius: 6px;
+  }
+  .tag-note { font-size: 8px; padding: 0 5px; border-radius: 6px; }
+  .detail .tags { margin-bottom: 26px; }
   .plate iframe { height: 100%; }
 }

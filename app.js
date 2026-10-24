@@ -265,6 +265,7 @@ function bindHoverNotes() {
     };
     el.addEventListener("pointerenter", show);
     el.addEventListener("pointerdown", show);
+    el.addEventListener("touchstart", show, { passive: true });
     el.addEventListener("pointerleave", hide);
   });
 }
