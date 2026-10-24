@@ -285,6 +285,14 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   height: 100%;
   object-fit: cover;
 }
+.flip-face:not(.flip-back) { background: #fff; }
+.flip-face:not(.flip-back) img { transform-origin: center; }
+.flip:not(.is-open):hover .flip-face:not(.flip-back) img {
+  animation: drawing-wiggle 0.42s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flip:not(.is-open):hover .flip-face:not(.flip-back) img { animation: none; }
+}
 .flip-card {
   position: absolute;
   inset: 0;
