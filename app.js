@@ -128,7 +128,7 @@ function renderWork() {
     <section class="work">
       <div class="work-head">
         <h1>Work</h1>
-        <p>그림에서 뽑은 키워드로 데이터베이스의 향 설명을 찾고, 그중 첫 번째 향을 올린다.</p>
+        <p>그림에서 추출한 키워드로 데이터베이스의 향 설명을 찾고, 그중 첫 번째 향을 올린다.</p>
       </div>
       <div class="grid">
         ${works.map((work) => {
@@ -181,12 +181,12 @@ function renderDetail(id) {
       </div>
       <div class="stage">
         <figure class="plate">
-          <img src="${work.image}" alt="${esc(work.title)} 원본" />
-          <figcaption><span>원본</span> 아이가 그린 그림. 색, 형태, 반복을 여기서 읽는다.</figcaption>
-        </figure>
-        <figure class="plate">
           <iframe title="${work.title} 인터랙션" src="${work.sketch}"></iframe>
           <figcaption><span>p5.js</span> 그 그림을 움직임으로 옮긴 스케치. 소리를 들으려면 화면을 클릭한다.</figcaption>
+        </figure>
+        <figure class="plate">
+          <img src="${work.image}" alt="${esc(work.title)} 원본" />
+          <figcaption><span>원본</span> 아이가 그린 그림. 색, 형태, 반복을 여기서 읽는다.</figcaption>
         </figure>
       </div>
     </article>
