@@ -287,6 +287,36 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   align-items: start;
   margin-bottom: 28px;
 }
+.self { display: grid; gap: 8px; }
+.portrait {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0;
+  overflow: hidden;
+}
+.portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 38%;
+}
+.portrait-blur {
+  filter: blur(9px);
+  transform: scale(1.14);
+}
+.portrait-lips {
+  clip-path: ellipse(13% 6% at 56% 77%);
+}
+.person .scent-name { margin: 12px 0 0; font-size: 1.7rem; }
+.person-keys {
+  margin: 4px 0 0;
+  color: #c8c8c8;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
 .heart-crop {
   width: 280px;
   height: 220px;

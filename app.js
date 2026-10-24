@@ -275,12 +275,20 @@ function renderPerson() {
   app.innerHTML = `
     <section class="person">
       <div class="person-top">
-        <div class="heart-crop">
-          <iframe class="heart" title="Heart" scrolling="no" src="https://anaseoul99.github.io/heart-profile/"></iframe>
+        <div class="self">
+          <figure class="portrait">
+            <img class="portrait-blur" src="images/person.jpg" alt="" />
+            <img class="portrait-lips" src="images/person.jpg" alt="얼굴은 흐리고 입술만 남긴 사진" />
+          </figure>
+          <div class="heart-crop">
+            <iframe class="heart" title="Heart" scrolling="no" src="https://anaseoul99.github.io/heart-profile/"></iframe>
+          </div>
+          <p class="scent-name">Developer</p>
+          <p class="person-keys">Multimedia · Engineer · Olfactory · Sound · Web</p>
         </div>
         <div>
           <p class="statement">I am a <em>developer</em> expanding my practice into media art, exploring how visual information can be <em>translated across senses.</em></p>
-          <p class="statement-ko">화면을 만들던 사람입니다. 십수 년 웹의 인터페이스를 짜 왔고, 이제는 그 화면을 듣고 맡게 합니다.</p>
+          <p class="statement-ko">웹을 만들어 온 사람입니다. 오래 그 일을 해 왔고, 이제는 보이는 것을 듣고 맡게 합니다.</p>
         </div>
       </div>
       <div class="cols">
