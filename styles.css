@@ -285,7 +285,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 28px;
   row-gap: 36px;
-  padding: 28px 28px 48px;
+  padding: 88px 28px 48px;
   width: 100%;
 }
 .intro { grid-column: 2 / -1; min-width: 0; }
