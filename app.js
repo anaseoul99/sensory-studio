@@ -268,7 +268,13 @@ function renderDetail(id) {
         <a class="back" href="#/work">← Work</a>
         <p class="scent-name">${esc(first ? first.nameEN : work.scent)}<span class="scent-note">향 Olfactory</span></p>
         <h1>${esc(work.title)}</h1>
-        <p class="tags">${esc(found.tags.join(" · "))}<span class="tag-note">감각 키워드</span></p>
+        <div class="tag-row">
+          <p class="tags">${esc(found.tags.join(" · "))}<span class="tag-note">감각 키워드</span></p>
+          <div class="jump">
+            <button type="button" data-jump="interaction">Interaction</button>
+            <button type="button" data-jump="original">원본</button>
+          </div>
+        </div>
         ${logicMap(work, found)}
         <div class="process">
           <div class="tech-grid">
@@ -281,14 +287,14 @@ function renderDetail(id) {
         </div>
       </div>
       <div class="stage">
-        <figure class="plate">
+        <figure class="plate" id="interaction">
           <div class="sketch-clip">
             <iframe title="${work.title} 인터랙션" src="${work.sketch}" scrolling="no" allow="autoplay"></iframe>
             <p class="sketch-hint">인터랙션 실행하려면 클릭한다. 멈추려면 한번 더 클릭한다.</p>
           </div>
           <figcaption><span>p5.js</span> 감각 변환을 거친 인터랙션 그림. 인터랙션 실행을 위해 화면을 클릭한다.</figcaption>
         </figure>
-        <figure class="plate">
+        <figure class="plate" id="original">
           <button class="flip" type="button" aria-pressed="false" aria-label="${esc(work.title)} 원본 그림 설명 보기">
             <span class="flip-spin">
               <span class="flip-face">
@@ -309,6 +315,7 @@ function renderDetail(id) {
     ${siteFoot()}
   `;
   bindProcess(work, first);
+  bindJumps();
   bindHoverNotes();
   const flip = document.querySelector(".flip");
   if (flip) {
@@ -318,6 +325,16 @@ function renderDetail(id) {
       flip.setAttribute("aria-label", open ? `${work.title} 원본 그림으로 돌아가기` : `${work.title} 원본 그림 설명 보기`);
     });
   }
+}
+
+function bindJumps() {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".jump button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = document.getElementById(button.dataset.jump);
+      if (target) target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    });
+  });
 }
 
 function bindHoverNotes() {
