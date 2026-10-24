@@ -280,7 +280,7 @@ function renderPerson() {
         </div>
         <div>
           <p class="statement">I am a <em>developer</em> expanding my practice into media art, exploring how visual information can be <em>translated across senses.</em></p>
-          <p class="statement-ko">화면을 만들던 사람입니다. 이제는 그 화면을 듣고, 맡게 합니다.</p>
+          <p class="statement-ko">화면을 만들던 사람입니다. 십수 년 웹의 인터페이스를 짜 왔고, 이제는 그 화면을 듣고 맡게 합니다.</p>
         </div>
       </div>
       <div class="cols">

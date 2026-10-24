@@ -88,9 +88,9 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 }
 .display {
   margin: 0;
-  font-size: min(22cqi, 21cqh);
-  line-height: 0.9;
-  letter-spacing: -0.05em;
+  font-size: min(28cqi, 27cqh);
+  line-height: 0.86;
+  letter-spacing: -0.055em;
   font-weight: 470;
   color: #2b2b2b;
 }
@@ -98,7 +98,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   margin-top: 0;
   overflow: hidden;
   color: #e21878;
-  font-size: min(22cqi, 16cqh);
+  font-size: min(21cqi, 16cqh);
   line-height: 1;
   letter-spacing: -0.06em;
   font-weight: 500;
@@ -276,25 +276,26 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .person { padding: 42px 32px 72px; max-width: 1100px; }
 .person-top {
   display: grid;
-  grid-template-columns: 209px minmax(0, 1fr);
+  grid-template-columns: 280px minmax(0, 1fr);
   gap: 28px;
   align-items: start;
   margin-bottom: 28px;
 }
 .heart-crop {
-  width: 209px;
-  height: 200px;
+  width: 280px;
+  height: 220px;
   overflow: hidden;
-  background: #fff;
+  background: transparent;
+  -webkit-mask-image: radial-gradient(ellipse 92% 90% at 50% 54%, #000 30%, transparent 74%);
+  mask-image: radial-gradient(ellipse 92% 90% at 50% 54%, #000 30%, transparent 74%);
 }
 .heart {
   width: 260px;
   height: 200px;
+  margin: 10px 0 0 10px;
   border: 0;
   display: block;
-  background: #fff;
-  transform: scale(1.9) translate(-75px, -55px);
-  transform-origin: 0 0;
+  background: transparent;
 }
 .site-foot {
   display: flex;
@@ -349,6 +350,6 @@ body[data-page="person"] .note { color: #8d8d8d; }
   .top { padding: 0 16px; }
   .work, .detail, .person { padding-left: 16px; padding-right: 16px; }
   .site-foot { padding-left: 16px; padding-right: 16px; }
-  .person-top { grid-template-columns: 209px; }
+  .person-top { grid-template-columns: 280px; }
   .note { margin-left: 16px; margin-right: 16px; }
 }
