@@ -186,14 +186,35 @@ function renderDetail(id) {
           <figcaption><span>p5.js</span> 그 그림을 움직임으로 옮긴 스케치. 소리를 들으려면 화면을 클릭한다.</figcaption>
         </figure>
         <figure class="plate">
-          <img src="${work.image}" alt="${esc(work.title)} 원본" />
-          <figcaption><span>원본</span> 아이가 그린 그림. 색, 형태, 반복을 여기서 읽는다.</figcaption>
+          <button class="flip" type="button" aria-pressed="false" aria-label="${esc(work.title)} 원본 그림 설명 보기">
+            <span class="flip-spin">
+              <span class="flip-face">
+                <img src="${work.image}" alt="${esc(work.title)} 원본" />
+              </span>
+              <span class="flip-face flip-back">
+                <span class="flip-card">
+                  <span>원본</span>
+                  <p>${esc(work.copy)}</p>
+                  <p class="flip-keys">${esc(found.tags.join(" · "))}</p>
+                </span>
+              </span>
+            </span>
+          </button>
+          <figcaption><span>원본</span> 아이가 그린 그림. 색, 형태, 반복을 여기서 읽는다. 클릭하면 설명이 나온다.</figcaption>
         </figure>
       </div>
     </article>
     ${siteFoot()}
   `;
   bindProcess(work, first);
+  const flip = document.querySelector(".flip");
+  if (flip) {
+    flip.addEventListener("click", () => {
+      const open = flip.classList.toggle("is-open");
+      flip.setAttribute("aria-pressed", open ? "true" : "false");
+      flip.setAttribute("aria-label", open ? `${work.title} 원본 그림으로 돌아가기` : `${work.title} 원본 그림 설명 보기`);
+    });
+  }
 }
 
 function popupBody(work, step, scent) {
