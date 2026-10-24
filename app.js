@@ -171,7 +171,7 @@ function renderDetail(id) {
           <div class="tech-grid">
             <button class="tech-item" type="button" data-step="js">${iconJs()}<span>JavaScript</span></button>
             <button class="tech-item" type="button" data-step="p5">${iconP5()}<span>p5.js</span></button>
-            <button class="tech-item" type="button" data-step="airtable">${iconAirtable()}<span>Airtable</span></button>
+            <button class="tech-item" type="button" data-step="airtable">${iconAirtable()}<span>DB</span></button>
             <button class="tech-item" type="button" data-step="audio">${iconAudio()}<span>Sound</span></button>
             <button class="tech-item" type="button" data-step="olfactory">${iconScent()}<span>Olfactory</span></button>
           </div>
@@ -199,13 +199,13 @@ function renderDetail(id) {
 function popupBody(work, step, scent) {
   const id = work.id;
   if (step === "js") {
-    return `<img src="images/process/js.png" alt="Airtable 조회 코드" /><p>Javascript</p>`;
+    return `<img src="images/process/js.png" alt="데이터베이스 조회 코드" /><p>Javascript</p>`;
   }
   if (step === "p5") {
     return `<img src="images/process/${id}-p5.png" alt="p5.js로 그린 인터랙션" /><p>p5.js</p>`;
   }
   if (step === "airtable") {
-    return `<img src="images/process/${id}-airtable.jpg" alt="키워드로 향 기록을 찾은 화면" /><p>Airtable</p>`;
+    return `<img src="images/process/${id}-airtable.jpg" alt="키워드로 향 기록을 찾은 화면" /><p>DB</p>`;
   }
   if (step === "audio") {
     return `
