@@ -36,7 +36,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
   background: var(--paper);
   z-index: 5;
 }
-.brand { font-weight: 600; letter-spacing: -0.03em; }
+.brand { display: flex; color: var(--ink); }
+.mark { width: 28px; height: 26px; display: block; }
+body[data-page="person"] .brand { color: #f4f1ea; }
 .nav { display: flex; gap: 18px; font-size: 15px; }
 .nav a[aria-current="page"] { color: var(--accent); }
 
@@ -47,52 +49,100 @@ body[data-page="person"] .top {
   color: #f4f1ea;
 }
 
+body[data-page="project"] { background: #fff; }
+body[data-page="project"] .top { background: #fff; border-bottom-color: transparent; }
+
 .project {
   min-height: calc(100dvh - var(--header));
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
-  gap: 32px;
-  padding: 28px 32px 36px;
-  align-items: end;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  gap: 24px;
+  padding: 8px 28px 0 20px;
+  align-items: stretch;
+  overflow: hidden;
+}
+.project-title {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .display {
   margin: 0;
-  font-size: clamp(4.4rem, 8vw, 7.4rem);
-  line-height: 0.84;
+  font-size: clamp(5.4rem, 12.4vw, 11.2rem);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  font-weight: 560;
+  color: #2b2b2b;
+}
+.marquee {
+  margin-top: 0.04em;
+  overflow: hidden;
+  color: #e21878;
+  font-size: clamp(4.2rem, 9.2vw, 8.4rem);
+  line-height: 0.86;
   letter-spacing: -0.055em;
   font-weight: 500;
 }
-.display em {
-  display: block;
-  margin-top: 0.18em;
-  font-style: normal;
-  font-size: 0.42em;
-  letter-spacing: -0.045em;
-  color: var(--accent);
-  font-weight: 560;
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 0.35em;
+  animation: studio-slide 22s linear infinite;
 }
-.year { margin: 0 0 18px; color: var(--muted); font-size: 13px; letter-spacing: 0.04em; }
-.lead { margin: 0 0 14px; max-width: 36em; }
-.lead.en { color: var(--muted); font-size: 15px; }
-.ask {
-  margin: 22px 0 0;
-  color: var(--accent);
-  font-size: clamp(1.25rem, 2vw, 1.7rem);
-  line-height: 1.25;
-  letter-spacing: -0.03em;
-  max-width: 16em;
+.marquee-track span { white-space: nowrap; }
+@keyframes studio-slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
-.ask span { display: block; margin-top: 8px; color: var(--muted); font-size: 0.72em; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+.project-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 300px;
+  margin-left: auto;
+  padding: 6px 0 28px;
+}
+.logo { width: 46px; height: auto; display: block; }
+.project-side .year {
+  margin: 14px 0 36px;
+  color: var(--ink);
+  font-size: 1.7rem;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+}
+.project-side .lead {
+  margin: 0 0 14px;
+  max-width: 22em;
+  font-size: 13.5px;
+  line-height: 1.35;
+}
+.project-side .lead strong { font-weight: 650; }
+.ask, .ask-ko {
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  line-height: 1.35;
+  max-width: 18em;
+  letter-spacing: 0;
+}
+.ask { color: #e21878; font-weight: 500; }
+.ask-ko { color: var(--ink); margin-bottom: 0; }
 .modes {
   display: flex;
-  gap: 14px;
-  margin-top: 28px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
+  flex-direction: column;
+  align-items: flex-end;
+  align-self: stretch;
+  gap: 34px;
+  margin-top: auto;
+  padding-top: 36px;
+  border-top: 0;
   font-size: 12px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: #3a3a3a;
 }
 
 .work, .detail { padding: 28px 32px 64px; }
@@ -206,7 +256,11 @@ body[data-page="person"] .note { color: #8d8d8d; }
 
 @media (max-width: 900px) {
   .project, .detail, .cols, .person-top { grid-template-columns: 1fr; }
-  .project { align-items: start; min-height: 0; padding-top: 22px; }
+  .project { align-items: start; min-height: 0; padding: 12px 16px 0; overflow: hidden; }
+  .display { font-size: clamp(3.4rem, 18vw, 5.6rem); }
+  .marquee { font-size: clamp(2.6rem, 13vw, 4.2rem); }
+  .project-side { margin-left: 0; max-width: 28em; }
+  .modes { gap: 16px; }
   .grid { grid-template-columns: 1fr; }
   .card, .card:nth-child(4), .card:nth-child(5) { grid-column: auto; }
   .top { padding: 0 16px; }

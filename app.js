@@ -90,16 +90,24 @@ function renderProject() {
   document.title = "Sensory Studio";
   app.innerHTML = `
     <section class="project">
-      <div>
+      <div class="project-title">
+        <h1 class="display">Visual<br />To<br />Scent</h1>
+        <div class="marquee">
+          <div class="marquee-track">
+            <span>Sensory Studio</span><span>Sensory Studio</span><span>Sensory Studio</span><span>Sensory Studio</span>
+          </div>
+        </div>
+      </div>
+      <aside class="project-side">
+        <img class="logo" src="images/logo.png" alt="" />
         <p class="year">© 2026</p>
-        <h1 class="display">Visual<br />To<br />Scent<em>Sensory Studio</em></h1>
-      </div>
-      <div>
-        <p class="lead">시각 정보를 움직임과 향으로 옮기는 스튜디오. 첫 재료는 어린이 그림이다. 색, 형태, 반복, 밀도를 인터랙션과 향으로 바꾼다.</p>
-        <p class="lead en">Sensory Studio explores how visual information can be translated across different senses.</p>
-        <p class="ask">이미지는 다른 감각을 통과할 때 어떻게 달라지는가?<span>How does an image change when experienced through another sense?</span></p>
+        <p class="lead"><strong>Sensory Studio explores how visual information can be translated across different senses.</strong></p>
+        <p class="lead">Beginning with children’s drawings as its first visual source, the project translates visual characteristics such as color, form, repetition, and density into interactive and olfactory experiences.</p>
+        <p class="lead">시각 정보를 인터랙션과 향으로 번역하며, 하나의 이미지가 다른 감각을 통과할 때 어떻게 다르게 경험되는지를 탐구한다.</p>
+        <p class="ask">How does an image change when experienced through another sense?</p>
+        <p class="ask-ko">이미지는 다른 감각을 통과할 때 어떻게 다르게 경험되는가?</p>
         <div class="modes"><span>Visual</span><span>Interactive</span><span>Scent</span></div>
-      </div>
+      </aside>
     </section>
   `;
 }
