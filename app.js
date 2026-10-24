@@ -271,7 +271,10 @@ function renderPerson() {
     <section class="person">
       <div class="person-top">
         <iframe class="heart" title="Heart" src="https://anaseoul99.github.io/heart-profile/"></iframe>
-        <p class="statement">I am a <em>developer</em> expanding my practice into media art, exploring how visual information can be <em>translated across senses.</em></p>
+        <div>
+          <p class="statement">I am a <em>developer</em> expanding my practice into media art, exploring how visual information can be <em>translated across senses.</em></p>
+          <p class="statement-ko">웹으로 화면을 만들던 시간을 미디어 아트로 넓히고 있습니다. 어린이 그림의 색과 형태를 소리와 향으로 옮기며, 이미지가 다른 감각을 지날 때 어떻게 달라지는지 봅니다.</p>
+        </div>
       </div>
       <div class="cols">
         <div>

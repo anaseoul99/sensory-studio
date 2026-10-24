@@ -108,7 +108,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 }
 .logo { width: 46px; height: auto; display: block; }
 .project-side .year {
-  margin: 14px 0 36px;
+  margin: 10px 0 18px;
   color: var(--ink);
   font-size: 1.7rem;
   font-weight: 650;
@@ -135,9 +135,9 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   flex-direction: column;
   align-items: flex-end;
   align-self: stretch;
-  gap: 34px;
+  gap: 18px;
   margin-top: auto;
-  padding-top: 36px;
+  padding-top: 20px;
   border-top: 0;
   font-size: 12px;
   letter-spacing: 0.16em;
@@ -145,7 +145,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   color: #3a3a3a;
 }
 
-.work, .detail { padding: 28px 32px 64px; }
+.work, .detail { padding: 16px 24px 40px; }
 .work-head { max-width: 40em; margin-bottom: 22px; }
 .work-head h1 { margin: 0 0 8px; font-size: 1.6rem; font-weight: 560; letter-spacing: -0.03em; }
 .work-head p { margin: 0; color: var(--muted); }
@@ -153,7 +153,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 28px 18px;
+  gap: 16px 14px;
 }
 .card { grid-column: span 2; display: block; }
 .card:nth-child(4),
@@ -169,13 +169,13 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .detail {
   display: grid;
   grid-template-columns: minmax(260px, 380px) minmax(0, 1fr);
-  gap: 36px;
+  gap: 20px;
   align-items: start;
 }
 .back { font-size: 14px; color: var(--muted); }
 .back:hover { color: var(--ink); }
 .scent-name {
-  margin: 18px 0 0;
+  margin: 8px 0 0;
   color: var(--accent);
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   letter-spacing: -0.04em;
@@ -201,7 +201,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .steps li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; font-size: 14px; }
 .steps b { font-weight: 560; }
 
-.stage { display: grid; gap: 18px; }
+.stage { display: grid; gap: 10px; }
 .frame { background: #fff; border: 1px solid var(--line); }
 .frame figcaption {
   padding: 8px 10px;
@@ -211,9 +211,9 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   color: var(--muted);
   border-bottom: 1px solid var(--line);
 }
-.frame img { display: block; width: 100%; max-height: 52vh; object-fit: contain; background: #fff; }
-.frame iframe { display: block; width: 100%; height: min(52vh, 560px); border: 0; background: #111; }
-.hint { margin: 8px 10px 10px; color: var(--muted); font-size: 13px; }
+.frame img { display: block; width: 100%; height: auto; object-fit: contain; background: #fff; }
+.frame iframe { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; border: 0; background: #111; }
+.hint { margin: 6px 10px 8px; color: var(--muted); font-size: 13px; }
 .process { position: relative; margin-top: 18px; }
 .tech-grid { display: flex; flex-wrap: wrap; gap: 8px; max-width: 420px; }
 .tech-item {
@@ -256,7 +256,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
   gap: 28px;
   align-items: start;
-  margin-bottom: 48px;
+  margin-bottom: 28px;
 }
 .heart {
   width: 100%;
@@ -273,6 +273,13 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   font-weight: 500;
 }
 .statement em { font-style: normal; color: var(--accent); }
+.statement-ko {
+  margin: 14px 0 0;
+  max-width: 34em;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #bdbdbd;
+}
 .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
 .cols h2 { margin: 0 0 12px; font-size: 12px; letter-spacing: 0.12em; color: #9a9a9a; font-weight: 560; }
 .cols p, .cols li { margin: 0 0 8px; font-size: 15px; }
