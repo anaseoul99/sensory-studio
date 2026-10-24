@@ -284,7 +284,7 @@ function renderPerson() {
             <iframe class="heart" title="Heart" scrolling="no" src="https://anaseoul99.github.io/heart-profile/"></iframe>
           </div>
           <p class="scent-name">Developer</p>
-          <p class="person-keys">Multimedia · Engineer · Olfactory · Sound · Web</p>
+          <p class="person-keys">Multimedia · Engineer · Woman · Olfactory · Sound · Web</p>
         </div>
         <div>
           <p class="statement">I am a <em>developer</em> expanding my practice into media art, exploring how visual information can be <em>translated across senses.</em></p>
