@@ -229,12 +229,12 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   letter-spacing: -0.04em;
   font-weight: 560;
 }
-.detail .scent-name { position: relative; width: 100%; }
+.detail .scent-name { position: relative; width: fit-content; max-width: 100%; }
 .scent-note {
   position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  left: calc(100% + 8px);
+  top: 0;
+  transform: translateY(-2px);
   z-index: 3;
   margin: 0;
   padding: 1px 6px;
@@ -253,11 +253,12 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 }
 .detail .scent-name:hover .scent-note,
 .detail .scent-name.is-shown .scent-note { opacity: 1; }
-.detail .tags { position: relative; max-width: 100%; margin-top: 26px; margin-bottom: 14px; }
+.detail .tags { position: relative; width: fit-content; max-width: 100%; margin-top: 8px; margin-bottom: 14px; }
 .tag-note {
   position: absolute;
-  right: 0;
-  bottom: calc(100% + 6px);
+  left: calc(100% + 8px);
+  top: 0;
+  transform: translateY(-40%);
   z-index: 3;
   margin: 0;
   padding: 1px 6px;
@@ -718,7 +719,7 @@ body[data-page="person"] .note { color: #8d8d8d; }
   .scent-note { font-size: 8px; padding: 0 5px; border-radius: 6px; }
   .tag-note { font-size: 8px; padding: 0 5px; border-radius: 6px; }
   .tag-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
-  .tag-row .tags { flex: 1 1 auto; min-width: 0; }
+  .tag-row .tags { flex: 0 1 auto; width: fit-content; max-width: calc(100% - 128px); min-width: 0; }
   .jump { display: flex; flex-direction: row; gap: 6px; flex: 0 0 auto; }
   .jump button {
     margin: 0;

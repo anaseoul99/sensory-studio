@@ -317,6 +317,7 @@ function renderDetail(id) {
   bindProcess(work, first);
   bindJumps();
   bindHoverNotes();
+  bindTagNote();
   const flip = document.querySelector(".flip");
   if (flip) {
     flip.addEventListener("click", () => {
@@ -325,6 +326,32 @@ function renderDetail(id) {
       flip.setAttribute("aria-label", open ? `${work.title} 원본 그림으로 돌아가기` : `${work.title} 원본 그림 설명 보기`);
     });
   }
+}
+
+function bindTagNote() {
+  const place = () => {
+    document.querySelectorAll(".detail .tags, .detail .scent-name").forEach((el) => {
+      const note = el.querySelector(".tag-note, .scent-note");
+      const text = el.firstChild;
+      if (!note || !text || !text.textContent) return;
+      const range = document.createRange();
+      range.setStart(text, 0);
+      range.setEnd(text, text.textContent.length);
+      const line = [...range.getClientRects()].filter((rect) => rect.width > 8).pop();
+      if (!line) return;
+      const box = el.getBoundingClientRect();
+      note.style.left = `${line.right - box.left + 6}px`;
+      note.style.top = `${line.top - box.top}px`;
+      note.style.right = "auto";
+      note.style.bottom = "auto";
+      note.style.transform = "translateY(-2px)";
+    });
+  };
+  place();
+  document.fonts?.ready.then(place);
+  if (bindTagNote.listening) return;
+  bindTagNote.listening = true;
+  window.addEventListener("resize", place);
 }
 
 function bindJumps() {
