@@ -128,7 +128,7 @@ function renderWork() {
     <section class="work">
       <div class="work-head">
         <h1>Work</h1>
-        <p>그림의 키워드로 향 기록의 FrDesc를 찾고, 원본 사이트와 같이 첫 번째 결과를 올린다.</p>
+        <p>그림에서 뽑은 키워드로 데이터베이스의 향 설명을 찾고, 그중 첫 번째 향을 올린다.</p>
       </div>
       <div class="grid">
         ${works.map((work) => {
