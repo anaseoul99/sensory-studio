@@ -288,7 +288,7 @@ function renderPerson() {
             </div>
           </div>
           <p class="scent-name">Developer</p>
-          <p class="person-keys">Multimedia · Engineer · Rose · Olfactory · Sound · Web</p>
+          <p class="person-keys">Multimedia · Engineer · Pink Lip · Olfactory · Sound · Web</p>
         </div>
         <div>
           <p class="statement">I am a <em>developer</em> expanding my practice into media art, exploring how visual information can be <em>translated across senses.</em></p>
