@@ -193,7 +193,7 @@ function renderDetail(id) {
     <article class="detail">
       <div>
         <a class="back" href="#/work">← Work</a>
-        <p class="scent-name">${esc(first ? first.nameEN : work.scent)}</p>
+        <p class="scent-name">${esc(first ? first.nameEN : work.scent)}<span class="scent-note">향 Olfactory</span></p>
         <h1>${esc(work.title)}</h1>
         <p class="tags">${esc(found.tags.join(" · "))}</p>
         <p class="copy">${esc(work.copy)}</p>
