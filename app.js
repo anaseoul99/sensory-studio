@@ -211,7 +211,7 @@ function renderDetail(id) {
       <div class="stage">
         <figure class="plate">
           <div class="sketch-clip">
-            <iframe title="${work.title} 인터랙션" src="${work.sketch}" scrolling="no"></iframe>
+            <iframe title="${work.title} 인터랙션" src="${work.sketch}" scrolling="no" allow="autoplay"></iframe>
             <p class="sketch-hint">인터랙션 실행하려면 클릭한다. 멈추려면 한번 더 클릭한다.</p>
           </div>
           <figcaption><span>p5.js</span> 감각 변환을 거친 인터랙션 그림. 인터랙션 실행을 위해 화면을 클릭한다.</figcaption>
