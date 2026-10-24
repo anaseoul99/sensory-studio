@@ -343,7 +343,7 @@ function renderPerson() {
         </div>
         <div class="intro">
           <p class="statement">I am a developer<br>expanding my practice into media art,<br>exploring how visual information can be<br><em>translated across senses.</em></p>
-          <p class="statement-ko">웹을 만들어 온 사람입니다.<br>오랫동안 그 일에 대해 고민해왔고 이제는 듣고 맡게 합니다.</p>
+          <p class="statement-ko">웹을 만들던 경험을 넘어, 눈에 보이는 것을 소리와 향기로 변환합니다.</p>
         </div>
       <div class="cols">
         <div>
