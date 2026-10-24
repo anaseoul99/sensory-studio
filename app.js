@@ -6,7 +6,9 @@ const works = [
     tags: "Warm · Dreamlike · Imaginary yellow · Bright · Playful",
     image: "images/animal.jpg",
     sketch: "https://anaseoul99.github.io/animalworld/",
-    track: "Through the Storm — Yeo Doll",
+    track: "Through the Storm",
+    artist: "Yeo Doll",
+    soundTags: "Warm, Dreamlike, Bright, Playful",
     copy: "따뜻한 밤 공간에 작은 동물들이 흩어져 있다. 밝은 노란 빛에서 키워드를 뽑고, 그 분위기의 곡과 p5.js 움직임을 만든 뒤 유자 블렌드를 붙였다."
   },
   {
@@ -16,7 +18,9 @@ const works = [
     tags: "Calm · Sad · Wind · Cool · Blue",
     image: "images/season.jpg",
     sketch: "https://anaseoul99.github.io/season/",
-    track: "Waves — Paige",
+    track: "Waves",
+    artist: "Paige",
+    soundTags: "Calm, Wind",
     copy: "푸른 하늘 위로 가지와 꽃이 겹친다. 차분함과 바람, 서늘한 색을 소리와 미네랄 향으로 옮긴다."
   },
   {
@@ -26,7 +30,9 @@ const works = [
     tags: "Vivid · Simple · Drop · Colorful · Wine",
     image: "images/flower.jpg",
     sketch: "https://anaseoul99.github.io/flowerdrop/",
-    track: "Talking 'bout me — tillandtill",
+    track: "Talking 'bout me",
+    artist: "tillandtill",
+    soundTags: "Vivid, Simple, Wine",
     copy: "물방울 형태 안에 서로 다른 꽃이 들어 있다. 반복과 와인빛 색의 차이를 토피 향과 연결한다."
   },
   {
@@ -36,7 +42,9 @@ const works = [
     tags: "Flower · Safe · Cloud · Cream · Rainbow",
     image: "images/home.png",
     sketch: "https://anaseoul99.github.io/flowering/",
-    track: "Flowering — tillandtill",
+    track: "Flowering",
+    artist: "tillandtill",
+    soundTags: "Flower, Safe, Cream",
     copy: "집, 구름, 무지개, 풀이 넓은 여백 위에 반복된다. 익숙한 형태가 주는 안온함을 시더우드로 옮긴다."
   },
   {
@@ -46,7 +54,9 @@ const works = [
     tags: "Dark · Fantasy · Animal · Rainbow · Lovely",
     image: "images/dream.jpg",
     sketch: "https://anaseoul99.github.io/dream/",
-    track: "In my dream — Yeo Doll",
+    track: "In my dream",
+    artist: "Yeo Doll",
+    soundTags: "Fantasy, Lovely",
     copy: "어두운 하늘과 무지개 갈기의 유니콘. 명암의 대비와 환상적인 형태를 클라리 세이지로 옮긴다."
   }
 ];
@@ -148,8 +158,6 @@ function renderDetail(id) {
   }
   const found = lookup(work.id);
   const first = found.matches[0];
-  const matched = first ? hits(found.tags, first.frDesc) : [];
-  const others = found.matches.slice(1);
   document.title = `${work.title} — Sensory Studio`;
   app.innerHTML = `
     <article class="detail">
@@ -159,17 +167,18 @@ function renderDetail(id) {
         <h1>${esc(work.title)}</h1>
         <p class="tags">${esc(found.tags.join(" · "))}</p>
         <p class="copy">${esc(work.copy)}</p>
-        <p class="track"><span>선정한 곡</span>${esc(work.track)}</p>
-        <div class="lookup">
-          <p class="track"><span>키워드로 조회한 첫 기록</span>${esc(first ? `${first.nameKR || ""} · ${first.category || ""}` : "없음")}</p>
-          <p class="fr">FrDesc ${esc(first ? first.frDesc : "")}</p>
-          <p class="fr">걸린 키워드 ${esc(matched.join(", ") || "없음")}</p>
-          <p class="summary">${esc(first ? first.summary : "")}</p>
-          ${others.length ? `<p class="track"><span>같은 조건에 더 걸린 향</span>${esc(others.map((item) => item.nameEN).join(" · "))}</p>` : ""}
+        <div class="process">
+          <div class="tech-grid">
+            <button class="tech-item" type="button" data-step="js">${iconJs()}<span>JavaScript</span></button>
+            <button class="tech-item" type="button" data-step="p5">${iconP5()}<span>p5.js</span></button>
+            <button class="tech-item" type="button" data-step="airtable">${iconAirtable()}<span>Airtable</span></button>
+            <button class="tech-item" type="button" data-step="audio">${iconAudio()}<span>Audio Signal Mapping</span></button>
+            <button class="tech-item" type="button" data-step="olfactory">${iconScent()}<span>Olfactory</span></button>
+          </div>
+          <div class="process-pop" hidden></div>
         </div>
       </div>
       <div class="stage">
-        ${first && first.image ? `<figure class="frame"><figcaption>조회된 향</figcaption><img src="${esc(first.image)}" alt="${esc(first.nameEN)}" /></figure>` : ""}
         <figure class="frame">
           <figcaption>원본 그림</figcaption>
           <img src="${work.image}" alt="${esc(work.title)} 원본" />
@@ -182,6 +191,78 @@ function renderDetail(id) {
       </div>
     </article>
   `;
+  bindProcess(work, first);
+}
+
+function popupBody(work, step, scent) {
+  const id = work.id;
+  if (step === "js") {
+    return `<img src="images/process/js.png" alt="Airtable 조회 코드" /><p>Javascript</p>`;
+  }
+  if (step === "p5") {
+    return `<img src="images/process/${id}-p5.png" alt="p5.js로 그린 인터랙션" /><p>p5.js</p>`;
+  }
+  if (step === "airtable") {
+    return `<img src="images/process/${id}-airtable.jpg" alt="키워드로 향 기록을 찾은 화면" /><p>Airtable</p>`;
+  }
+  if (step === "audio") {
+    return `
+      <div class="sound-card">
+        <img src="images/process/${id}-cover.jpg" alt="" />
+        <div>
+          <strong>${esc(work.track)}</strong>
+          <span>${esc(work.artist)}</span>
+          <em>${esc(work.soundTags)}</em>
+        </div>
+      </div>`;
+  }
+  const name = scent ? scent.nameEN : work.scent;
+  const image = scent && scent.image ? `<img src="${esc(scent.image)}" alt="${esc(name)}" />` : "";
+  const summary = scent ? scent.summary : "";
+  return `<p class="pop-name">${esc(name)}</p>${image}<p class="summary">${esc(summary)}</p>`;
+}
+
+function bindProcess(work, scent) {
+  const root = document.querySelector(".process");
+  const pop = root.querySelector(".process-pop");
+  root.querySelectorAll(".tech-item").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const open = button.classList.contains("is-open");
+      root.querySelectorAll(".tech-item").forEach((item) => item.classList.remove("is-open"));
+      if (open) {
+        pop.hidden = true;
+        pop.innerHTML = "";
+        return;
+      }
+      button.classList.add("is-open");
+      pop.innerHTML = popupBody(work, button.dataset.step, scent);
+      pop.hidden = false;
+    });
+  });
+  if (window.__closeProcess) document.removeEventListener("click", window.__closeProcess);
+  window.__closeProcess = (event) => {
+    if (event.target.closest(".process")) return;
+    root.querySelectorAll(".tech-item").forEach((item) => item.classList.remove("is-open"));
+    pop.hidden = true;
+  };
+  document.addEventListener("click", window.__closeProcess);
+}
+
+function iconJs() {
+  return `<svg viewBox="0 0 24 24" aria-hidden="true"><rect fill="#f3ca3e" height="24" rx="4" width="24"></rect><text fill="#141414" font-size="12" font-weight="700" x="4" y="17">JS</text></svg>`;
+}
+function iconP5() {
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="#eb6c93"><polygon points="12,2 17.5,10.5 6.5,10.5"></polygon><circle cx="7" cy="16.5" r="4.2"></circle><rect height="8" rx="1.5" width="8" x="12.5" y="12.2"></rect></svg>`;
+}
+function iconAirtable() {
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#3fa7f2" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>`;
+}
+function iconAudio() {
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#8a8a8a" stroke-width="2"><path d="M3 14h3v-3h4V7h4v8h3v3h4"></path></svg>`;
+}
+function iconScent() {
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#8a8a8a" stroke-width="1.8"><path d="M12 20c-3-2-5-4.5-5-8a5 5 0 0 1 10 0c0 3.5-2 6-5 8z"></path><path d="M12 12V4"></path></svg>`;
 }
 
 function renderPerson() {
