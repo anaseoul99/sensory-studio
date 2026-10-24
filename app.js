@@ -214,7 +214,7 @@ function renderDetail(id) {
             <iframe title="${work.title} 인터랙션" src="${work.sketch}" scrolling="no"></iframe>
             <p class="sketch-hint">인터랙션을 멈추려면 클릭한다.</p>
           </div>
-          <figcaption><span>p5.js</span> 그 그림을 움직임으로 옮긴 스케치. 소리를 들으려면 화면을 클릭한다.</figcaption>
+          <figcaption><span>p5.js</span> 감각 변환을 거친 인터랙션 그림. 인터랙션 실행을 위해 화면을 클릭한다.</figcaption>
         </figure>
         <figure class="plate">
           <button class="flip" type="button" aria-pressed="false" aria-label="${esc(work.title)} 원본 그림 설명 보기">
