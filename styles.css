@@ -608,8 +608,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   overflow: hidden;
   backface-visibility: hidden;
 }
-.turn-heart { transform: rotateY(180deg); }
-.portrait { margin: 0; background: #1a1a1a; }
+.portrait { margin: 0; background: #1a1a1a; transform: rotateY(180deg); }
 .portrait img {
   position: absolute;
   inset: 0;
