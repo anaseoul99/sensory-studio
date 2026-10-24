@@ -339,7 +339,7 @@ function renderPerson() {
             </div>
           </div>
           <p class="scent-name">Developer</p>
-          <p class="person-keys">multimedia engineer, art, olfactory, sound, fig lip</p>
+          <p class="person-keys">Multimedia Engineer · Art · Olfactory · Sound · Fig Lip</p>
         </div>
         <div class="intro">
           <p class="statement">I am a developer<br>expanding my practice into media art,<br>exploring how visual information can be<br><em>translated across senses.</em></p>
