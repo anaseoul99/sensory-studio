@@ -101,7 +101,6 @@ function renderProject() {
         <div class="modes"><span>Visual</span><span>Interactive</span><span>Scent</span></div>
       </div>
     </section>
-    <p class="note">가상으로 다시 짠 화면. 원본은 sensory-studio.work</p>
   `;
 }
 
@@ -130,7 +129,6 @@ function renderWork() {
         }).join("")}
       </div>
     </section>
-    <p class="note">가상으로 다시 짠 화면. 원본은 sensory-studio.work</p>
   `;
 }
 
@@ -182,7 +180,10 @@ function renderPerson() {
   document.title = "Person — Sensory Studio";
   app.innerHTML = `
     <section class="person">
-      <p class="statement">I am a <em>developer</em> expanding my practice into media art, exploring how visual information can be <em>translated across senses.</em></p>
+      <div class="person-top">
+        <iframe class="heart" title="Heart" src="https://anaseoul99.github.io/heart-profile/"></iframe>
+        <p class="statement">I am a <em>developer</em> expanding my practice into media art, exploring how visual information can be <em>translated across senses.</em></p>
+      </div>
       <div class="cols">
         <div>
           <h2>Contact</h2>
@@ -213,8 +214,21 @@ function renderPerson() {
         </div>
       </div>
     </section>
-    <p class="note">가상으로 다시 짠 화면. 원본은 sensory-studio.work</p>
+    <audio id="site-bgm" preload="auto">
+      <source src="audio/person.mp3" type="audio/mpeg" />
+    </audio>
   `;
+  const audio = document.getElementById("site-bgm");
+  if (!audio) return;
+  audio.volume = 0.25;
+  const start = () => {
+    if (!audio.paused || audio.ended) return;
+    audio.play().catch(() => {});
+  };
+  start();
+  ["pointerdown", "keydown", "touchstart"].forEach((eventName) => {
+    document.addEventListener(eventName, start, { once: true, passive: true });
+  });
 }
 
 window.addEventListener("hashchange", route);
