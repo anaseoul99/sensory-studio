@@ -219,6 +219,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   gap: 20px;
   align-items: start;
 }
+.detail > div:first-child { min-width: 0; }
 .back { font-size: 14px; color: var(--muted); }
 .back:hover { color: var(--ink); }
 .scent-name {
@@ -250,22 +251,23 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 }
 .detail .scent-name:hover .scent-note,
 .detail .scent-name.is-shown .scent-note { opacity: 1; }
-.detail .tags { position: relative; width: fit-content; }
+.detail .tags { position: relative; max-width: 100%; margin-bottom: 34px; }
 .tag-note {
   position: absolute;
-  left: calc(100% + 12px);
-  top: 50%;
-  transform: translateY(-50%);
+  left: 0;
+  top: calc(100% + 6px);
   z-index: 3;
   margin: 0;
-  padding: 0;
+  padding: 2px 8px;
   background: transparent;
   color: #8a5a12;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 560;
   letter-spacing: 0;
   line-height: 1.3;
   white-space: nowrap;
+  border: 1px solid #8a5a12;
+  border-radius: 8px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
@@ -288,7 +290,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   font-weight: 560;
   line-height: 1;
 }
-.tags { margin: 0 0 16px; color: #8a5a12; font-size: 14px; }
+.tags { margin: 0 0 34px; color: #8a5a12; font-size: 14px; }
 .detail .copy { margin: 0 0 12px; }
 .track {
   margin: 16px 0 0;
