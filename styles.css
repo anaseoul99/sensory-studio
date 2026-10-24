@@ -230,7 +230,8 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .stage { display: grid; gap: 28px; }
 .plate { margin: 0; }
 .plate img { display: block; width: 100%; height: auto; }
-.plate iframe { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; border: 0; background: #111; }
+.sketch-clip { overflow: hidden; aspect-ratio: 4 / 3; line-height: 0; }
+.plate iframe { display: block; width: 100%; height: calc(100% + 8px); border: 0; background: transparent; }
 .plate figcaption {
   margin: 10px 0 0;
   max-width: 36em;

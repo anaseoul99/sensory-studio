@@ -181,7 +181,9 @@ function renderDetail(id) {
       </div>
       <div class="stage">
         <figure class="plate">
-          <iframe title="${work.title} 인터랙션" src="${work.sketch}"></iframe>
+          <div class="sketch-clip">
+            <iframe title="${work.title} 인터랙션" src="${work.sketch}" scrolling="no"></iframe>
+          </div>
           <figcaption><span>p5.js</span> 그 그림을 움직임으로 옮긴 스케치. 소리를 들으려면 화면을 클릭한다.</figcaption>
         </figure>
         <figure class="plate">
