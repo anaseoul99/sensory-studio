@@ -65,9 +65,10 @@ body[data-page="person"] #app {
   flex-direction: column;
 }
 body[data-page="person"] { background: var(--night); color: #f4f1ea; }
+body[data-page="work"] .top,
+body[data-page="person"] .top { border-bottom-color: transparent; }
 body[data-page="person"] .top {
   background: var(--night);
-  border-bottom-color: #2a2a2a;
   color: #f4f1ea;
 }
 
