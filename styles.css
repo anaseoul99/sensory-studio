@@ -329,7 +329,13 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 @media (prefers-reduced-motion: reduce) {
   .turn-spin { animation: none; }
 }
-.person .scent-name { margin: 12px 0 0; font-size: 1.7rem; }
+.person .scent-name {
+  width: 260px;
+  margin: 12px 0 0;
+  font-size: 58px;
+  line-height: 0.95;
+  white-space: nowrap;
+}
 .person-keys {
   margin: 4px 0 0;
   color: #c8c8c8;
