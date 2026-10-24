@@ -241,6 +241,21 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .plate { margin: 0; }
 .plate img { display: block; width: 100%; height: auto; }
 .sketch-clip { overflow: hidden; aspect-ratio: 4 / 3; line-height: 0; }
+.plate img,
+.sketch-clip { transform-origin: center; }
+.plate img:hover,
+.sketch-clip:hover { animation: drawing-wiggle 0.42s ease-in-out infinite; }
+@keyframes drawing-wiggle {
+  0%, 100% { transform: rotate(0deg) translateX(0); }
+  20% { transform: rotate(-1.3deg) translateX(-3px); }
+  40% { transform: rotate(1.2deg) translateX(3px); }
+  60% { transform: rotate(-0.8deg) translateX(-2px); }
+  80% { transform: rotate(0.7deg) translateX(2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .plate img:hover,
+  .sketch-clip:hover { animation: none; }
+}
 .plate iframe { display: block; width: 100%; height: calc(100% + 8px); border: 0; background: transparent; }
 .plate figcaption {
   margin: 10px 0 0;
