@@ -292,7 +292,28 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 @media (prefers-reduced-motion: reduce) {
   .flip-spin { transition: none; }
 }
-.sketch-clip { overflow: hidden; aspect-ratio: 4 / 3; line-height: 0; }
+.sketch-clip { position: relative; overflow: hidden; aspect-ratio: 4 / 3; line-height: 0; }
+.sketch-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 8px 14px;
+  background: rgba(17, 17, 17, 0.72);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.3;
+  white-space: nowrap;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.sketch-clip:hover .sketch-hint { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .sketch-hint { transition: none; }
+}
 .plate iframe { display: block; width: 100%; height: calc(100% + 8px); border: 0; background: transparent; }
 .plate figcaption {
   margin: 10px 0 0;
