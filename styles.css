@@ -370,7 +370,7 @@ body[data-page="person"] .site-foot { color: #fff; }
 .statement {
   margin: 0;
   max-width: none;
-  font-size: min(2.4rem, 3.4cqi);
+  font-size: min(3.3rem, 4.8cqi);
   line-height: 1.12;
   letter-spacing: -0.04em;
   font-weight: 500;
