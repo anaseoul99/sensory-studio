@@ -45,9 +45,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-weight: 560;
   letter-spacing: -0.03em;
 }
-.brand-mark { display: none; width: 18px; height: 16px; flex: 0 0 auto; }
-body[data-page="work"] .brand-mark,
-body[data-page="person"] .brand-mark { display: block; }
+.brand-mark { display: block; width: 18px; height: 16px; flex: 0 0 auto; }
 body[data-page="person"] .brand { color: #f4f1ea; }
 .nav { display: flex; gap: 18px; font-size: 15px; }
 .nav a[aria-current="page"] { color: var(--accent); }
