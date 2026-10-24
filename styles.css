@@ -317,10 +317,13 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   object-position: 50% 46%;
 }
 .portrait-blur {
-  filter: blur(4.5px);
-  transform: scale(1.08);
+  filter: blur(1.6px);
+  transform: scale(1.03);
 }
-.portrait-lips { clip-path: ellipse(11% 5.5% at 57% 88%); }
+.portrait-lips {
+  clip-path: ellipse(16% 8% at 54% 86%);
+  filter: saturate(1.85) contrast(1.2);
+}
 @keyframes turn-over {
   0%, 32% { transform: rotateY(0deg); }
   46%, 78% { transform: rotateY(180deg); }
