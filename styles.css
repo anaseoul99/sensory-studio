@@ -280,14 +280,16 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .fr { margin: 8px 0; font-size: 14px; color: var(--muted); }
 .summary { margin: 12px 0 0; white-space: pre-line; font-size: 15px; }
 
-.person { padding: 28px 28px 48px; width: 100%; }
-.person-top {
+.person {
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 28px;
-  align-items: start;
-  margin-bottom: 28px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 28px;
+  row-gap: 36px;
+  padding: 28px 28px 48px;
+  width: 100%;
 }
+.intro { grid-column: 2 / -1; min-width: 0; }
+.person .cols { grid-column: 1 / -1; }
 .self { display: grid; gap: 8px; }
 .turn {
   width: 260px;
@@ -341,6 +343,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   white-space: nowrap;
 }
 .person-keys {
+  max-width: 260px;
   margin: 4px 0 0;
   color: #c8c8c8;
   font-size: 14px;
@@ -394,7 +397,7 @@ body[data-page="person"] .site-foot { color: #fff; }
 body[data-page="person"] .note { color: #8d8d8d; }
 
 @media (max-width: 900px) {
-  .project, .detail, .cols, .person-top { grid-template-columns: 1fr; }
+  .project, .detail, .cols { grid-template-columns: 1fr; }
   .project { height: auto; align-items: start; min-height: 0; padding: 8px 16px 24px; overflow: visible; }
   .project-title { height: auto; container-type: normal; }
   .display { font-size: clamp(3.2rem, 15vw, 4.6rem); line-height: 0.95; }
@@ -405,8 +408,8 @@ body[data-page="person"] .note { color: #8d8d8d; }
   .card, .card:nth-child(4), .card:nth-child(5) { grid-column: auto; }
   .top { padding: 0 16px; }
   .work, .detail, .person { padding-left: 16px; padding-right: 16px; }
-  .person { padding-top: 20px; padding-bottom: 40px; }
-  .person-top { grid-template-columns: 1fr; gap: 18px; margin-bottom: 28px; }
+  .person { display: flex; flex-direction: column; gap: 28px; padding-top: 20px; padding-bottom: 40px; }
+  .intro { grid-column: auto; }
   .statement { font-size: clamp(1.55rem, 6.6vw, 2rem); max-width: 16em; }
   .statement-ko { max-width: 28em; }
   .cols { gap: 22px; }

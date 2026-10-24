@@ -274,7 +274,6 @@ function renderPerson() {
   document.title = "Person — Sensory Studio";
   app.innerHTML = `
     <section class="person">
-      <div class="person-top">
         <div class="self">
           <div class="turn">
             <div class="turn-spin">
@@ -290,11 +289,10 @@ function renderPerson() {
           <p class="scent-name">Developer</p>
           <p class="person-keys">Multimedia · Engineer · Fig Lip · Olfactory · Sound · Web</p>
         </div>
-        <div>
+        <div class="intro">
           <p class="statement">I am a developer expanding my practice into media art, exploring how visual information can be <em>translated across senses.</em></p>
           <p class="statement-ko">웹을 만들어 온 사람입니다.<br>오랫동안 그 일에 대해 고민해왔고 이제는 듣고 맡게 합니다.</p>
         </div>
-      </div>
       <div class="cols">
         <div>
           <h2>Contact</h2>
