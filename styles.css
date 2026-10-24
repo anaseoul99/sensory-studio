@@ -733,6 +733,7 @@ body[data-page="person"] .note { color: #8d8d8d; }
     line-height: 1.2;
     white-space: nowrap;
   }
+  .jump button:hover { background: #e21878; color: #fff; }
   #interaction, #original { scroll-margin-top: calc(var(--header) + 8px); }
   body:has(.detail) .site-foot { margin-bottom: calc(100vh - var(--header) - 280px); }
   .detail .tags { margin-bottom: 14px; }

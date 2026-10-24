@@ -158,7 +158,7 @@ function logicMap(work, found) {
         </div>
       </div>
       <div class="logic-hows">
-        <p class="is-sound"><b>Sound</b>어울리는 느낌으로 골랐다.<code>bass = fft.getEnergy("bass");
+        <p class="is-sound"><b>Sound</b>어울리는 느낌으로 골랐다. 음원의 주파수 대역별(Bass, Mid, Treble) 에너지를 추출하여, 크기(Scale), 회전(Rotate), 색상(Tint)에 실시간으로 동기화한다.<code>bass = fft.getEnergy("bass");
 mid = fft.getEnergy("mid");
 treble = fft.getEnergy("treble");
 
@@ -168,7 +168,7 @@ rotate(
   * map(mid, 0, 255, 0, 0.15)
 );
 tint(255, map(treble, 0, 255, 180, 255));</code></p>
-        <p class="is-db"><b>DB</b>FrDesc contains로 찾고, 이 쿼리로 가져온다.<code>${esc(formula)}</code>겹치는 키워드가 많거나 그림에서 비중이 큰 단어를 고른다. 비슷하면 무작위로 고른다.</p>
+        <p class="is-db"><b>DB</b>추출한 시각 키워드와 DB 내 향료 메타데이터(FrDesc)를 정규표현식(Regex)으로 매칭한다.<code>${esc(formula)}</code>겹치는 키워드가 많거나 그림에서 비중이 큰 단어를 고르고, 비슷하면 무작위로 고른다.</p>
       </div>
       ${alsoBlock}
     </div>`;
