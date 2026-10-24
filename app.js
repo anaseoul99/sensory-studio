@@ -128,7 +128,7 @@ function renderWork() {
     <section class="work">
       <div class="work-head">
         <h1>Work</h1>
-        <p>그림에서 추출한 키워드로 데이터베이스의 향 설명을 찾고, 그중 첫 번째 향을 올린다.</p>
+        <p>그림에서 추출한 감각 키워드로 데이터베이스 안에서 향을 추출한다.</p>
       </div>
       <div class="grid">
         ${works.map((work) => {
