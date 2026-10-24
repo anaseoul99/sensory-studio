@@ -250,19 +250,19 @@ function bindProcess(work, scent) {
 }
 
 function iconJs() {
-  return `<svg viewBox="0 0 24 24" aria-hidden="true"><rect fill="#f3ca3e" height="24" rx="4" width="24"></rect><text fill="#141414" font-size="12" font-weight="700" x="4" y="17">JS</text></svg>`;
+  return `<svg viewBox="0 0 24 24" aria-hidden="true"><rect fill="#e21878" height="24" rx="4" width="24"></rect><text fill="#fff" font-size="11" font-weight="700" x="4.5" y="16.5">JS</text></svg>`;
 }
 function iconP5() {
-  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="#eb6c93"><polygon points="12,2 17.5,10.5 6.5,10.5"></polygon><circle cx="7" cy="16.5" r="4.2"></circle><rect height="8" rx="1.5" width="8" x="12.5" y="12.2"></rect></svg>`;
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="#e21878"><polygon points="12,2 17.5,10.5 6.5,10.5"></polygon><circle cx="7" cy="16.5" r="4.2"></circle><rect height="8" rx="1.5" width="8" x="12.5" y="12.2"></rect></svg>`;
 }
 function iconAirtable() {
-  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#3fa7f2" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>`;
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#e21878" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>`;
 }
 function iconAudio() {
-  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#8a8a8a" stroke-width="2"><path d="M3 14h3v-3h4V7h4v8h3v3h4"></path></svg>`;
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#e21878" stroke-width="2"><path d="M3 14h3v-3h4V7h4v8h3v3h4"></path></svg>`;
 }
 function iconScent() {
-  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#8a8a8a" stroke-width="1.8"><path d="M12 20c-3-2-5-4.5-5-8a5 5 0 0 1 10 0c0 3.5-2 6-5 8z"></path><path d="M12 12V4"></path></svg>`;
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#e21878" stroke-width="1.8"><path d="M12 20c-3-2-5-4.5-5-8a5 5 0 0 1 10 0c0 3.5-2 6-5 8z"></path><path d="M12 12V4"></path></svg>`;
 }
 
 function renderPerson() {
