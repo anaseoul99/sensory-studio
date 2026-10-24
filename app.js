@@ -230,7 +230,7 @@ function renderDetail(id) {
               </span>
             </span>
           </button>
-          <figcaption><span>원본</span> 아이가 그린 그림. 색, 형태, 반복을 여기서 읽는다. 클릭하면 설명이 나온다.</figcaption>
+          <figcaption><span>원본</span> 어린이가 그린 그림. 색, 형태, 반복 등에서 감각 키워드를 추출한다. 클릭하면 그림에 대한 설명이 나온다.</figcaption>
         </figure>
       </div>
     </article>
