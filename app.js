@@ -280,9 +280,9 @@ function renderDetail(id) {
         <div class="process">
           <div class="tech-grid">
             <button class="tech-item" type="button" data-step="p5">${iconP5()}<span>p5.js</span></button>
-            <button class="tech-item" type="button" data-step="airtable">${iconAirtable()}<span>DB</span></button>
-            <button class="tech-item" type="button" data-step="audio">${iconAudio()}<span>Sound</span></button>
-            <button class="tech-item" type="button" data-step="olfactory">${iconScent()}<span>Olfactory</span></button>
+            <button class="tech-item" type="button" data-step="airtable">${iconAirtable()}<span>Airtable</span></button>
+            <button class="tech-item" type="button" data-step="audio">${iconAudio()}<span>Audio</span></button>
+            <button class="tech-item" type="button" data-step="olfactory">${iconScent()}<span>Scent</span></button>
           </div>
         </div>
       </div>
@@ -422,14 +422,15 @@ function bindSoundModal(work, scent) {
   modal.innerHTML = `<div class="logic-modal-card" role="dialog" aria-modal="true">
     <div class="logic-modal-tools">
       <button class="tech-item" type="button" data-step="p5">${iconP5()}<span>p5.js</span></button>
-      <button class="tech-item" type="button" data-step="airtable">${iconAirtable()}<span>DB</span></button>
-      <button class="tech-item" type="button" data-step="audio">${iconAudio()}<span>Sound</span></button>
-      <button class="tech-item" type="button" data-step="olfactory">${iconScent()}<span>Olfactory</span></button>
+      <button class="tech-item" type="button" data-step="airtable">${iconAirtable()}<span>Airtable</span></button>
+      <button class="tech-item" type="button" data-step="audio">${iconAudio()}<span>Audio</span></button>
+      <button class="tech-item" type="button" data-step="olfactory">${iconScent()}<span>Scent</span></button>
     </div>
     <div class="logic-modal-body"></div>
   </div>`;
   document.body.appendChild(modal);
   const card = modal.querySelector(".logic-modal-card");
+  const tools = card.querySelector(".logic-modal-tools");
   const body = card.querySelector(".logic-modal-body");
   let timer = 0;
   const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -468,6 +469,7 @@ function bindSoundModal(work, scent) {
   };
   const openStep = (step, label) => {
     window.clearInterval(timer);
+    tools.hidden = false;
     mark(step);
     body.innerHTML = popupBody(work, step, scent);
     card.setAttribute("aria-label", label || "");
@@ -475,6 +477,7 @@ function bindSoundModal(work, scent) {
   };
   const open = (panel, step) => {
     window.clearInterval(timer);
+    tools.hidden = true;
     mark(step || "");
     body.innerHTML = panel.dataset.source || panel.innerHTML;
     card.setAttribute("aria-label", panel.dataset.label || panel.querySelector("b")?.textContent || "");
