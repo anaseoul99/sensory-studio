@@ -230,9 +230,6 @@ function renderWork() {
   document.title = "Work — Sensory Studio";
   app.innerHTML = `
     <section class="work">
-      <div class="work-head">
-        <h1>Work</h1>
-      </div>
       <div class="grid">
         ${works.map((work) => {
           const found = lookup(work.id);
