@@ -459,6 +459,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   text-transform: uppercase;
   color: #e21878;
 }
+.detail .logic-read { padding-bottom: 16px; }
 .detail .logic-node strong {
   margin-top: 4px;
   color: #111;
@@ -490,6 +491,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .detail .logic-rail,
 .detail .logic-join { display: none; }
 .detail .logic-outs { gap: 16px; margin-top: 14px; }
+.detail .logic-outs strong { font-weight: 400; }
 .detail .logic-hows { gap: 14px; margin-top: 14px; }
 .detail .logic-hows code {
   margin: 10px 0 0;
@@ -562,13 +564,23 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   width: min(720px, 100%);
   max-height: min(82vh, 880px);
   overflow: auto;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.62);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   padding: 32px 36px 36px;
   color: #111;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
   line-height: 1.55;
 }
+.logic-modal-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.logic-modal-body img { display: block; width: 100%; height: auto; }
+.logic-modal-body p { margin: 8px 0 0; }
 .logic-modal-card b {
   display: block;
   margin-bottom: 14px;
@@ -724,6 +736,8 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .tech-item svg { width: 14px; height: 14px; flex: 0 0 auto; }
 .tech-item:hover { border-color: #e21878; color: #e21878; }
 .tech-item.is-open { border-color: #e21878; color: #171717; }
+.process .tech-item.is-open,
+.logic-modal-tools .tech-item.is-open { color: #e21878; }
 .process-pop {
   margin-top: 10px;
   max-width: 460px;

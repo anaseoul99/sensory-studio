@@ -132,7 +132,7 @@ function logicMap(work, found) {
   return `
     <div class="logic" aria-label="감각 변환">
       <div class="logic-node logic-read">
-        <span>Impression</span>
+        <span>인상</span>
         <strong>${esc(work.read)}</strong>
       </div>
       <div class="logic-stem" aria-hidden="true"></div>
@@ -284,7 +284,6 @@ function renderDetail(id) {
             <button class="tech-item" type="button" data-step="audio">${iconAudio()}<span>Sound</span></button>
             <button class="tech-item" type="button" data-step="olfactory">${iconScent()}<span>Olfactory</span></button>
           </div>
-          <div class="process-pop" hidden></div>
         </div>
       </div>
       <div class="stage">
@@ -315,8 +314,7 @@ function renderDetail(id) {
     </article>
     ${siteFoot()}
   `;
-  bindProcess(work, first);
-  bindSoundModal();
+  bindSoundModal(work, first);
   typeDetailLogic();
   bindJumps();
   bindHoverNotes();
@@ -414,48 +412,35 @@ function popupBody(work, step, scent) {
   return `<p class="pop-name">${esc(name)}</p>${image}<p class="summary">${esc(summary)}</p>`;
 }
 
-function bindProcess(work, scent) {
-  const root = document.querySelector(".process");
-  const pop = root.querySelector(".process-pop");
-  root.querySelectorAll(".tech-item").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.stopPropagation();
-      const open = button.classList.contains("is-open");
-      root.querySelectorAll(".tech-item").forEach((item) => item.classList.remove("is-open"));
-      if (open) {
-        pop.hidden = true;
-        pop.innerHTML = "";
-        return;
-      }
-      button.classList.add("is-open");
-      pop.innerHTML = popupBody(work, button.dataset.step, scent);
-      pop.hidden = false;
-    });
-  });
-  if (window.__closeProcess) document.removeEventListener("click", window.__closeProcess);
-  window.__closeProcess = (event) => {
-    if (event.target.closest(".process")) return;
-    root.querySelectorAll(".tech-item").forEach((item) => item.classList.remove("is-open"));
-    pop.hidden = true;
-  };
-  document.addEventListener("click", window.__closeProcess);
-}
-
-function bindSoundModal() {
+function bindSoundModal(work, scent) {
   document.querySelector(".logic-modal")?.remove();
   const sound = document.querySelector(".detail .is-sound");
   const db = document.querySelector(".detail .is-db");
   if (!sound && !db) return;
   const modal = document.createElement("div");
   modal.className = "logic-modal";
-  modal.innerHTML = `<div class="logic-modal-card" role="dialog" aria-modal="true"></div>`;
+  modal.innerHTML = `<div class="logic-modal-card" role="dialog" aria-modal="true">
+    <div class="logic-modal-tools">
+      <button class="tech-item" type="button" data-step="p5">${iconP5()}<span>p5.js</span></button>
+      <button class="tech-item" type="button" data-step="airtable">${iconAirtable()}<span>DB</span></button>
+      <button class="tech-item" type="button" data-step="audio">${iconAudio()}<span>Sound</span></button>
+      <button class="tech-item" type="button" data-step="olfactory">${iconScent()}<span>Olfactory</span></button>
+    </div>
+    <div class="logic-modal-body"></div>
+  </div>`;
   document.body.appendChild(modal);
   const card = modal.querySelector(".logic-modal-card");
+  const body = card.querySelector(".logic-modal-body");
   let timer = 0;
   const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const show = () => {
+    if (modal.classList.contains("is-open")) return;
+    if (reduced()) modal.classList.add("is-open");
+    else window.requestAnimationFrame(() => modal.classList.add("is-open"));
+  };
   const typeCode = () => {
     window.clearInterval(timer);
-    const code = card.querySelector("code");
+    const code = body.querySelector("code");
     if (!code) return;
     const full = code.dataset.full || code.textContent;
     code.dataset.full = full;
@@ -476,35 +461,59 @@ function bindSoundModal() {
       }
     }, 18);
   };
-  const open = (panel) => {
+  const mark = (step) => {
+    document.querySelectorAll(".process .tech-item, .logic-modal-tools .tech-item").forEach((item) => {
+      item.classList.toggle("is-open", item.dataset.step === step);
+    });
+  };
+  const openStep = (step, label) => {
     window.clearInterval(timer);
-    card.innerHTML = panel.dataset.source || panel.innerHTML;
+    mark(step);
+    body.innerHTML = popupBody(work, step, scent);
+    card.setAttribute("aria-label", label || "");
+    show();
+  };
+  const open = (panel, step) => {
+    window.clearInterval(timer);
+    mark(step || "");
+    body.innerHTML = panel.dataset.source || panel.innerHTML;
     card.setAttribute("aria-label", panel.dataset.label || panel.querySelector("b")?.textContent || "");
-    const code = card.querySelector("code");
+    const code = body.querySelector("code");
     if (code) code.dataset.full = code.textContent;
-    if (!modal.classList.contains("is-open")) {
-      if (reduced()) modal.classList.add("is-open");
-      else window.requestAnimationFrame(() => modal.classList.add("is-open"));
-    }
+    show();
     typeCode();
   };
   const close = () => {
     window.clearInterval(timer);
-    card.querySelector("code")?.classList.remove("is-typing");
+    body.querySelector("code")?.classList.remove("is-typing");
+    mark("");
     modal.classList.remove("is-open");
   };
-  const listen = (el, panel) => {
+  const listen = (el, panel, step) => {
     el.addEventListener("click", (event) => {
       event.preventDefault();
       event.stopPropagation();
-      open(panel);
+      open(panel, step);
     });
   };
   if (sound) {
-    listen(sound, sound);
-    document.querySelectorAll(".detail .logic-sound").forEach((el) => listen(el, sound));
+    listen(sound, sound, "audio");
+    document.querySelectorAll(".detail .logic-sound").forEach((el) => listen(el, sound, "audio"));
   }
-  if (db) listen(db, db);
+  if (db) listen(db, db, "airtable");
+  const choose = (button, event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const already = button.classList.contains("is-open") && modal.classList.contains("is-open");
+    if (already && button.closest(".process")) {
+      close();
+      return;
+    }
+    openStep(button.dataset.step, button.querySelector("span")?.textContent || "");
+  };
+  document.querySelectorAll(".process .tech-item, .logic-modal-tools .tech-item").forEach((button) => {
+    button.addEventListener("click", (event) => choose(button, event));
+  });
   modal.addEventListener("click", (event) => {
     if (event.target === modal) close();
   });
