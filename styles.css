@@ -522,6 +522,16 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .detail .logic-sound,
 .detail .is-sound,
 .detail .is-db { cursor: pointer; }
+.detail .logic.is-typing .logic-chips i:empty { display: none; }
+.detail .logic .is-caret::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 0.85em;
+  margin-left: 1px;
+  background: #e21878;
+  vertical-align: text-bottom;
+}
 .detail .is-sound code:hover,
 .detail .is-db code:hover { animation: drawing-wiggle 0.42s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
@@ -571,7 +581,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 .logic-modal-card code {
   display: block;
   margin-top: 22px;
-  color: #111;
+  color: #e21878;
   font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
   font-size: 16px;
   line-height: 1.65;
@@ -583,7 +593,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   width: 8px;
   height: 0.95em;
   margin-left: 2px;
-  background: #e21878;
+  background: #111;
   vertical-align: text-bottom;
 }
 @media (prefers-reduced-motion: reduce) {

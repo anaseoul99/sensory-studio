@@ -184,6 +184,7 @@ function hits(tags, frDesc) {
 }
 
 function route() {
+  window.clearInterval(typeDetailLogic.timer);
   const parts = (location.hash.replace(/^#/, "") || "/").split("/").filter(Boolean);
   const section = parts[0] || "project";
   document.body.dataset.page = section === "person" ? "person" : section === "work" ? "work" : "project";
@@ -316,6 +317,7 @@ function renderDetail(id) {
   `;
   bindProcess(work, first);
   bindSoundModal();
+  typeDetailLogic();
   bindJumps();
   bindHoverNotes();
   bindTagNote();
@@ -476,8 +478,8 @@ function bindSoundModal() {
   };
   const open = (panel) => {
     window.clearInterval(timer);
-    card.innerHTML = panel.innerHTML;
-    card.setAttribute("aria-label", panel.querySelector("b")?.textContent || "");
+    card.innerHTML = panel.dataset.source || panel.innerHTML;
+    card.setAttribute("aria-label", panel.dataset.label || panel.querySelector("b")?.textContent || "");
     const code = card.querySelector("code");
     if (code) code.dataset.full = code.textContent;
     if (!modal.classList.contains("is-open")) {
@@ -511,6 +513,49 @@ function bindSoundModal() {
     if (event.key === "Escape") close();
   };
   document.addEventListener("keydown", bindSoundModal.onKey);
+}
+
+function typeDetailLogic() {
+  window.clearInterval(typeDetailLogic.timer);
+  const root = document.querySelector(".detail .logic");
+  if (!root) return;
+  root.querySelectorAll(".is-sound, .is-db").forEach((panel) => {
+    panel.dataset.source = panel.innerHTML;
+    const label = panel.querySelector("b")?.textContent || "";
+    if (label) panel.dataset.label = label;
+  });
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const nodes = [];
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let current;
+  while ((current = walker.nextNode())) {
+    if (!current.textContent.trim()) continue;
+    nodes.push({ node: current, full: current.textContent });
+  }
+  nodes.forEach(({ node }) => {
+    node.textContent = "";
+  });
+  root.classList.add("is-typing");
+  let index = 0;
+  let cursor = 0;
+  const paint = () => {
+    root.querySelectorAll(".is-caret").forEach((el) => el.classList.remove("is-caret"));
+    if (index >= nodes.length) {
+      root.classList.remove("is-typing");
+      window.clearInterval(typeDetailLogic.timer);
+      return;
+    }
+    const item = nodes[index];
+    cursor += 8;
+    item.node.textContent = item.full.slice(0, cursor);
+    item.node.parentElement?.classList.add("is-caret");
+    if (cursor >= item.full.length) {
+      item.node.textContent = item.full;
+      index += 1;
+      cursor = 0;
+    }
+  };
+  typeDetailLogic.timer = window.setInterval(paint, 16);
 }
 
 function siteFoot() {
