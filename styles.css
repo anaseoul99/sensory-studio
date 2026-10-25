@@ -766,13 +766,13 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 28px;
-  row-gap: 36px;
+  row-gap: 34px;
   padding: 88px 28px 48px;
   width: 100%;
 }
 .intro { grid-column: 2 / -1; min-width: 0; container-type: inline-size; }
 .person .cols { grid-column: 1 / -1; }
-.self { display: grid; gap: 8px; }
+.self { display: grid; gap: 0; }
 .turn {
   width: 260px;
   height: 200px;
@@ -819,16 +819,17 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 }
 .person .scent-name {
   width: 260px;
-  margin: 12px 0 0;
+  margin: 6px 0 0;
   font-size: 58px;
-  line-height: 0.95;
+  line-height: 0.9;
   white-space: nowrap;
 }
 .person-keys {
   max-width: 260px;
-  margin: 4px 0 0;
+  margin: 10px 0 0;
   color: #c8c8c8;
   font-size: 14px;
+  line-height: 1.35;
   letter-spacing: 0.01em;
 }
 .person .logic-stack {
@@ -865,7 +866,15 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 }
 .person .logic.is-away,
 .person .logic.is-away:hover { animation: none; }
-.logic-back { position: fixed; inset: 0; z-index: 40; background: transparent; }
+.logic-back {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+.logic-back.is-open { opacity: 1; }
 @keyframes person-sheet-wiggle {
   0%, 100% { transform: rotate(-7deg); }
   50% { transform: rotate(-3.5deg) translateX(5px); }
@@ -1048,11 +1057,19 @@ body[data-page="person"] .note { color: #8d8d8d; }
 }
 
 @media (min-width: 901px) {
-  .person { padding-bottom: 180px; }
+  .person {
+    position: relative;
+    flex: 1;
+    align-content: start;
+    padding-bottom: 28px;
+  }
   .person .logic-stack {
+    position: absolute;
+    right: 36px;
+    bottom: 4px;
     width: 232px;
-    margin: 72px 4px 0 0;
-    transform: translateY(120px) rotate(-8deg) scale(0.68);
+    margin: 0;
+    transform: rotate(-8deg) scale(0.68);
     transform-origin: 100% 100%;
   }
   .person .logic {

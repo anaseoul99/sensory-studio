@@ -599,19 +599,18 @@ function bindPersonSheet() {
 
 function liftPersonSheet(sheet) {
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const stack = sheet.closest(".logic-stack");
   const back = document.createElement("div");
   back.className = "logic-back";
   document.body.appendChild(back);
   const from = sheet.getBoundingClientRect();
   const layoutW = sheet.offsetWidth;
   const fromScale = from.width / layoutW;
+  if (stack) stack.style.transform = "none";
   const spot = document.createElement("div");
   spot.style.width = layoutW + "px";
   spot.style.height = sheet.offsetHeight + "px";
   spot.style.margin = getComputedStyle(sheet).margin;
-  spot.style.gridColumn = "3";
-  spot.style.justifySelf = "end";
-  spot.style.alignSelf = "flex-end";
   sheet.before(spot);
   sheet.classList.add("is-away");
   sheet.style.position = "fixed";
@@ -623,20 +622,26 @@ function liftPersonSheet(sheet) {
   sheet.style.zIndex = "41";
   sheet.style.transition = "none";
   sheet.style.transform = `translate(${from.left}px, ${from.top}px) scale(${fromScale})`;
-  const big = Math.min(680, window.innerWidth - 48);
-  const bigH = sheet.offsetHeight * (big / layoutW);
+  let big = Math.min(680, window.innerWidth - 48);
+  let bigH = sheet.offsetHeight * (big / layoutW);
+  const maxH = window.innerHeight - 72;
+  if (bigH > maxH) {
+    big = layoutW * (maxH / sheet.offsetHeight);
+    bigH = maxH;
+  }
   const x = (window.innerWidth - big) / 2;
   const y = Math.max(36, (window.innerHeight - bigH) / 2);
   const move = reduce ? "none" : "transform 0.7s cubic-bezier(.16,.84,.32,1)";
   requestAnimationFrame(() => requestAnimationFrame(() => {
+    back.classList.add("is-open");
     sheet.style.transition = move;
-    sheet.style.transform = `translate(${x}px, ${y}px) scale(${big / layoutW}) rotate(-1.5deg)`;
+    sheet.style.transform = `translate(${x}px, ${y}px) scale(${big / layoutW})`;
   }));
   const close = () => {
     back.removeEventListener("click", close);
-    spot.remove();
     const current = sheet.getBoundingClientRect();
     const curScale = current.width / sheet.offsetWidth;
+    spot.remove();
     sheet.style.transition = "none";
     sheet.style.position = "";
     sheet.style.left = "";
@@ -647,8 +652,10 @@ function liftPersonSheet(sheet) {
     sheet.style.transform = "";
     sheet.style.transformOrigin = "";
     sheet.classList.remove("is-away");
+    if (stack) stack.style.transform = "";
     const home = sheet.getBoundingClientRect();
     const homeScale = home.width / sheet.offsetWidth;
+    if (stack) stack.style.transform = "none";
     sheet.classList.add("is-away");
     sheet.style.position = "fixed";
     sheet.style.left = "0px";
@@ -662,9 +669,11 @@ function liftPersonSheet(sheet) {
     const finish = () => {
       sheet.classList.remove("is-away");
       sheet.removeAttribute("style");
+      if (stack) stack.style.transform = "";
       back.remove();
     };
     requestAnimationFrame(() => requestAnimationFrame(() => {
+      back.classList.remove("is-open");
       if (reduce) {
         finish();
         return;
