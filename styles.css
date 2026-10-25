@@ -436,6 +436,159 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   border-radius: 6px;
 }
 .logic-also b { display: block; font-size: 12px; font-weight: 560; letter-spacing: -0.02em; line-height: 1.25; }
+.detail .logic {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #111;
+}
+.detail .logic-node,
+.detail .logic-hows p,
+.detail .logic-also {
+  background: transparent;
+  border: 0;
+  border-top: 2px solid #111;
+  border-radius: 0;
+  padding: 8px 0 0;
+}
+.detail .logic-node > span,
+.detail .logic-hows b,
+.detail .logic-tool {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #e21878;
+}
+.detail .logic-node strong {
+  margin-top: 4px;
+  color: #111;
+  font-size: 16px;
+  font-weight: 560;
+  letter-spacing: -0.03em;
+}
+.detail .logic-hows p,
+.detail .logic-chips i,
+.detail .logic-also b,
+.detail .logic-scent > em,
+.detail .logic-use { color: #111; }
+.detail .logic-hows b { margin-bottom: 6px; }
+.detail .logic-chips { gap: 0; margin-top: 8px; }
+.detail .logic-chips i {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+.detail .logic-chips i + i::before {
+  content: "×";
+  color: #e21878;
+  padding: 0 7px;
+  font-weight: 500;
+}
+.detail .logic-stem,
+.detail .logic-rail,
+.detail .logic-join { display: none; }
+.detail .logic-outs { gap: 16px; margin-top: 14px; }
+.detail .logic-hows { gap: 14px; margin-top: 14px; }
+.detail .logic-hows code {
+  margin: 10px 0 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: #111;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.55;
+}
+.detail .logic-also { margin-top: 14px; }
+.detail .logic-also li { border: 0; border-radius: 0; padding: 0 14px 0 0; }
+.detail .logic-also b,
+.detail .logic-also em { letter-spacing: -0.02em; }
+.detail .logic-node:hover,
+.detail .logic-hows p:hover { border-top-color: #e21878; }
+.detail .logic-node:hover strong,
+.detail .logic-node:hover em,
+.detail .logic-node:hover .logic-chips i,
+.detail .logic-node:hover .logic-use,
+.detail .logic-node:hover li b {
+  color: #e21878;
+}
+.detail .logic-hows p:hover,
+.detail .logic-hows p:hover code {
+  color: #e21878;
+}
+.detail .logic-sound,
+.detail .is-sound,
+.detail .is-db { cursor: pointer; }
+.detail .is-sound code:hover,
+.detail .is-db code:hover { animation: drawing-wiggle 0.42s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .detail .is-sound code:hover,
+  .detail .is-db code:hover { animation: none; }
+}
+.logic-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(17, 17, 17, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+}
+.logic-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.35s ease, visibility 0s;
+}
+.logic-modal-card {
+  width: min(720px, 100%);
+  max-height: min(82vh, 880px);
+  overflow: auto;
+  background: #fff;
+  padding: 32px 36px 36px;
+  color: #111;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.55;
+}
+.logic-modal-card b {
+  display: block;
+  margin-bottom: 14px;
+  color: #e21878;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+.logic-modal-card code {
+  display: block;
+  margin-top: 22px;
+  color: #111;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 16px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+.logic-modal-card code.is-typing::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 0.95em;
+  margin-left: 2px;
+  background: #e21878;
+  vertical-align: text-bottom;
+}
+@media (prefers-reduced-motion: reduce) {
+  .logic-modal { transition: none; }
+}
 .track {
   margin: 16px 0 0;
   padding-top: 12px;
@@ -551,7 +704,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   border: 1px solid #e4e4e4;
   background: #fff;
   color: #6d6d6d;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 3px 8px;
   font: inherit;
   font-size: 12px;
@@ -559,6 +712,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   cursor: pointer;
 }
 .tech-item svg { width: 14px; height: 14px; flex: 0 0 auto; }
+.tech-item:hover { border-color: #e21878; color: #e21878; }
 .tech-item.is-open { border-color: #e21878; color: #171717; }
 .process-pop {
   margin-top: 10px;
@@ -647,6 +801,40 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   font-size: 14px;
   letter-spacing: 0.01em;
 }
+.person .logic {
+  grid-column: 3;
+  justify-self: end;
+  align-self: flex-end;
+  width: 260px;
+  margin: 4px 10px 16px 0;
+  transform: rotate(-2.4deg);
+  transform-origin: 100% 0;
+}
+.person .logic-node {
+  padding: 4px 6px 5px;
+  background: transparent;
+  border: 1px solid rgba(244, 241, 234, 0.42);
+  border-radius: 2px;
+}
+.person .logic-node > span { color: #8d8d8d; font-size: 9px; }
+.person .logic-node strong { margin-top: 1px; color: #f4f1ea; font-size: 12px; }
+.person .logic-read strong { font-size: 12px; }
+.person .logic-chips { gap: 3px; margin-top: 4px; }
+.person .logic-chips i {
+  padding: 0 5px;
+  border-color: rgba(244, 241, 234, 0.42);
+  color: #f4f1ea;
+  font-size: 10px;
+}
+.person .logic-stem { height: 8px; background: rgba(244, 241, 234, 0.42); }
+.person .logic-rail { height: 8px; border-color: rgba(244, 241, 234, 0.42); }
+.person .logic-rail::before,
+.person .logic-rail::after { background: rgba(244, 241, 234, 0.42); }
+.person .logic-rail::after { height: 8px; }
+.person .logic-outs { gap: 5px; }
+.person .logic-join { height: 8px; margin-left: 50%; border-color: rgba(244, 241, 234, 0.42); }
+.person .logic-also { border-width: 1px; border-color: #e21878; }
+.person .logic-also strong { margin-top: 1px; font-size: 15px; letter-spacing: -0.03em; }
 .heart {
   width: 260px;
   height: 200px;
@@ -707,6 +895,7 @@ body[data-page="person"] .note { color: #8d8d8d; }
   .top { padding: 0 16px; }
   .work, .detail, .person { padding-left: 16px; padding-right: 16px; }
   .person { display: flex; flex-direction: column; gap: 28px; padding-top: 20px; padding-bottom: 40px; }
+  .person .logic { width: min(260px, 100%); margin: 0 4px 8px 0; }
   .intro { grid-column: auto; }
   .statement { font-size: min(3.3rem, 5.7cqi); max-width: none; }
   .statement-ko { max-width: 28em; }
@@ -724,7 +913,7 @@ body[data-page="person"] .note { color: #8d8d8d; }
     margin: 0;
     padding: 6px 8px;
     border: 1px solid #e21878;
-    border-radius: 8px;
+    border-radius: 0;
     background: #fff;
     color: #e21878;
     font: inherit;

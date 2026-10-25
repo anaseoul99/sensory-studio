@@ -315,6 +315,7 @@ function renderDetail(id) {
     ${siteFoot()}
   `;
   bindProcess(work, first);
+  bindSoundModal();
   bindJumps();
   bindHoverNotes();
   bindTagNote();
@@ -438,6 +439,80 @@ function bindProcess(work, scent) {
   document.addEventListener("click", window.__closeProcess);
 }
 
+function bindSoundModal() {
+  document.querySelector(".logic-modal")?.remove();
+  const sound = document.querySelector(".detail .is-sound");
+  const db = document.querySelector(".detail .is-db");
+  if (!sound && !db) return;
+  const modal = document.createElement("div");
+  modal.className = "logic-modal";
+  modal.innerHTML = `<div class="logic-modal-card" role="dialog" aria-modal="true"></div>`;
+  document.body.appendChild(modal);
+  const card = modal.querySelector(".logic-modal-card");
+  let timer = 0;
+  const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const typeCode = () => {
+    window.clearInterval(timer);
+    const code = card.querySelector("code");
+    if (!code) return;
+    const full = code.dataset.full || code.textContent;
+    code.dataset.full = full;
+    if (reduced()) {
+      code.textContent = full;
+      code.classList.remove("is-typing");
+      return;
+    }
+    code.textContent = "";
+    code.classList.add("is-typing");
+    let index = 0;
+    timer = window.setInterval(() => {
+      index += 1;
+      code.textContent = full.slice(0, index);
+      if (index >= full.length) {
+        window.clearInterval(timer);
+        code.classList.remove("is-typing");
+      }
+    }, 18);
+  };
+  const open = (panel) => {
+    window.clearInterval(timer);
+    card.innerHTML = panel.innerHTML;
+    card.setAttribute("aria-label", panel.querySelector("b")?.textContent || "");
+    const code = card.querySelector("code");
+    if (code) code.dataset.full = code.textContent;
+    if (!modal.classList.contains("is-open")) {
+      if (reduced()) modal.classList.add("is-open");
+      else window.requestAnimationFrame(() => modal.classList.add("is-open"));
+    }
+    typeCode();
+  };
+  const close = () => {
+    window.clearInterval(timer);
+    card.querySelector("code")?.classList.remove("is-typing");
+    modal.classList.remove("is-open");
+  };
+  const listen = (el, panel) => {
+    el.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      open(panel);
+    });
+  };
+  if (sound) {
+    listen(sound, sound);
+    document.querySelectorAll(".detail .logic-sound").forEach((el) => listen(el, sound));
+  }
+  if (db) listen(db, db);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) close();
+  });
+  if (bindSoundModal.onKey) document.removeEventListener("keydown", bindSoundModal.onKey);
+  bindSoundModal.onKey = (event) => {
+    if (event.key === "Escape") close();
+  };
+  document.addEventListener("keydown", bindSoundModal.onKey);
+}
+
 function siteFoot() {
   return `<footer class="site-foot"><span>© 2026</span><span>Sensory Studio</span><svg class="foot-mark" viewBox="0 0 80 72" aria-hidden="true"><path d="M40 5 L75 67 H5 Z" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linejoin="round"></path><circle cx="40" cy="44" r="7" fill="#e21878"></circle></svg></footer>`;
 }
@@ -505,6 +580,28 @@ function renderPerson() {
             <li>Websites · digital services · interactive experiences</li>
             <li>International project · Korea · Türkiye</li>
           </ul>
+        </div>
+      </div>
+      <div class="logic" aria-label="Developer">
+        <div class="logic-node logic-read">
+          <span>Impression</span>
+          <strong>보이는 것을 옮긴다</strong>
+        </div>
+        <div class="logic-stem" aria-hidden="true"></div>
+        <div class="logic-node">
+          <span>Keyword</span>
+          <div class="logic-chips"><i>Multimedia Engineer</i><i>Art</i><i>Olfactory</i><i>Sound</i><i>Fig Lip</i></div>
+        </div>
+        <div class="logic-rail" aria-hidden="true"></div>
+        <div class="logic-outs">
+          <div class="logic-node"><span>Sound</span><strong>소리</strong></div>
+          <div class="logic-node"><span>Interaction</span><strong>웹</strong></div>
+          <div class="logic-node"><span>Olfactory</span><strong>향</strong></div>
+        </div>
+        <div class="logic-join" aria-hidden="true"></div>
+        <div class="logic-node logic-also">
+          <span>Result</span>
+          <strong>Developer</strong>
         </div>
       </div>
     </section>
