@@ -390,10 +390,10 @@ function bindHoverNotes() {
 function popupBody(work, step, scent) {
   const id = work.id;
   if (step === "p5") {
-    return `<img src="images/process/${id}-p5.png" alt="p5.js로 그린 인터랙션" /><p>p5.js</p>`;
+    return `<img src="images/process/${id}-p5.png" alt="p5.js로 그린 인터랙션" />`;
   }
   if (step === "airtable") {
-    return `<img src="images/process/${id}-airtable.jpg" alt="키워드로 향 기록을 찾은 화면" /><p>DB - Airtable</p>`;
+    return `<img src="images/process/${id}-airtable.jpg" alt="키워드로 향 기록을 찾은 화면" />`;
   }
   if (step === "audio") {
     return `
@@ -475,10 +475,10 @@ function bindSoundModal(work, scent) {
     card.setAttribute("aria-label", label || "");
     show();
   };
-  const open = (panel, step) => {
+  const open = (panel) => {
     window.clearInterval(timer);
     tools.hidden = true;
-    mark(step || "");
+    mark("");
     body.innerHTML = panel.dataset.source || panel.innerHTML;
     card.setAttribute("aria-label", panel.dataset.label || panel.querySelector("b")?.textContent || "");
     const code = body.querySelector("code");
@@ -492,18 +492,18 @@ function bindSoundModal(work, scent) {
     mark("");
     modal.classList.remove("is-open");
   };
-  const listen = (el, panel, step) => {
+  const listen = (el, panel) => {
     el.addEventListener("click", (event) => {
       event.preventDefault();
       event.stopPropagation();
-      open(panel, step);
+      open(panel);
     });
   };
   if (sound) {
-    listen(sound, sound, "audio");
-    document.querySelectorAll(".detail .logic-sound").forEach((el) => listen(el, sound, "audio"));
+    listen(sound, sound);
+    document.querySelectorAll(".detail .logic-sound").forEach((el) => listen(el, sound));
   }
-  if (db) listen(db, db, "airtable");
+  if (db) listen(db, db);
   const choose = (button, event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -587,6 +587,96 @@ function iconScent() {
   return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#e21878" stroke-width="1.8"><path d="M12 20c-3-2-5-4.5-5-8a5 5 0 0 1 10 0c0 3.5-2 6-5 8z"></path><path d="M12 12V4"></path></svg>`;
 }
 
+function bindPersonSheet() {
+  const sheet = document.querySelector(".person .logic");
+  if (!sheet) return;
+  sheet.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (sheet.classList.contains("is-away")) return;
+    liftPersonSheet(sheet);
+  });
+}
+
+function liftPersonSheet(sheet) {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const back = document.createElement("div");
+  back.className = "logic-back";
+  document.body.appendChild(back);
+  const from = sheet.getBoundingClientRect();
+  const layoutW = sheet.offsetWidth;
+  const fromScale = from.width / layoutW;
+  const spot = document.createElement("div");
+  spot.style.width = layoutW + "px";
+  spot.style.height = sheet.offsetHeight + "px";
+  spot.style.margin = getComputedStyle(sheet).margin;
+  spot.style.gridColumn = "3";
+  spot.style.justifySelf = "end";
+  spot.style.alignSelf = "flex-end";
+  sheet.before(spot);
+  sheet.classList.add("is-away");
+  sheet.style.position = "fixed";
+  sheet.style.left = "0px";
+  sheet.style.top = "0px";
+  sheet.style.margin = "0";
+  sheet.style.width = layoutW + "px";
+  sheet.style.transformOrigin = "0 0";
+  sheet.style.zIndex = "41";
+  sheet.style.transition = "none";
+  sheet.style.transform = `translate(${from.left}px, ${from.top}px) scale(${fromScale})`;
+  const big = Math.min(680, window.innerWidth - 48);
+  const bigH = sheet.offsetHeight * (big / layoutW);
+  const x = (window.innerWidth - big) / 2;
+  const y = Math.max(36, (window.innerHeight - bigH) / 2);
+  const move = reduce ? "none" : "transform 0.7s cubic-bezier(.16,.84,.32,1)";
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    sheet.style.transition = move;
+    sheet.style.transform = `translate(${x}px, ${y}px) scale(${big / layoutW}) rotate(-1.5deg)`;
+  }));
+  const close = () => {
+    back.removeEventListener("click", close);
+    spot.remove();
+    const current = sheet.getBoundingClientRect();
+    const curScale = current.width / sheet.offsetWidth;
+    sheet.style.transition = "none";
+    sheet.style.position = "";
+    sheet.style.left = "";
+    sheet.style.top = "";
+    sheet.style.margin = "";
+    sheet.style.width = "";
+    sheet.style.zIndex = "";
+    sheet.style.transform = "";
+    sheet.style.transformOrigin = "";
+    sheet.classList.remove("is-away");
+    const home = sheet.getBoundingClientRect();
+    const homeScale = home.width / sheet.offsetWidth;
+    sheet.classList.add("is-away");
+    sheet.style.position = "fixed";
+    sheet.style.left = "0px";
+    sheet.style.top = "0px";
+    sheet.style.margin = "0";
+    sheet.style.width = sheet.offsetWidth + "px";
+    sheet.style.transformOrigin = "0 0";
+    sheet.style.zIndex = "41";
+    sheet.style.transition = "none";
+    sheet.style.transform = `translate(${current.left}px, ${current.top}px) scale(${curScale})`;
+    const finish = () => {
+      sheet.classList.remove("is-away");
+      sheet.removeAttribute("style");
+      back.remove();
+    };
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (reduce) {
+        finish();
+        return;
+      }
+      sheet.style.transition = move;
+      sheet.style.transform = `translate(${home.left}px, ${home.top}px) scale(${homeScale})`;
+      sheet.addEventListener("transitionend", finish, { once: true });
+    }));
+  };
+  back.addEventListener("click", close);
+}
+
 function renderPerson() {
   document.title = "Person — Sensory Studio";
   app.innerHTML = `
@@ -639,6 +729,7 @@ function renderPerson() {
           </ul>
         </div>
       </div>
+      <div class="logic-stack">
       <div class="logic" aria-label="Developer">
         <div class="logic-node logic-read">
           <span>Impression</span>
@@ -660,6 +751,15 @@ function renderPerson() {
           <span>Result</span>
           <strong>Developer</strong>
         </div>
+        <div class="heart-doodle" aria-hidden="true">
+          <svg viewBox="0 0 140 120">
+            <path d="M70,104 C66,96 28,74 22,50 C14,28 34,14 52,28 C60,18 68,22 70,36 C74,18 90,10 108,26 C124,42 116,70 70,104" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M26,48 C20,30 38,20 50,32 C42,22 58,16 66,30" fill="none" stroke="#e21878" stroke-width="7" stroke-linecap="round"/>
+            <path d="M108,24 C118,16 128,28 118,40" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+            <path d="M112,78 L120,70 M116,86 L126,80" fill="none" stroke="#e21878" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
       </div>
     </section>
     ${siteFoot()}
@@ -667,6 +767,7 @@ function renderPerson() {
       <source src="audio/person.mp3" type="audio/mpeg" />
     </audio>
   `;
+  bindPersonSheet();
   const audio = document.getElementById("site-bgm");
   if (!audio) return;
   audio.volume = 0.25;

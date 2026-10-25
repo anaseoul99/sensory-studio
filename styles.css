@@ -245,9 +245,8 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   line-height: 1.3;
   white-space: nowrap;
   border: 0;
-  border-bottom: 1px solid #e21878;
   border-radius: 0;
-  padding: 0 0 1px;
+  padding: 0;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
@@ -270,9 +269,8 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   line-height: 1.3;
   white-space: nowrap;
   border: 0;
-  border-bottom: 1px solid #8a5a12;
   border-radius: 0;
-  padding: 0 0 1px;
+  padding: 0;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
@@ -817,6 +815,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 }
 @media (prefers-reduced-motion: reduce) {
   .turn-spin { animation: none; }
+  .person .logic:hover { animation: none; }
 }
 .person .scent-name {
   width: 260px;
@@ -832,40 +831,128 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   font-size: 14px;
   letter-spacing: 0.01em;
 }
-.person .logic {
+.person .logic-stack {
   grid-column: 3;
   justify-self: end;
   align-self: flex-end;
-  width: 260px;
-  margin: 4px 10px 16px 0;
-  transform: rotate(-2.4deg);
-  transform-origin: 100% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 220px;
+  margin: 0 6px 10px 0;
+}
+.person .logic {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 16px 12px 14px;
+  background: #101010;
+  color: #fff;
+  font-family: "Gaegu", cursive;
+  cursor: pointer;
+  transform: rotate(-7deg);
+  transform-origin: 100% 100%;
+  clip-path: polygon(
+    4% 3%, 12% 0, 22% 2.5%, 34% 0, 46% 2%, 58% 0, 70% 2.5%, 82% 0, 93% 2%, 100% 5%,
+    98% 14%, 100% 26%, 97.5% 38%, 100% 50%, 98% 62%, 100% 74%, 97% 86%, 100% 96%,
+    90% 100%, 78% 97.5%, 66% 100%, 52% 98%, 40% 100%, 28% 97%, 16% 100%, 6% 97%, 0 93%,
+    2.5% 80%, 0 68%, 2% 54%, 0 42%, 2.5% 28%, 0 16%, 2% 6%
+  );
+  filter: drop-shadow(0 0 0.6px rgba(255, 255, 255, 0.85));
+}
+.person .logic:hover {
+  animation: person-sheet-wiggle 0.42s ease-in-out infinite;
+}
+.person .logic.is-away,
+.person .logic.is-away:hover { animation: none; }
+.logic-back { position: fixed; inset: 0; z-index: 40; background: transparent; }
+@keyframes person-sheet-wiggle {
+  0%, 100% { transform: rotate(-7deg); }
+  50% { transform: rotate(-3.5deg) translateX(5px); }
+}
+@keyframes person-sheet-wiggle {
+  0%, 100% { transform: rotate(-7deg); }
+  50% { transform: rotate(-3.5deg) translateX(5px); }
+}
+@keyframes person-sheet-wiggle-pc {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2.5deg) translateX(5px); }
+}
+.heart-doodle {
+  position: absolute;
+  right: -10px;
+  bottom: 2px;
+  z-index: 3;
+  width: 62px;
+  height: 54px;
+  margin: 0;
+  pointer-events: none;
+  transform: rotate(16deg);
+}
+.heart-doodle svg { display: block; width: 100%; height: 100%; margin: 0; }
+.person .logic::before {
+  content: "";
+  position: absolute;
+  inset: 4px 2px 6px 4px;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 300'%3E%3Cpath d='M16,26 C22,20 14,34 26,28 M24,38 C18,44 30,40 22,48' fill='none' stroke='%23fff' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M208,42 C216,36 204,50 220,46 C210,56 224,52 212,62' fill='none' stroke='%23fff' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M22,214 C28,208 18,222 32,216 M30,226 C24,234 34,230 26,238' fill='none' stroke='%23fff' stroke-width='1.1' stroke-linecap='round'/%3E%3Cpath d='M198,248 L206,238 M210,252 L220,240 M186,262 L192,254' fill='none' stroke='%23e21878' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
 }
 .person .logic-node {
-  padding: 4px 6px 5px;
-  background: transparent;
-  border: 1px solid rgba(244, 241, 234, 0.42);
-  border-radius: 2px;
+  padding: 4px 5px 5px;
+  border: 0;
+  border-radius: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 72' preserveAspectRatio='none'%3E%3Cpath d='M5,14 L18,6 L36,13 L58,5 L82,12 L104,6 L116,14 L118,30 L110,48 L117,62 L96,68 L62,62 L34,70 L12,64 L4,68 L3,46 L7,28 L4,18' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
 }
-.person .logic-node > span { color: #8d8d8d; font-size: 9px; }
-.person .logic-node strong { margin-top: 1px; color: #f4f1ea; font-size: 12px; }
-.person .logic-read strong { font-size: 12px; }
-.person .logic-chips { gap: 3px; margin-top: 4px; }
+.person .logic-node > span {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.person .logic-node strong {
+  margin-top: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.person .logic-read { border: 0; padding: 0 2px 1px; background: none; }
+.person .logic-read strong { font-size: 16px; color: #fff; }
+.person .logic-chips { gap: 3px; margin-top: 3px; }
 .person .logic-chips i {
-  padding: 0 5px;
-  border-color: rgba(244, 241, 234, 0.42);
-  color: #f4f1ea;
-  font-size: 10px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 0;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 28' preserveAspectRatio='none'%3E%3Cpath d='M6,14 L14,6 L32,9 L50,4 L68,8 L76,14 L72,22 L52,25 L30,22 L12,25 L4,18' fill='none' stroke='%23fff' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
 }
-.person .logic-stem { height: 8px; background: rgba(244, 241, 234, 0.42); }
-.person .logic-rail { height: 8px; border-color: rgba(244, 241, 234, 0.42); }
+.person .logic-stem {
+  width: 16px;
+  height: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 28'%3E%3Cpath d='M8,1 C5,7 12,12 6,18 C11,22 5,26 9,28' fill='none' stroke='%23fff' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+.person .logic-rail {
+  height: 16px;
+  border: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 28' preserveAspectRatio='none'%3E%3Cpath d='M3,7 C36,2 68,11 110,5 C152,1 184,10 216,4' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M6,7 C9,13 2,18 8,26' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M110,5 C106,12 116,17 108,26' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M214,4 C210,12 218,16 206,25' fill='none' stroke='%23fff' stroke-width='2.1' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
 .person .logic-rail::before,
-.person .logic-rail::after { background: rgba(244, 241, 234, 0.42); }
-.person .logic-rail::after { height: 8px; }
-.person .logic-outs { gap: 5px; }
-.person .logic-join { height: 8px; margin-left: 50%; border-color: rgba(244, 241, 234, 0.42); }
-.person .logic-also { border-width: 1px; border-color: #e21878; }
-.person .logic-also strong { margin-top: 1px; font-size: 15px; letter-spacing: -0.03em; }
+.person .logic-rail::after { content: none; }
+.person .logic-outs { gap: 4px; }
+.person .logic-outs .logic-node > span,
+.person .logic-outs .logic-node strong { white-space: nowrap; font-size: 13px; }
+.person .logic-join {
+  width: 16px;
+  height: 12px;
+  margin-left: calc(50% - 8px);
+  border: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 28'%3E%3Cpath d='M7,1 C11,8 4,13 10,19 C5,23 11,26 7,28' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+}
+.person .logic-also { border: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 56' preserveAspectRatio='none'%3E%3Cpath d='M6,14 L34,6 L78,13 L128,5 L170,12 L194,8 L196,22 L188,38 L196,48 L150,54 L80,48 L28,55 L5,44 L4,26' fill='none' stroke='%23e21878' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+.person .logic-also strong { margin-top: 0; color: #fff; font-size: 18px; letter-spacing: 0; }
 .heart {
   width: 260px;
   height: 200px;
@@ -926,7 +1013,8 @@ body[data-page="person"] .note { color: #8d8d8d; }
   .top { padding: 0 16px; }
   .work, .detail, .person { padding-left: 16px; padding-right: 16px; }
   .person { display: flex; flex-direction: column; gap: 28px; padding-top: 20px; padding-bottom: 40px; }
-  .person .logic { width: min(260px, 100%); margin: 0 4px 8px 0; }
+  .person .logic-stack { width: min(220px, 100%); margin: 0 4px 8px 0; }
+  .person .logic { width: 100%; margin: 0; }
   .intro { grid-column: auto; }
   .statement { font-size: min(3.3rem, 5.7cqi); max-width: none; }
   .statement-ko { max-width: 28em; }
@@ -935,8 +1023,7 @@ body[data-page="person"] .note { color: #8d8d8d; }
   .nav { gap: 12px; font-size: 14px; }
   .note { margin-left: 16px; margin-right: 16px; }
   .sketch-clip { overflow: clip; }
-  .scent-note { font-size: 8px; padding: 0 0 1px; border-radius: 0; }
-  .tag-note { font-size: 8px; padding: 0 0 1px; border-radius: 0; }
+  .scent-note, .tag-note { font-size: 8px; padding: 0; border-radius: 0; }
   .tag-row { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
   .tag-row .tags { width: fit-content; max-width: 100%; min-width: 0; }
   .jump { display: flex; flex-direction: row; gap: 6px; align-self: flex-end; margin-bottom: 14px; }
@@ -958,4 +1045,98 @@ body[data-page="person"] .note { color: #8d8d8d; }
   body:has(.detail) .site-foot { margin-bottom: calc(100vh - var(--header) - 280px); }
   .detail .tags { margin-bottom: 14px; }
   .plate iframe { height: 100%; }
+}
+
+@media (min-width: 901px) {
+  .person { padding-bottom: 180px; }
+  .person .logic-stack {
+    width: 232px;
+    margin: 72px 4px 0 0;
+    transform: translateY(120px) rotate(-8deg) scale(0.68);
+    transform-origin: 100% 100%;
+  }
+  .person .logic {
+    width: 100%;
+    margin: 0;
+    padding: 26px 16px 18px;
+    font-family: "Nanum Pen Script", "Gaegu", cursive;
+    transform: rotate(-2deg);
+    transform-origin: 50% 80%;
+  }
+  .person .logic:hover { animation-name: person-sheet-wiggle-pc; }
+  .person .logic-node {
+    border: 0;
+    border-radius: 0;
+    padding: 8px 7px 7px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+  }
+  .person .logic-node > span,
+  .person .logic-node strong { font-weight: 400; line-height: 1.05; }
+  .person .logic-read span { display: block; transform: rotate(-3deg); }
+  .person .logic-read strong { display: block; margin-top: 1px; transform: rotate(1deg) skewX(-4deg); font-size: 16px; white-space: nowrap; }
+  .person .logic > .logic-node:nth-child(3) {
+    transform: rotate(1.2deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 232 96'%3E%3Cpath d='M8,16 L26,7 L58,15 L96,6 L138,14 L176,7 L218,15 L226,34 L214,56 L224,80 L188,90 L124,82 L68,94 L26,84 L6,92 L4,62 L12,38 Z' fill='none' stroke='%23fff' stroke-width='1.4' stroke-linecap='round'/%3E%3Cpath d='M7,18 C6,36 7,58 10,80' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round'/%3E%3Cpath d='M150,9 C184,6 214,14 223,18' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  .person .logic > .logic-node:nth-child(3) > span { display: block; transform: rotate(-4deg) skewX(-5deg); }
+  .person .logic-chips { gap: 4px 5px; margin-top: 6px; }
+  .person .logic-chips i { font-size: 13px; }
+  .person .logic-outs { gap: 6px; }
+  .person .logic-outs .logic-node { padding: 12px 6px 9px 8px; }
+  .person .logic-outs .logic-node:nth-child(1) {
+    transform: rotate(-2deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 74 70'%3E%3Cpath d='M6,14 L16,6 L32,13 L50,5 L66,12 L70,26 L63,44 L70,58 L52,66 L30,60 L12,68 L4,50 L8,30' fill='none' stroke='%23fff' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M6,14 C5,30 5,48 8,62' fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  .person .logic-outs .logic-node:nth-child(2) {
+    transform: rotate(1.8deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 74 70'%3E%3Cpath d='M8,8 L22,12 L38,5 L56,11 L68,7 L72,22 L64,40 L70,56 L50,66 L26,60 L8,68 L4,46 L8,24' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M18,65 C36,60 56,64 67,57' fill='none' stroke='%23fff' stroke-width='2.7' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  .person .logic-outs .logic-node:nth-child(3) {
+    transform: rotate(-1.1deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 74 70'%3E%3Cpath d='M5,16 L16,6 L34,13 L52,6 L68,14 L66,30 L70,46 L62,60 L40,66 L18,60 L5,66 L3,44 L6,26' fill='none' stroke='%23fff' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M52,7 C64,5 69,13 68,20' fill='none' stroke='%23fff' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  .person .logic-outs .logic-node > span { display: block; transform: rotate(-3deg) skewX(-4deg); font-size: 14px; }
+  .person .logic-outs .logic-node strong { display: block; transform: rotate(3deg) skewX(-4deg); font-size: 16px; }
+  .person .logic-also {
+    transform: rotate(0.8deg);
+    border: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 232 58'%3E%3Cpath d='M7,14 L36,6 L84,13 L146,6 L196,12 L224,15 L226,30 L214,44 L224,51 L160,56 L78,50 L24,56 L5,44 L4,26' fill='none' stroke='%23e21878' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M7,14 C5,26 5,40 8,52' fill='none' stroke='%23e21878' stroke-width='2.7' stroke-linecap='round'/%3E%3Cpath d='M70,55 C130,50 196,54 224,49' fill='none' stroke='%23e21878' stroke-width='2.3' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  .person .logic-also { padding: 10px 8px 11px; }
+  .person .logic-also span { display: block; transform: rotate(-3deg); }
+  .person .logic-also strong { display: block; margin-top: 2px; transform: rotate(1deg) skewX(-5deg); font-size: 22px; }
+  .person .logic-chips i {
+    border: 0;
+    padding: 0 7px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+  }
+  .person .logic-chips i:nth-child(1) {
+    transform: rotate(-2deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 28'%3E%3Cpath d='M8,14 C12,5 46,3 80,6 C116,2 140,7 144,14 C146,21 116,25 78,24 C38,26 5,22 8,14' fill='none' stroke='%23fff' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M8,15 C10,21 36,25 70,24' fill='none' stroke='%23fff' stroke-width='2.3' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  .person .logic-chips i:nth-child(2) {
+    transform: rotate(3deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 26'%3E%3Cpath d='M6,13 C8,5 20,3 30,6 C38,4 42,8 41,13 C43,20 30,23 20,22 C10,24 3,19 6,13' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  .person .logic-chips i:nth-child(3) {
+    transform: rotate(-2deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 78 26'%3E%3Cpath d='M6,13 C9,5 26,3 44,6 C60,3 72,8 73,13 C75,20 56,24 38,23 C18,25 3,20 6,13' fill='none' stroke='%23fff' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M44,6 C60,4 72,9 73,14' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  .person .logic-chips i:nth-child(4) {
+    transform: rotate(3deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 58 26'%3E%3Cpath d='M6,12 C10,5 24,3 38,6 C48,4 54,8 53,13 C55,20 40,24 26,22 C14,24 3,19 6,12' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M6,13 C5,18 14,23 28,22' fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  .person .logic-chips i:nth-child(5) {
+    transform: rotate(-3deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 62 26'%3E%3Cpath d='M7,13 C9,5 24,3 40,6 C52,3 58,8 57,13 C59,21 44,24 28,23 C14,25 3,20 7,13' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  .person .logic-stem { transform: rotate(8deg); }
+  .person .logic-rail { transform: rotate(-1.5deg); }
+  .person .logic-join { transform: rotate(6deg); }
 }
