@@ -48,6 +48,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .brand-mark { display: block; width: 18px; height: 16px; flex: 0 0 auto; }
 body[data-page="person"] .brand { color: #f4f1ea; }
 .nav { display: flex; gap: 18px; font-size: 15px; }
+.nav a { text-decoration: none; }
+.nav a:hover,
 .nav a[aria-current="page"] { color: var(--accent); }
 
 body[data-page="work"],
@@ -688,7 +690,7 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 @media (prefers-reduced-motion: reduce) {
   .flip-spin { transition: none; }
 }
-.sketch-clip { position: relative; overflow: hidden; aspect-ratio: 4 / 3; line-height: 0; touch-action: none; }
+.sketch-clip { position: relative; overflow: hidden; aspect-ratio: 4 / 3; line-height: 0; }
 .sketch-hint {
   position: absolute;
   top: 14px;
@@ -705,11 +707,15 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   transition: opacity 0.35s ease;
   pointer-events: none;
 }
-.sketch-clip:hover .sketch-hint { opacity: 1; }
+.sketch-clip:hover .sketch-hint,
+.sketch-clip:active .sketch-hint { opacity: 1; }
+@media (hover: none) {
+  .sketch-hint { opacity: 1; }
+}
 @media (prefers-reduced-motion: reduce) {
   .sketch-hint { transition: none; }
 }
-.plate iframe { display: block; width: 100%; height: calc(100% + 8px); border: 0; background: transparent; touch-action: none; }
+.plate iframe { display: block; width: 100%; height: calc(100% + 8px); border: 0; background: transparent; touch-action: manipulation; }
 .plate figcaption {
   margin: 10px 0 0;
   max-width: 36em;

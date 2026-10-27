@@ -688,19 +688,9 @@ function renderPerson() {
   app.innerHTML = `
     <section class="person">
         <div class="self">
-          <div class="turn">
-            <div class="turn-spin">
-              <figure class="turn-face portrait">
-                <img class="portrait-blur" src="images/person.jpg" alt="" />
-                <img class="portrait-lips" src="images/person.jpg" alt="얼굴은 흐리고 입술만 남긴 사진" />
-              </figure>
-              <div class="turn-face turn-heart">
-                <iframe class="heart" title="Heart" scrolling="no" src="https://anaseoul99.github.io/heart-profile/"></iframe>
-              </div>
-            </div>
-          </div>
+          <iframe class="heart" title="Heart" scrolling="no" src="https://anaseoul99.github.io/heart-profile/"></iframe>
           <p class="scent-name">Developer</p>
-          <p class="person-keys">Multimedia Engineer · Art · Olfactory · Sound · Fig Lip</p>
+          <p class="person-keys">Multimedia Engineer · Art · Olfactory · Sound · Heart</p>
         </div>
         <div class="intro">
           <p class="statement">I am a developer<br>expanding my practice into media art,<br>exploring how visual information can be<br><em>translated across senses.</em></p>
@@ -744,7 +734,7 @@ function renderPerson() {
         <div class="logic-stem" aria-hidden="true"></div>
         <div class="logic-node">
           <span>Keyword</span>
-          <div class="logic-chips"><i>Multimedia Engineer</i><i>Art</i><i>Olfactory</i><i>Sound</i><i>Fig Lip</i></div>
+          <div class="logic-chips"><i>Multimedia Engineer</i><i>Art</i><i>Olfactory</i><i>Sound</i><i>Heart</i></div>
         </div>
         <div class="logic-rail" aria-hidden="true"></div>
         <div class="logic-outs">
