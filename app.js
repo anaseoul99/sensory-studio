@@ -952,7 +952,7 @@ function paintFrame(node) {
   headerCopy.style.background = headerStyle.backgroundColor;
   headerCopy.style.color = headerStyle.color;
   const appCopy = app.cloneNode(true);
-  appCopy.querySelectorAll("audio").forEach((audio) => audio.remove());
+  appCopy.querySelectorAll("audio, iframe").forEach((node) => node.remove());
   node.append(headerCopy, appCopy);
 }
 
