@@ -248,6 +248,13 @@ function bindRatioFrame() {
   const draw = (index) => {
     if (!page.isConnected) return;
     bindRatioFrame.index = index;
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      copy.style.left = "";
+      copy.style.right = "";
+      copy.style.top = "";
+      copy.style.bottom = "";
+      return;
+    }
     const sheet = ratioMargins().find((item) => item.title === PROJECT_REGIONS[index]);
     const { left, right, top, bottom } = sheet.margins;
     const pageW = page.clientWidth;
@@ -328,6 +335,14 @@ function bindProjectRatios() {
   const draw = (index) => {
     if (!page.isConnected) return;
     bindProjectRatios.index = index;
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      copy.classList.remove("is-split");
+      clearPlace(copy);
+      clearPlace(mark);
+      clearPlace(side);
+      side.style.zoom = "";
+      return;
+    }
     const sheet = ratioMargins().find((item) => item.title === PROJECT_REGIONS[index]);
     const { left, right, top, bottom } = sheet.margins;
     const pageW = page.clientWidth;
