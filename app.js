@@ -217,7 +217,7 @@ function ratioMargins() {
     { title: "북아메리카", margins: { left: 210 / 6, right: 210 / 6, top: 297 / 6, bottom: 297 / 8 } },
     { title: "남미", margins: { top: south, right: south, bottom: south, left: south } },
     { title: "중동", margins: { top: mid, right: mid, bottom: mid, left: mid } },
-    { title: "아프리카", margins: { top: 0, right: 0, bottom: 0, left: 0 } },
+    { title: "아프리카", margins: { top: 0, right: 0, bottom: 0, left: 18 } },
     { title: "유럽", margins: { left: 210 / 9, right: (2 * 210) / 9, top: 297 / 9, bottom: (2 * 297) / 9 } },
     { title: "중국", margins: { left: 210 / 10, right: 210 / 10, top: 297 / 4, bottom: 297 / 8 } },
     { title: "태국", margins: { left: 210 / 7, right: 210 / 7, top: 297 / 8, bottom: 297 / 10 } },
@@ -225,6 +225,8 @@ function ratioMargins() {
     { title: "오세아니아", margins: { left: 210 / 8, right: 210 / 8, top: (2 * 297) / 3, bottom: 297 / 12 } },
   ];
 }
+
+let ratioPick = 6;
 
 function ratioButtons() {
   return `<div class="ratio-switch" role="group" aria-label="글 배치">${PROJECT_REGIONS.map((region, index) => `<button type="button" data-index="${index}" aria-pressed="false">${index + 1}</button>`).join("")}</div>`;
@@ -247,7 +249,14 @@ function bindRatioFrame() {
   if (!root || !page || !copy) return;
   const draw = (index) => {
     if (!page.isConnected) return;
-    bindRatioFrame.index = index;
+    ratioPick = index;
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      copy.style.left = "";
+      copy.style.right = "";
+      copy.style.top = "";
+      copy.style.bottom = "";
+      return;
+    }
     const sheet = ratioMargins().find((item) => item.title === PROJECT_REGIONS[index]);
     const { left, right, top, bottom } = sheet.margins;
     const pageW = page.clientWidth;
@@ -274,9 +283,9 @@ function bindRatioFrame() {
     draw(Number(button.dataset.index));
   });
   if (bindRatioFrame.onResize) window.removeEventListener("resize", bindRatioFrame.onResize);
-  bindRatioFrame.onResize = () => draw(bindRatioFrame.index || 0);
+  bindRatioFrame.onResize = () => draw(ratioPick);
   window.addEventListener("resize", bindRatioFrame.onResize);
-  draw(0);
+  draw(ratioPick);
 }
 
 function renderProject() {
@@ -327,7 +336,15 @@ function bindProjectRatios() {
   };
   const draw = (index) => {
     if (!page.isConnected) return;
-    bindProjectRatios.index = index;
+    ratioPick = index;
+    if (window.matchMedia("(max-width: 900px)").matches) {
+      copy.classList.remove("is-split");
+      clearPlace(copy);
+      clearPlace(mark);
+      clearPlace(side);
+      side.style.zoom = "";
+      return;
+    }
     const sheet = ratioMargins().find((item) => item.title === PROJECT_REGIONS[index]);
     const { left, right, top, bottom } = sheet.margins;
     const pageW = page.clientWidth;
@@ -382,9 +399,9 @@ function bindProjectRatios() {
     draw(Number(button.dataset.index));
   });
   if (bindProjectRatios.onResize) window.removeEventListener("resize", bindProjectRatios.onResize);
-  bindProjectRatios.onResize = () => draw(bindProjectRatios.index || 0);
+  bindProjectRatios.onResize = () => draw(ratioPick);
   window.addEventListener("resize", bindProjectRatios.onResize);
-  draw(0);
+  draw(ratioPick);
 }
 
 function renderWork() {
@@ -985,11 +1002,25 @@ function frameNavigate(render) {
   reveal.onfinish = () => layer.remove();
 }
 
+function samePage(href) {
+  const next = new URL(href, location.href);
+  return next.origin === location.origin && next.pathname === location.pathname && next.hash === location.hash;
+}
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a[href]");
+  if (!link || link.target === "_blank" || event.defaultPrevented || event.button !== 0) return;
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  if (!samePage(link.href)) return;
+  event.preventDefault();
+  frameNavigate(route);
+});
+
 window.addEventListener("hashchange", () => frameNavigate(route));
 fetch("scents.json")
   .then((response) => response.json())
   .then((data) => {
     scents = data;
-    route();
+    frameNavigate(route);
   })
-  .catch(() => route());
+  .catch(() => frameNavigate(route));

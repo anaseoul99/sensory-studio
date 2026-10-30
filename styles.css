@@ -1091,12 +1091,20 @@ body[data-page="person"] .note { color: #8d8d8d; }
 
 @media (max-width: 900px) {
   .project, .detail, .cols { grid-template-columns: 1fr; }
-  .project { grid-template-columns: 1fr; height: auto; min-height: calc(100dvh - var(--header)); padding: 0 0 16px; overflow: visible; }
-  .ratio-stage { grid-template-columns: 1fr; height: auto; min-height: calc(100dvh - var(--header)); overflow: visible; }
-  .ratio-page { min-height: calc(100dvh - var(--header) - 52px); }
-  .project-page { height: calc(100dvh - var(--header) - 52px); }
-  .project-copy { display: flex; flex-direction: column; align-items: flex-start; }
-  .ratio-switch { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 8px 12px; padding: 8px 16px 0; }
+  .ratio-switch { display: none; }
+  .project { height: auto; align-items: start; min-height: 0; padding: 8px 16px 24px; overflow: visible; }
+  .project-page { height: auto; container-type: normal; }
+  .project-copy { position: static; display: flex; flex-direction: column; align-items: stretch; height: auto; padding: 0; }
+  .project-copy.is-split .project-mark,
+  .project-copy.is-split .project-side { position: static; width: auto; height: auto; max-width: none; }
+  .project-mark { width: 100%; height: auto; min-width: 0; }
+  .marquee { min-width: 0; }
+  .ratio-stage { display: block; height: auto; min-height: 0; overflow: visible; }
+  .ratio-page { height: auto; min-height: 0; }
+  .ratio-copy { position: static; overflow: visible; }
+  .ratio-copy .work,
+  .ratio-copy .detail,
+  .ratio-copy .person { padding: 16px 16px 40px; }
   .display { font-size: clamp(3.2rem, 15vw, 4.6rem); line-height: 0.95; }
   .marquee { font-size: clamp(2.4rem, 11vw, 3.6rem); }
   .project-side { margin-left: 0; max-width: 28em; }
