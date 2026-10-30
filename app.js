@@ -217,7 +217,7 @@ function ratioMargins() {
     { title: "북아메리카", margins: { left: 210 / 6, right: 210 / 6, top: 297 / 6, bottom: 297 / 8 } },
     { title: "남미", margins: { top: south, right: south, bottom: south, left: south } },
     { title: "중동", margins: { top: mid, right: mid, bottom: mid, left: mid } },
-    { title: "아프리카", margins: { top: 0, right: 0, bottom: 0, left: 0 } },
+    { title: "아프리카", margins: { top: 0, right: 0, bottom: 0, left: 18 } },
     { title: "유럽", margins: { left: 210 / 9, right: (2 * 210) / 9, top: 297 / 9, bottom: (2 * 297) / 9 } },
     { title: "중국", margins: { left: 210 / 10, right: 210 / 10, top: 297 / 4, bottom: 297 / 8 } },
     { title: "태국", margins: { left: 210 / 7, right: 210 / 7, top: 297 / 8, bottom: 297 / 10 } },
@@ -226,7 +226,7 @@ function ratioMargins() {
   ];
 }
 
-let ratioPick = 0;
+let ratioPick = 6;
 
 function ratioButtons() {
   return `<div class="ratio-switch" role="group" aria-label="글 배치">${PROJECT_REGIONS.map((region, index) => `<button type="button" data-index="${index}" aria-pressed="false">${index + 1}</button>`).join("")}</div>`;
