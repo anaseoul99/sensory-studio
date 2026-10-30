@@ -985,11 +985,25 @@ function frameNavigate(render) {
   reveal.onfinish = () => layer.remove();
 }
 
+function samePage(href) {
+  const next = new URL(href, location.href);
+  return next.origin === location.origin && next.pathname === location.pathname && next.hash === location.hash;
+}
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a[href]");
+  if (!link || link.target === "_blank" || event.defaultPrevented || event.button !== 0) return;
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  if (!samePage(link.href)) return;
+  event.preventDefault();
+  frameNavigate(route);
+});
+
 window.addEventListener("hashchange", () => frameNavigate(route));
 fetch("scents.json")
   .then((response) => response.json())
   .then((data) => {
     scents = data;
-    route();
+    frameNavigate(route);
   })
-  .catch(() => route());
+  .catch(() => frameNavigate(route));
