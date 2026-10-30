@@ -79,19 +79,87 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   height: calc(100dvh - var(--header));
   min-height: calc(100dvh - var(--header));
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
-  gap: 16px;
-  padding: 0 20px 12px 8px;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: stretch;
   overflow: hidden;
 }
-.project-title {
+.project-page { position: relative; min-width: 0; height: 100%; container-type: size; }
+.project-copy {
+  position: absolute;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 280px);
+  grid-template-rows: minmax(min-content, 1fr);
+  gap: 16px;
+  align-items: stretch;
+  overflow: visible;
+  padding: 8px 12px 12px;
+}
+.ratio-switch {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 10px 16px 0 8px;
+}
+.ratio-switch button {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 560;
+  line-height: 1.35;
+  color: var(--ink);
+  cursor: pointer;
+}
+.ratio-switch button:hover,
+.ratio-switch button[aria-pressed="true"] { color: var(--accent); }
+.ratio-stage {
+  flex: 1;
+  min-height: 0;
+  height: calc(100dvh - var(--header));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  overflow: hidden;
+}
+.ratio-page { position: relative; min-width: 0; height: 100%; }
+.ratio-copy { position: absolute; overflow: auto; min-width: 0; }
+.ratio-copy .work,
+.ratio-copy .detail,
+.ratio-copy .person { padding: 4px 0 16px; width: 100%; max-width: none; margin: 0; }
+.ratio-copy .person { padding-bottom: 36px; }
+.ratio-copy .person .logic-stack {
+  position: static;
+  right: auto;
+  bottom: auto;
+  grid-column: 1 / -1;
+  justify-self: end;
+  width: 220px;
+  margin: 18px 8px 0 0;
+  transform: none;
+}
+.frame-layer { position: fixed; inset: 0; z-index: 80; pointer-events: none; }
+.frame-old, .frame-pink, .frame-view { position: absolute; inset: 0; overflow: hidden; }
+.frame-old, .frame-view { display: flex; flex-direction: column; }
+.frame-pink { background: var(--accent); clip-path: inset(50% 35% 50% 35%); }
+.frame-view { clip-path: inset(50% 35% 50% 35%); }
+.frame-old .top, .frame-view .top { position: relative; flex: none; }
+.frame-old #app, .frame-view #app { flex: 1; min-height: 0; }
+body[data-page="person"] .ratio-switch button { color: #f4f1ea; }
+body[data-page="person"] .ratio-switch button:hover,
+body[data-page="person"] .ratio-switch button[aria-pressed="true"] { color: var(--accent); }
+.project-copy.is-split { display: block; overflow: visible; padding: 0; }
+.project-copy.is-split .project-mark,
+.project-copy.is-split .project-side { position: absolute; max-width: none; max-height: none; }
+.project-copy.is-split .project-mark { overflow: hidden; }
+.project-copy.is-split .project-side { overflow: visible; }
+.project-mark {
+  min-height: 0;
   min-width: 0;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  container-type: size;
+  overflow: visible;
 }
 .display {
   margin: 0;
@@ -103,6 +171,8 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
 }
 .marquee {
   margin-top: 0;
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   color: #e21878;
   font-size: min(21cqi, 16cqh);
@@ -128,9 +198,13 @@ body[data-page="project"] .top { background: #fff; border-bottom-color: transpar
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 300px;
-  margin-left: auto;
-  padding: 6px 0 28px;
+  justify-content: flex-start;
+  max-width: 280px;
+  max-height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
 }
 .logo { width: 46px; height: auto; display: block; }
 .project-side .year {
@@ -1017,8 +1091,12 @@ body[data-page="person"] .note { color: #8d8d8d; }
 
 @media (max-width: 900px) {
   .project, .detail, .cols { grid-template-columns: 1fr; }
-  .project { height: auto; align-items: start; min-height: 0; padding: 8px 16px 24px; overflow: visible; }
-  .project-title { height: auto; container-type: normal; }
+  .project { grid-template-columns: 1fr; height: auto; min-height: calc(100dvh - var(--header)); padding: 0 0 16px; overflow: visible; }
+  .ratio-stage { grid-template-columns: 1fr; height: auto; min-height: calc(100dvh - var(--header)); overflow: visible; }
+  .ratio-page { min-height: calc(100dvh - var(--header) - 52px); }
+  .project-page { height: calc(100dvh - var(--header) - 52px); }
+  .project-copy { display: flex; flex-direction: column; align-items: flex-start; }
+  .ratio-switch { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 8px 12px; padding: 8px 16px 0; }
   .display { font-size: clamp(3.2rem, 15vw, 4.6rem); line-height: 0.95; }
   .marquee { font-size: clamp(2.4rem, 11vw, 3.6rem); }
   .project-side { margin-left: 0; max-width: 28em; }

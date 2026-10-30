@@ -200,35 +200,196 @@ function route() {
   window.scrollTo(0, 0);
 }
 
-function renderProject() {
-  document.title = "Sensory Studio";
-  app.innerHTML = `
-    <section class="project">
-      <div class="project-title">
-        <h1 class="display">Visual<br />To<br />Scent</h1>
-        <div class="marquee">
-          <div class="marquee-track">
-            <span>Sensory Studio</span><span>Sensory Studio</span><span>Sensory Studio</span><span>Sensory Studio</span>
-          </div>
-        </div>
-      </div>
-      <aside class="project-side">
-        <img class="logo" src="images/logo.png" alt="" />
-        <p class="year">© 2026</p>
-        <p class="lead"><strong>Sensory Studio explores how visual information can be translated across different senses.</strong></p>
-        <p class="lead">Beginning with children’s drawings as its first visual source, the project translates visual characteristics such as color, form, repetition, and density into interactive and olfactory experiences.</p>
-        <p class="lead">시각 정보를 인터랙션과 향으로 번역하며, 하나의 이미지가 다른 감각을 통과할 때 어떻게 다르게 경험되는지를 탐구한다.</p>
-        <p class="ask">How does an image change when experienced through another sense?</p>
-        <p class="ask-ko">이미지는 다른 감각을 통과할 때 어떻게 다르게 경험되는가?</p>
-        <div class="modes"><span>Visual</span><span>Interactive</span><span>Scent</span></div>
-      </aside>
+const PROJECT_REGIONS = ["한국", "일본", "북유럽", "북아메리카", "남미", "중동", "아프리카", "유럽", "중국", "태국", "러시아", "오세아니아"];
+
+function ratioMargins() {
+  const phi = (1 + Math.sqrt(5)) / 2;
+  const a = 210 - 297 / phi;
+  const far = a * phi;
+  const shiftX = a / phi;
+  const shiftY = a / phi ** 2;
+  const south = 210 / 12;
+  const mid = 210 / 5;
+  return [
+    { title: "한국", margins: { top: a + shiftY, right: far - shiftX, bottom: far - shiftY, left: a + shiftX } },
+    { title: "일본", margins: { top: a, right: far, bottom: far, left: a } },
+    { title: "북유럽", margins: { top: 52.5, right: 52.5, bottom: 52.5, left: 52.5 } },
+    { title: "북아메리카", margins: { left: 210 / 6, right: 210 / 6, top: 297 / 6, bottom: 297 / 8 } },
+    { title: "남미", margins: { top: south, right: south, bottom: south, left: south } },
+    { title: "중동", margins: { top: mid, right: mid, bottom: mid, left: mid } },
+    { title: "아프리카", margins: { top: 0, right: 0, bottom: 0, left: 0 } },
+    { title: "유럽", margins: { left: 210 / 9, right: (2 * 210) / 9, top: 297 / 9, bottom: (2 * 297) / 9 } },
+    { title: "중국", margins: { left: 210 / 10, right: 210 / 10, top: 297 / 4, bottom: 297 / 8 } },
+    { title: "태국", margins: { left: 210 / 7, right: 210 / 7, top: 297 / 8, bottom: 297 / 10 } },
+    { title: "러시아", margins: { left: 210 / 8, right: 210 / 8, top: 210 / 8, bottom: 297 / 5 } },
+    { title: "오세아니아", margins: { left: 210 / 8, right: 210 / 8, top: (2 * 297) / 3, bottom: 297 / 12 } },
+  ];
+}
+
+function ratioButtons() {
+  return `<div class="ratio-switch" role="group" aria-label="글 배치">${PROJECT_REGIONS.map((region, index) => `<button type="button" data-index="${index}" aria-pressed="false">${index + 1}</button>`).join("")}</div>`;
+}
+
+function withRatio(inner) {
+  return `
+    <section class="ratio-stage">
+      <div class="ratio-page"><div class="ratio-copy">${inner}</div></div>
+      ${ratioButtons()}
     </section>
   `;
 }
 
+function bindRatioFrame() {
+  const stage = document.querySelector(".ratio-stage");
+  const root = stage?.querySelector(".ratio-switch");
+  const page = stage?.querySelector(".ratio-page");
+  const copy = stage?.querySelector(".ratio-copy");
+  if (!root || !page || !copy) return;
+  const draw = (index) => {
+    if (!page.isConnected) return;
+    bindRatioFrame.index = index;
+    const sheet = ratioMargins().find((item) => item.title === PROJECT_REGIONS[index]);
+    const { left, right, top, bottom } = sheet.margins;
+    const pageW = page.clientWidth;
+    const pageH = page.clientHeight;
+    const bottomPx = (bottom / 297) * pageH;
+    copy.style.left = `${(left / 210) * pageW}px`;
+    copy.style.right = `${(right / 210) * pageW}px`;
+    copy.style.bottom = `${bottomPx}px`;
+    copy.style.top = `${(top / 297) * pageH}px`;
+    const room = pageH - bottomPx - 8;
+    if (copy.scrollHeight > copy.clientHeight + 2) {
+      const height = Math.min(copy.scrollHeight, room);
+      copy.style.top = `${pageH - bottomPx - height}px`;
+    }
+    root.querySelectorAll("button").forEach((button, buttonIndex) => {
+      const on = buttonIndex === index;
+      button.setAttribute("aria-pressed", on ? "true" : "false");
+      button.setAttribute("aria-label", `${buttonIndex + 1} ${PROJECT_REGIONS[buttonIndex]}`);
+    });
+  };
+  root.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if (!button || !root.contains(button)) return;
+    draw(Number(button.dataset.index));
+  });
+  if (bindRatioFrame.onResize) window.removeEventListener("resize", bindRatioFrame.onResize);
+  bindRatioFrame.onResize = () => draw(bindRatioFrame.index || 0);
+  window.addEventListener("resize", bindRatioFrame.onResize);
+  draw(0);
+}
+
+function renderProject() {
+  document.title = "Sensory Studio";
+  app.innerHTML = `
+    <section class="project">
+      <div class="project-page">
+        <div class="project-copy">
+          <div class="project-mark">
+            <h1 class="display">Visual<br />To<br />Scent</h1>
+            <div class="marquee">
+              <div class="marquee-track">
+                <span>Sensory Studio</span><span>Sensory Studio</span><span>Sensory Studio</span><span>Sensory Studio</span>
+              </div>
+            </div>
+          </div>
+          <aside class="project-side">
+            <img class="logo" src="images/logo.png" alt="" />
+            <p class="year">© 2026</p>
+            <p class="lead"><strong>Sensory Studio explores how visual information can be translated across different senses.</strong></p>
+            <p class="lead">Beginning with children’s drawings as its first visual source, the project translates visual characteristics such as color, form, repetition, and density into interactive and olfactory experiences.</p>
+            <p class="lead">시각 정보를 인터랙션과 향으로 번역하며, 하나의 이미지가 다른 감각을 통과할 때 어떻게 다르게 경험되는지를 탐구한다.</p>
+            <p class="ask">How does an image change when experienced through another sense?</p>
+            <p class="ask-ko">이미지는 다른 감각을 통과할 때 어떻게 다르게 경험되는가?</p>
+            <div class="modes"><span>Visual</span><span>Interactive</span><span>Scent</span></div>
+          </aside>
+        </div>
+      </div>
+      ${ratioButtons()}
+    </section>
+  `;
+  bindProjectRatios();
+}
+
+function bindProjectRatios() {
+  const root = document.querySelector(".project .ratio-switch");
+  const page = document.querySelector(".project-page");
+  const copy = document.querySelector(".project-copy");
+  const mark = document.querySelector(".project-mark");
+  const side = document.querySelector(".project-side");
+  const clearPlace = (element) => {
+    element.style.left = "";
+    element.style.right = "";
+    element.style.top = "";
+    element.style.bottom = "";
+    element.style.height = "";
+    element.style.width = "";
+  };
+  const draw = (index) => {
+    if (!page.isConnected) return;
+    bindProjectRatios.index = index;
+    const sheet = ratioMargins().find((item) => item.title === PROJECT_REGIONS[index]);
+    const { left, right, top, bottom } = sheet.margins;
+    const pageW = page.clientWidth;
+    const pageH = page.clientHeight;
+    const l = (left / 210) * pageW;
+    const r = (right / 210) * pageW;
+    const t = (top / 297) * pageH;
+    const b = (bottom / 297) * pageH;
+    const boxH = pageH - t - b;
+    const tight = boxH < pageH * 0.42;
+    copy.classList.toggle("is-split", tight);
+    clearPlace(mark);
+    clearPlace(side);
+    if (!tight) {
+      copy.style.left = `${l}px`;
+      copy.style.right = `${r}px`;
+      copy.style.top = `${t}px`;
+      copy.style.bottom = "0";
+      side.style.zoom = "";
+      const spill = mark.querySelector(".marquee").getBoundingClientRect().bottom - page.getBoundingClientRect().bottom + 10;
+      if (spill > 1) copy.style.top = `${Math.max(0, t - spill)}px`;
+    } else {
+      copy.style.left = "0";
+      copy.style.right = "0";
+      copy.style.top = "0";
+      copy.style.bottom = "0";
+      const maxSide = Math.max(180, pageH - b - 168);
+      const sideW = Math.min(280, Math.max(160, pageW - l - r));
+      side.style.zoom = "1";
+      side.style.left = "auto";
+      side.style.width = `${sideW}px`;
+      side.style.right = `${r}px`;
+      side.style.bottom = `${b}px`;
+      side.style.height = "auto";
+      const natural = side.scrollHeight;
+      const scale = Math.min(1, maxSide / natural);
+      side.style.zoom = String(scale);
+      mark.style.left = `${l}px`;
+      mark.style.right = `${r + sideW + 16}px`;
+      mark.style.top = "0";
+      mark.style.height = "auto";
+    }
+    root.querySelectorAll("button").forEach((button, buttonIndex) => {
+      const on = buttonIndex === index;
+      button.setAttribute("aria-pressed", on ? "true" : "false");
+      button.setAttribute("aria-label", `${buttonIndex + 1} ${PROJECT_REGIONS[buttonIndex]}`);
+    });
+  };
+  root.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if (!button || !root.contains(button)) return;
+    draw(Number(button.dataset.index));
+  });
+  if (bindProjectRatios.onResize) window.removeEventListener("resize", bindProjectRatios.onResize);
+  bindProjectRatios.onResize = () => draw(bindProjectRatios.index || 0);
+  window.addEventListener("resize", bindProjectRatios.onResize);
+  draw(0);
+}
+
 function renderWork() {
   document.title = "Work — Sensory Studio";
-  app.innerHTML = `
+  app.innerHTML = withRatio(`
     <section class="work">
       <div class="grid">
         ${works.map((work) => {
@@ -248,7 +409,8 @@ function renderWork() {
       </div>
     </section>
     ${siteFoot()}
-  `;
+  `);
+  bindRatioFrame();
 }
 
 function renderDetail(id) {
@@ -260,7 +422,7 @@ function renderDetail(id) {
   const found = lookup(work.id);
   const first = found.matches[0];
   document.title = `${work.title} — Sensory Studio`;
-  app.innerHTML = `
+  app.innerHTML = withRatio(`
     <article class="detail">
       <div>
         <a class="back" href="#/work">← Work</a>
@@ -310,7 +472,8 @@ function renderDetail(id) {
       </div>
     </article>
     ${siteFoot()}
-  `;
+  `);
+  bindRatioFrame();
   bindSoundModal(work, first);
   typeDetailLogic();
   bindJumps();
@@ -685,7 +848,7 @@ function liftPersonSheet(sheet) {
 
 function renderPerson() {
   document.title = "Person — Sensory Studio";
-  app.innerHTML = `
+  app.innerHTML = withRatio(`
     <section class="person">
         <div class="self">
           <iframe class="heart" title="Heart" scrolling="no" src="https://anaseoul99.github.io/heart-profile/"></iframe>
@@ -759,10 +922,12 @@ function renderPerson() {
       </div>
     </section>
     ${siteFoot()}
+  `) + `
     <audio id="site-bgm" preload="auto">
       <source src="audio/person.mp3" type="audio/mpeg" />
     </audio>
   `;
+  bindRatioFrame();
   bindPersonSheet();
   const audio = document.getElementById("site-bgm");
   if (!audio) return;
@@ -777,7 +942,50 @@ function renderPerson() {
   });
 }
 
-window.addEventListener("hashchange", route);
+function paintFrame(node) {
+  const bodyStyle = getComputedStyle(document.body);
+  node.style.background = bodyStyle.backgroundColor;
+  node.style.color = bodyStyle.color;
+  const header = document.querySelector(".top");
+  const headerCopy = header.cloneNode(true);
+  const headerStyle = getComputedStyle(header);
+  headerCopy.style.background = headerStyle.backgroundColor;
+  headerCopy.style.color = headerStyle.color;
+  const appCopy = app.cloneNode(true);
+  appCopy.querySelectorAll("audio, iframe").forEach((node) => node.remove());
+  node.append(headerCopy, appCopy);
+}
+
+function frameNavigate(render) {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) {
+    render();
+    return;
+  }
+  document.querySelector(".frame-layer")?.remove();
+  const layer = document.createElement("div");
+  layer.className = "frame-layer";
+  const old = document.createElement("div");
+  old.className = "frame-old";
+  const pink = document.createElement("div");
+  pink.className = "frame-pink";
+  const view = document.createElement("div");
+  view.className = "frame-view";
+  paintFrame(old);
+  layer.append(old, pink, view);
+  document.body.append(layer);
+  render();
+  paintFrame(view);
+  const side = ((1 - 0.3) / 2) * 100;
+  const small = `inset(50% ${side}% 50% ${side}%)`;
+  const full = "inset(0% 0% 0% 0%)";
+  const grow = { duration: 1200, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "both" };
+  pink.animate([{ clipPath: small }, { clipPath: full }], grow);
+  const reveal = view.animate([{ clipPath: small }, { clipPath: full }], { ...grow, delay: 150 });
+  reveal.onfinish = () => layer.remove();
+}
+
+window.addEventListener("hashchange", () => frameNavigate(route));
 fetch("scents.json")
   .then((response) => response.json())
   .then((data) => {
