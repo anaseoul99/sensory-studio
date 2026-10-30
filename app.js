@@ -263,6 +263,12 @@ function bindRatioFrame() {
     const pageH = page.clientHeight;
     const bottomPx = (bottom / 297) * pageH;
     copy.style.left = `${(left / 210) * pageW}px`;
+    if (PROJECT_REGIONS[index] === "아프리카") {
+      const brand = document.querySelector("header .brand");
+      const inner = copy.firstElementChild;
+      const pad = inner ? parseFloat(getComputedStyle(inner).paddingLeft) || 0 : 0;
+      copy.style.left = `${brand.getBoundingClientRect().left - page.getBoundingClientRect().left - pad}px`;
+    }
     copy.style.right = `${(right / 210) * pageW}px`;
     copy.style.bottom = `${bottomPx}px`;
     copy.style.top = `${(top / 297) * pageH}px`;
@@ -349,7 +355,12 @@ function bindProjectRatios() {
     const { left, right, top, bottom } = sheet.margins;
     const pageW = page.clientWidth;
     const pageH = page.clientHeight;
-    const l = (left / 210) * pageW;
+    let l = (left / 210) * pageW;
+    if (PROJECT_REGIONS[index] === "아프리카") {
+      const brand = document.querySelector(".brand");
+      const pad = parseFloat(getComputedStyle(copy).paddingLeft) || 0;
+      l = brand.getBoundingClientRect().left - page.getBoundingClientRect().left - pad;
+    }
     const r = (right / 210) * pageW;
     const t = (top / 297) * pageH;
     const b = (bottom / 297) * pageH;
