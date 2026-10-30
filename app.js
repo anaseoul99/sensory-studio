@@ -226,6 +226,8 @@ function ratioMargins() {
   ];
 }
 
+let ratioPick = 0;
+
 function ratioButtons() {
   return `<div class="ratio-switch" role="group" aria-label="글 배치">${PROJECT_REGIONS.map((region, index) => `<button type="button" data-index="${index}" aria-pressed="false">${index + 1}</button>`).join("")}</div>`;
 }
@@ -247,7 +249,7 @@ function bindRatioFrame() {
   if (!root || !page || !copy) return;
   const draw = (index) => {
     if (!page.isConnected) return;
-    bindRatioFrame.index = index;
+    ratioPick = index;
     if (window.matchMedia("(max-width: 900px)").matches) {
       copy.style.left = "";
       copy.style.right = "";
@@ -281,9 +283,9 @@ function bindRatioFrame() {
     draw(Number(button.dataset.index));
   });
   if (bindRatioFrame.onResize) window.removeEventListener("resize", bindRatioFrame.onResize);
-  bindRatioFrame.onResize = () => draw(bindRatioFrame.index || 0);
+  bindRatioFrame.onResize = () => draw(ratioPick);
   window.addEventListener("resize", bindRatioFrame.onResize);
-  draw(0);
+  draw(ratioPick);
 }
 
 function renderProject() {
@@ -334,7 +336,7 @@ function bindProjectRatios() {
   };
   const draw = (index) => {
     if (!page.isConnected) return;
-    bindProjectRatios.index = index;
+    ratioPick = index;
     if (window.matchMedia("(max-width: 900px)").matches) {
       copy.classList.remove("is-split");
       clearPlace(copy);
@@ -397,9 +399,9 @@ function bindProjectRatios() {
     draw(Number(button.dataset.index));
   });
   if (bindProjectRatios.onResize) window.removeEventListener("resize", bindProjectRatios.onResize);
-  bindProjectRatios.onResize = () => draw(bindProjectRatios.index || 0);
+  bindProjectRatios.onResize = () => draw(ratioPick);
   window.addEventListener("resize", bindProjectRatios.onResize);
-  draw(0);
+  draw(ratioPick);
 }
 
 function renderWork() {
